@@ -16,9 +16,9 @@ export default function HomePage() {
       <Card className="flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-[#1c2128] to-[#111827]">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold text-white mb-2">
-            Alex Chen{" "}
+            Erniel Caalim{" "}
             <span className="text-slate-400 font-light">
-              | Full-Stack Developer & Data Analyst
+              | Web Developer & Data Analyst
             </span>
           </h2>
           <p className="text-slate-400 mb-6">

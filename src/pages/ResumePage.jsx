@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function ResumePage() {
   // Reusable Dark Card Component
@@ -32,15 +33,24 @@ export default function ResumePage() {
       <div className="bg-[#1c2128] border border-slate-700/50 rounded-2xl p-4 flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
         {/* Left Links */}
         <div className="flex space-x-6 text-sm font-medium">
-          <button className="text-slate-400 hover:text-white transition-colors">
+          <Link
+            to="/"
+            className="text-slate-400 hover:text-white transition-colors"
+          >
             LANDING PORTFOLIO
-          </button>
-          <button className="text-teal-400 border-b-2 border-teal-400 pb-1">
+          </Link>
+          <Link
+            to="/resume"
+            className="text-teal-400 border-b-2 border-teal-400 pb-1"
+          >
             RESUME
-          </button>
-          <button className="text-slate-400 hover:text-white transition-colors">
+          </Link>
+          <Link
+            to="/contact"
+            className="text-slate-400 hover:text-white transition-colors"
+          >
             CONTACT
-          </button>
+          </Link>
         </div>
 
         {/* Right Action Buttons */}
