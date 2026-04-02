@@ -1,0 +1,30 @@
+/* src/index.css */
+
+/* 1. Import the main Tailwind stylesheet */
+@import "tailwindcss";
+
+/* 2. Configure the theme using the @theme directive */
+@theme {
+  /* ========================================================= */
+  /* COLOR CONFIGURATION (Based on image_0.png aesthetic)       */
+  /* ========================================================= */
+
+  /* OVERRIDING default colors with your specific hex codes */
+  /* NOTE: Using native CSS variable syntax (--color-[name]: [value];) */
+  --color-slate-900: #0f172a; /* Your specified deep background */
+  --color-slate-800: #1e293b; /* Your specified Bento Card background */
+
+  /* DEFINING NEW custom colors */
+  --color-cyan-accent: #22d3ee; /* Your specified Accent colors */
+  --color-blue-accent: #3b82f6; /* Your specified Tech colors */
+
+  /* (Optional) Defining a cohesive Teal color for Data points */
+  --color-teal-data: #10b981;
+
+  /* ========================================================= */
+  /* BLUR CONFIGURATION (For Glassmorphism effects)            */
+  /* ========================================================= */
+
+  /* Defining a new 'xs' backdrop blur size */
+  --backdrop-blur-xs: 2px; /* Used for subtle Glassmorphism blur */
+}
