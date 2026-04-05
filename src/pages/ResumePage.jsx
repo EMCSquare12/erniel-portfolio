@@ -1,16 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
+import { FaChevronCircleDown } from "react-icons/fa";
+import { FaChevronCircleUp } from "react-icons/fa";
+
+// Certificate Image Imports
+import WebDev from "../assets/Certificates/WebDev.jpg";
+import WebDevLite from "../assets/Certificates/WebDevLite.png";
+import NodeJs from "../assets/Certificates/NodeJs.jpg";
+import ReactCert from "../assets/Certificates/React.jpg";
+import DataAnalysis from "../assets/Certificates/DataAnalysis.jpg";
+import Excel from "../assets/Certificates/Excel.jpg";
+import PowerBi from "../assets/Certificates/PowerBi.jpg";
+import SQL1 from "../assets/Certificates/SQL1.jpg";
+import SQL2 from "../assets/Certificates/SQL2.jpg";
 
 export default function ResumePage() {
-  // Reusable Dark Card Component
-  // const Card = ({ children, className = "" }) => (
-  //   <div
-  //     className={`bg-[#1c2128] border border-slate-700/50 rounded-2xl p-6 shadow-xl ${className}`}
-  //   >
-  //     {children}
-  //   </div>
-  // );
+  const [expandedBadge, setExpandedBadge] = useState(null);
+
+  const toggleBadge = (badge) => {
+    setExpandedBadge((prev) => (prev === badge ? null : badge));
+  };
 
   // Reusable Progress Bar for Skills
   const ProgressBar = ({ label, percentage }) => (
@@ -218,21 +228,21 @@ export default function ResumePage() {
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-white font-semibold">
-                    BS Information Technology, University
+                    Information Technology Programming
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    Minor Data Science
+                    System Technology Institute (STI College)
                   </p>
                 </div>
-                <span className="text-xs text-slate-400">2023</span>
+                <span className="text-xs text-slate-400">2016-2019</span>
               </div>
               <div className="flex justify-between items-start">
                 <div>
                   <p className="text-sm text-white font-semibold">
-                    BS Information Technology
+                    Web Development Boothcamp
                   </p>
                   <p className="text-[11px] text-slate-500">
-                    University of Technology
+                    Uplift Code Camp (2 months intensive course)
                   </p>
                 </div>
                 <span className="text-xs text-slate-400">2024</span>
@@ -244,54 +254,170 @@ export default function ResumePage() {
           <div className="flex-1">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-sm font-bold text-white uppercase">
-                CERTIFICATIONS & AWARDS
+                CERTIFICATIONS
               </h3>
-              <span className="text-teal-400">🔗</span>
+              <a
+                href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <button className="  cursor-pointer">🔗</button>
+              </a>
             </div>
             <hr className="border-slate-700 mb-4" />
 
             <div className="grid grid-cols-2 gap-4">
               {/* Badge 1 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer">
-                <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-xs text-green-500 border border-slate-600">
-                  MERN
+              <div
+                className={`transition-all ${expandedBadge === "web" ? "col-span-2" : "col-span-1"}`}
+              >
+                <div
+                  onClick={() => toggleBadge("web")}
+                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
+                >
+                  <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-xs text-green-500 border border-slate-600">
+                    MERN
+                  </div>
+                  <div>
+                    <p className="text-sm text-white font-semibold mb-1">
+                      Web Development Master Class
+                    </p>
+                    <p className="text-[9px] text-teal-400 flex items-center">
+                      View Certificates{" "}
+                      <span className="ml-1 text-[8px]">
+                        {expandedBadge === "web" ? "↓" : "↗"}
+                      </span>
+                    </p>
+                  </div>
+                  {expandedBadge === "web" ? (
+                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
+                  ) : (
+                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
+                  )}
                 </div>
-                <div>
-                  <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Web Development Master Class
-                  </p>
-                  <p className="text-[9px] text-teal-400 flex items-center">
-                    Verifiable Link <span className="ml-1 text-[8px]">↗</span>
-                  </p>
-                </div>
+
+                {/* Dropdown Card for Badge 1 */}
+                {expandedBadge === "web" && (
+                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
+                    <img
+                      src={WebDev}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="Web Dev Bootcamp"
+                    />
+                    <img
+                      src={WebDevLite}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="Web Dev Lite"
+                    />
+                    <img
+                      src={NodeJs}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="NodeJS Complete Guide"
+                    />
+                    <img
+                      src={ReactCert}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="React Complete Guide"
+                    />
+                  </div>
+                )}
               </div>
+
               {/* Badge 2 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer">
-                <div className="w-10 h-10 bg-yellow-600/20 rounded flex items-center justify-center text-lg text-yellow-500 border border-yellow-600/30">
-                  📊
+              <div
+                className={`transition-all ${expandedBadge === "data" ? "col-span-2" : "col-span-1"}`}
+              >
+                <div
+                  onClick={() => toggleBadge("data")}
+                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
+                >
+                  <div className="w-10 h-10 bg-yellow-600/20 rounded flex items-center justify-center text-lg text-yellow-500 border border-yellow-600/30">
+                    📊
+                  </div>
+                  <div>
+                    <p className="text-sm text-white font-semibold mb-1">
+                      Data Analyst, Excel, Power BI Expert
+                    </p>
+                    <p className="text-[9px] text-teal-400 flex items-center">
+                      View Certificates{" "}
+                      <span className="ml-1 text-[8px]">
+                        {expandedBadge === "data" ? "↓" : "↗"}
+                      </span>
+                    </p>
+                  </div>
+                  {expandedBadge === "data" ? (
+                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
+                  ) : (
+                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
+                  )}{" "}
                 </div>
-                <div>
-                  <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Data Analyst, Excel, Power BI Expert
-                  </p>
-                  <p className="text-[9px] text-teal-400 flex items-center">
-                    Verifiable Link <span className="ml-1 text-[8px]">↗</span>
-                  </p>
-                </div>
+
+                {/* Dropdown Card for Badge 2 */}
+                {expandedBadge === "data" && (
+                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
+                    <img
+                      src={DataAnalysis}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="Data Analysis"
+                    />
+                    <img
+                      src={Excel}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="Excel Expert"
+                    />
+                    <img
+                      src={PowerBi}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="Power BI Expert"
+                    />
+                  </div>
+                )}
               </div>
+
               {/* Badge 3 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer">
-                <div className="w-10 h-10 bg-blue-600/20 rounded flex items-center justify-center text-lg text-blue-500 border border-blue-600/30">
-                  🎖️
+              <div
+                className={`transition-all ${expandedBadge === "sql" ? "col-span-2" : "col-span-1"}`}
+              >
+                <div
+                  onClick={() => toggleBadge("sql")}
+                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
+                >
+                  <div className="w-10 h-10 bg-blue-600/20 rounded flex items-center justify-center text-lg text-blue-500 border border-blue-600/30">
+                    🎖️
+                  </div>
+                  <div>
+                    <p className="text-sm text-white font-semibold mb-1">
+                      Database (SQL) Proficiency
+                    </p>
+                    <p className="text-[9px] text-teal-400 flex items-center">
+                      View Certificates{" "}
+                      <span className="ml-1 text-[8px]">
+                        {expandedBadge === "sql" ? "↓" : "↗"}
+                      </span>
+                    </p>
+                  </div>
+                  {expandedBadge === "sql" ? (
+                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
+                  ) : (
+                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
+                  )}{" "}
                 </div>
-                <div>
-                  <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Database (SQL) Proficiency
-                  </p>
-                  <p className="text-[9px] text-teal-400 flex items-center">
-                    Verifiable Link <span className="ml-1 text-[8px]">↗</span>
-                  </p>
-                </div>
+
+                {/* Dropdown Card for Badge 3 */}
+                {expandedBadge === "sql" && (
+                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
+                    <img
+                      src={SQL1}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="SQL Certificate 1"
+                    />
+                    <img
+                      src={SQL2}
+                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                      alt="SQL Certificate 2"
+                    />
+                  </div>
+                )}
               </div>
             </div>
           </div>
