@@ -258,7 +258,7 @@ export default function ResumePage() {
                 </div>
                 <div>
                   <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    MERN Stack Masterclass
+                    Web Development Master Class
                   </p>
                   <p className="text-[9px] text-teal-400 flex items-center">
                     Verifiable Link <span className="ml-1 text-[8px]">↗</span>
@@ -272,7 +272,7 @@ export default function ResumePage() {
                 </div>
                 <div>
                   <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Power BI Data Analyst Associate
+                    Data Analyst, Excel, Power BI Expert
                   </p>
                   <p className="text-[9px] text-teal-400 flex items-center">
                     Verifiable Link <span className="ml-1 text-[8px]">↗</span>
@@ -286,21 +286,7 @@ export default function ResumePage() {
                 </div>
                 <div>
                   <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Power BI Data Analyst
-                  </p>
-                  <p className="text-[9px] text-teal-400 flex items-center">
-                    Verifiable Link <span className="ml-1 text-[8px]">↗</span>
-                  </p>
-                </div>
-              </div>
-              {/* Badge 4 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer">
-                <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-[10px] text-teal-400 border border-slate-600">
-                  Cert
-                </div>
-                <div>
-                  <p className="text-[10px] text-white font-bold leading-tight mb-1">
-                    Relevant Recognition
+                    Database (SQL) Proficiency
                   </p>
                   <p className="text-[9px] text-teal-400 flex items-center">
                     Verifiable Link <span className="ml-1 text-[8px]">↗</span>
