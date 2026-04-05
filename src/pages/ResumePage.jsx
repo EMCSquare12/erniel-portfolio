@@ -1,15 +1,16 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Card } from "../components/Card";
 
 export default function ResumePage() {
   // Reusable Dark Card Component
-  const Card = ({ children, className = "" }) => (
-    <div
-      className={`bg-[#1c2128] border border-slate-700/50 rounded-2xl p-6 shadow-xl ${className}`}
-    >
-      {children}
-    </div>
-  );
+  // const Card = ({ children, className = "" }) => (
+  //   <div
+  //     className={`bg-[#1c2128] border border-slate-700/50 rounded-2xl p-6 shadow-xl ${className}`}
+  //   >
+  //     {children}
+  //   </div>
+  // );
 
   // Reusable Progress Bar for Skills
   const ProgressBar = ({ label, percentage }) => (
@@ -30,7 +31,7 @@ export default function ResumePage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
       {/* TOP ACTION BAR */}
-      <div className="bg-[#1c2128] border border-slate-700/50 rounded-2xl p-4 flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
+      <Card className="bg-[#1c2128] border border-slate-700/50 p-4! rounded-2xl flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
         {/* Left Links */}
         <div className="flex space-x-6 text-sm font-medium">
           <Link
@@ -78,7 +79,7 @@ export default function ResumePage() {
             <span>VIEW LINKEDIN PROFILE</span>
           </button>
         </div>
-      </div>
+      </Card>
 
       {/* MAIN 3-COLUMN GRID */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
@@ -97,17 +98,22 @@ export default function ResumePage() {
             <div className="relative pl-8 mb-8">
               <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-blue-400 ring-4 ring-[#1c2128]"></div>
               <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">Admin/IT Support</h4>
-                <span className="text-xs text-slate-500">2018-2022</span>
+                <h4 className="text-white font-bold">HOUSEKEEPING</h4>
+                <span className="text-xs text-slate-500">2016-2018</span>
               </div>
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
                 {/* Speech bubble arrow pointer */}
                 <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
                 <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>Optimized workflow by 15%</li>
-                  <li>Improved analysis by 10%</li>
-                  <li>Skills used during 10%</li>
-                  <li>Skills used, Tech</li>
+                  <li>Maintained cleanliness across all assigned areas.</li>
+                  <li>
+                    Ensured resident comfort by upholding high standards of room
+                    upkeep and sanitation.
+                  </li>
+                  <li>
+                    Followed safety protocols to consistently meet hygiene and
+                    organization requirements.
+                  </li>
                 </ul>
               </div>
             </div>
@@ -116,16 +122,20 @@ export default function ResumePage() {
             <div className="relative pl-8 mb-8">
               <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-teal-400 ring-4 ring-[#1c2128]"></div>
               <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">Junior Web Developer</h4>
-                <span className="text-xs text-slate-500">2022-Present</span>
+                <h4 className="text-white font-bold">Data Encoder</h4>
+                <span className="text-xs text-slate-500">2019-2020</span>
               </div>
-              <p className="text-xs text-slate-500 mb-2">& Data Analyst</p>
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
                 <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
                 <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>Developed MERN app, analyzed user behavior</li>
-                  <li>Developed MERN app rlbxtion</li>
-                  <li>Developed with JI-Data technology</li>
+                  <li>Encoded signed delivery receipts into the system.</li>
+                  <li>
+                    Processed high volumes of delivery data for messengers and
+                    their respective consignees
+                  </li>
+                  <li>
+                    Maintained precise records of telecommunications deliveries
+                  </li>
                 </ul>
               </div>
             </div>
@@ -134,15 +144,23 @@ export default function ResumePage() {
             <div className="relative pl-8 mb-8">
               <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-slate-500 ring-4 ring-[#1c2128]"></div>
               <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">Admin Tasks</h4>
-                <span className="text-xs text-slate-500">2018-2022</span>
+                <h4 className="text-white font-bold">Admin Clerk</h4>
+                <span className="text-xs text-slate-500">2021-2022</span>
               </div>
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
                 <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
                 <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>Optimized workflow by 15%</li>
-                  <li>Analyzed workflow by 15%</li>
-                  <li>Skills used bending achievements</li>
+                  <li>
+                    Assisted the Store Manager in daily operations and general
+                    store management.
+                  </li>
+                  <li>
+                    Handled incoming deliveries and verified inventory accuracy.
+                  </li>
+                  <li>
+                    Arranged store displays. Optimize product visibility and
+                    visual appeal.
+                  </li>
                 </ul>
               </div>
             </div>
@@ -151,8 +169,24 @@ export default function ResumePage() {
             <div className="relative pl-8">
               <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-slate-600 ring-4 ring-[#1c2128]"></div>
               <div className="flex justify-between items-center">
-                <h4 className="text-white font-bold">IT smxr Government</h4>
-                <span className="text-xs text-slate-500">2018</span>
+                <h4 className="text-white font-bold">Admin and IT Support</h4>
+                <span className="text-xs text-slate-500">Current</span>
+              </div>
+              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
+                <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
+                <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
+                  <li>
+                    Assisted the Store Manager in daily operations and general
+                    store management.
+                  </li>
+                  <li>
+                    Handled incoming deliveries and verified inventory accuracy.
+                  </li>
+                  <li>
+                    Arranged store displays. Optimize product visibility and
+                    visual appeal.
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

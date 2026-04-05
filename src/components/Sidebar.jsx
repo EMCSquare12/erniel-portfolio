@@ -7,15 +7,16 @@ import { IoMdMail } from "react-icons/io";
 export default function Sidebar() {
   const navItems = [
     { name: "HOME", path: "/" },
+    { name: "RESUME", path: "/resume" },
     { name: "PROJECTS", path: "/projects" },
     // { name: "DASHBOARD", path: "/dashboard" },
     { name: "SKILLS", path: "/skills" },
-    { name: "RESUME", path: "/resume" },
+
     { name: "CONTACT", path: "/contact" },
   ];
 
   return (
-    <aside className="w-64 border-r border-slate-700/50 bg-[#161b22] p-6 flex flex-col justify-between hidden md:flex">
+    <aside className="w-64 border-r bg-[#1c2128]/60 backdrop-blur-md  border-slate-700/50 p-6 flex flex-col justify-between hidden md:flex">
       <div>
         <h1 className="text-xl font-bold text-white mb-8 border-b border-slate-700 pb-4">
           Erniel Caalim

@@ -1,30 +1,27 @@
-/* src/index.css */
-
-/* 1. Import the main Tailwind stylesheet */
 @import "tailwindcss";
 
-/* 2. Configure the theme using the @theme directive */
-@theme {
-  /* ========================================================= */
-  /* COLOR CONFIGURATION (Based on image_0.png aesthetic)       */
-  /* ========================================================= */
+@layer base {
+  body {
+    @apply text-slate-300 antialiased;
+    /* 1. Base dark color */
+    background-color: #0d1a3c;
 
-  /* OVERRIDING default colors with your specific hex codes */
-  /* NOTE: Using native CSS variable syntax (--color-[name]: [value];) */
-  --color-slate-900: #0f172a; /* Your specified deep background */
-  --color-slate-800: #1e293b; /* Your specified Bento Card background */
+    background-image: 
+      /* Horizontal grid lines */
+      linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      /* Vertical grid lines */
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+      /* Soft radial gradient glow from the top center */
+        radial-gradient(circle at 50% 0%, #162b4d 0%, #0b1d20 80%);
 
-  /* DEFINING NEW custom colors */
-  --color-cyan-accent: #22d3ee; /* Your specified Accent colors */
-  --color-blue-accent: #3b82f6; /* Your specified Tech colors */
-
-  /* (Optional) Defining a cohesive Teal color for Data points */
-  --color-teal-data: #10b981;
-
-  /* ========================================================= */
-  /* BLUR CONFIGURATION (For Glassmorphism effects)            */
-  /* ========================================================= */
-
-  /* Defining a new 'xs' backdrop blur size */
-  --backdrop-blur-xs: 2px; /* Used for subtle Glassmorphism blur */
+    /* Set the size of the grid squares (50px) and let the gradient fill the screen */
+    background-size:
+      50px 50px,
+      50px 50px,
+      100% 100%;
+    background-position: center top;
+    background-attachment: fixed; /* Keeps the grid static while scrolling */
+    min-height: 100vh;
+    margin: 0;
+  }
 }
