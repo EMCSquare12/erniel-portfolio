@@ -49,6 +49,13 @@ export default function SkillsPage() {
     </div>
   );
 
+  // Reusable Tag Component for the new supplementary skills
+  const Tag = ({ children }) => (
+    <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 shadow-sm">
+      {children}
+    </span>
+  );
+
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
       {/* HEADER */}
@@ -174,9 +181,6 @@ export default function SkillsPage() {
               </div>
             </div>
           </div>
-          {/* <div className="mt-4 px-3 py-1 bg-slate-800/50 border border-slate-600 rounded-full text-[10px] text-teal-400">
-            Validated: Oct 2024
-          </div> */}
         </div>
 
         {/* BOTTOM BOX: Career Bridge */}
@@ -235,15 +239,15 @@ export default function SkillsPage() {
         <SkillNode
           icon="📊"
           title="Excel"
-          subtitle="Data Cleaning & ETL"
+          subtitle="Formulas & Pivots"
           score={85}
           themeColor="teal"
           positionClasses="top-[25%] right-[32%]"
         />
         <SkillNode
           icon="🔄"
-          title="Data Cleaning"
-          subtitle="(Excel/Power Query)"
+          title="Automation"
+          subtitle="Google Sheet Scripts"
           score={85}
           themeColor="teal"
           positionClasses="top-[45%] right-[13%]"
@@ -265,6 +269,62 @@ export default function SkillsPage() {
           positionClasses="bottom-[20%] right-[17%]"
         />
       </Card>
+
+      {/* SUPPLEMENTARY SKILLS GRID */}
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+        {/* Frameworks & Ecosystem */}
+        <Card>
+          <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
+            <span className="text-blue-400 mr-2">📚</span> Frameworks
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <Tag>Redux</Tag>
+            <Tag>Axios</Tag>
+            <Tag>Socket.IO</Tag>
+            <Tag>Mongoose</Tag>
+            <Tag>Tailwind CSS</Tag>
+            <Tag>React Router</Tag>
+          </div>
+        </Card>
+
+        {/* DevOps & Version Control */}
+        <Card>
+          <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
+            <span className="text-teal-400 mr-2">🚀</span> Deployment
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <Tag>GitHub</Tag>
+            <Tag>GitLab</Tag>
+            <Tag>Jira</Tag>
+            <Tag>Netlify</Tag>
+            <Tag>Render</Tag>
+          </div>
+        </Card>
+
+        {/* Data Analytics */}
+        <Card>
+          <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
+            <span className="text-yellow-400 mr-2">📈</span> Data Analytics
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <Tag>Excel Formula</Tag>
+            <Tag>Google Sheet Script</Tag>
+            <Tag>Pivot</Tag>
+          </div>
+        </Card>
+
+        {/* AI & Emerging Tech */}
+        <Card>
+          <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
+            <span className="text-purple-400 mr-2">🤖</span> AI Techniques
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            <Tag>AI Prompting Technique</Tag>
+            <Tag>Code Copilots</Tag>
+            <Tag>Workflow Automation</Tag>
+          </div>
+        </Card>
+      </div>
     </div>
   );
 }
