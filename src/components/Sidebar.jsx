@@ -8,10 +8,9 @@ export default function Sidebar() {
   const navItems = [
     { name: "HOME", path: "/" },
     { name: "RESUME", path: "/resume" },
+    { name: "SKILLS", path: "/skills" },
     { name: "PROJECTS", path: "/projects" },
     // { name: "DASHBOARD", path: "/dashboard" },
-    { name: "SKILLS", path: "/skills" },
-
     { name: "CONTACT", path: "/contact" },
   ];
 
