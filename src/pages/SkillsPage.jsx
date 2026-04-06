@@ -208,7 +208,7 @@ export default function SkillsPage() {
         />
         <SkillNode
           icon="JS"
-          title="JavaScript"
+          title="NodeJs"
           subtitle="End-to-End Logic"
           score={90}
           themeColor="blue"
@@ -243,7 +243,7 @@ export default function SkillsPage() {
         <SkillNode
           icon="🔄"
           title="Data Cleaning"
-          subtitle="(Excel/PQ)"
+          subtitle="(Excel/Power Query)"
           score={85}
           themeColor="teal"
           positionClasses="top-[45%] right-[13%]"
@@ -258,8 +258,8 @@ export default function SkillsPage() {
         />
         <SkillNode
           icon="📈"
-          title="Power BI"
-          subtitle="Power BI Dashboarding"
+          title="Data Visualization"
+          subtitle="Power BI/Tableau"
           score={85}
           themeColor="teal"
           positionClasses="bottom-[20%] right-[17%]"
