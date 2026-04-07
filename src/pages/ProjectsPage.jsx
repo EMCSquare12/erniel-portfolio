@@ -1,4 +1,9 @@
 import React from "react";
+import ReactJs from "../assets/Icons/react-js-48.png";
+import NodeJs from "../assets/Icons/node-js-48.png";
+import MongoDb from "../assets/Icons/mongodb-48.png";
+import ExpressJs from "../assets/Icons/express-js-48.png";
+
 
 export default function ProjectsPage() {
   // Reusable Card Component matching the dark theme
@@ -25,7 +30,7 @@ export default function ProjectsPage() {
         {/* LEFT COLUMN: Featured Hybrid Project */}
         <Card className="col-span-1 flex flex-col">
           <h3 className="font-bold text-white mb-4 uppercase text-sm">
-            Featured Hybrid Project: SaaS Analytics Dashboard
+            Featured Project: ProShop
           </h3>
 
           {/* Main Project Image Placeholder */}
@@ -34,14 +39,14 @@ export default function ProjectsPage() {
           </div>
 
           {/* Tech Stack Icons */}
-          <div className="flex space-x-3 mb-6 justify-center">
-            {["🍃", "EX", "⚛️", "JS", "SQL", "📊"].map((icon, i) => (
-              <span
-                key={i}
-                className="w-10 h-10 rounded-lg bg-[#161b22] border border-slate-700 flex items-center justify-center text-lg"
+          <div className="flex space-x-2 mb-4 justify-center">
+            {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
+              <div
+                key={idx}
+                className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
               >
-                {icon}
-              </span>
+                <img src={icon}></img>
+              </div>
             ))}
           </div>
 
@@ -86,14 +91,14 @@ export default function ProjectsPage() {
           </ul>
 
           {/* Data Flow Diagram Placeholder */}
-          <div className="bg-white rounded-lg p-4 mt-auto">
+          {/* <div className="bg-white rounded-lg p-4 mt-auto">
             <p className="text-center text-black font-semibold text-xs mb-2">
               Data Flow
             </p>
             <div className="h-16 flex items-center justify-between text-black text-xs">
               [API] -{">"} [SQL] -{">"} [Power BI]
             </div>
-          </div>
+          </div> */}
         </Card>
 
         {/* RIGHT AREA: Spans 2 columns */}

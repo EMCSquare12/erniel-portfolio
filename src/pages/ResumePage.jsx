@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
 import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
+import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 
 // Certificate Image Imports
 import WebDev from "../assets/Certificates/WebDev.jpg";
@@ -13,6 +14,23 @@ import Excel from "../assets/Certificates/Excel.jpg";
 import PowerBi from "../assets/Certificates/PowerBi.jpg";
 import SQL1 from "../assets/Certificates/SQL1.jpg";
 import SQL2 from "../assets/Certificates/SQL2.jpg";
+import DataChart from "../assets/Certificates/DataChart.png";
+import WebDeveloper from "../assets/Certificates/WebDeveloper.png";
+import SQL from "../assets/Icons/sql-48.png";
+
+//Icons Image Imports
+import Express from "../assets/Icons/express-js-48.png";
+import ReactJs from "../assets/Icons/react-js-48.png";
+import MongoDb from "../assets/Icons/mongodb-48.png";
+import Node from "../assets/Icons/node-js-48.png";
+import SocketIO from "../assets/Icons/socketIO.png";
+
+//Project Image Imports
+import CreateRoom from "../assets/Projects/LiveBingo/CreateRoom.png";
+import HostPage from "../assets/Projects/LiveBingo/HostPage.png";
+import JoinRoom from "../assets/Projects/LiveBingo/JoinRoom.png";
+import MainPage from "../assets/Projects/LiveBingo/MainPage.png";
+import PlayerRoom from "../assets/Projects/LiveBingo/PlayerRoom.png";
 
 export default function ResumePage() {
   const [expandedBadge, setExpandedBadge] = useState(null);
@@ -38,7 +56,7 @@ export default function ResumePage() {
 
   const timelineData = [
     {
-      role: "HOUSEKEEPING",
+      role: "Housekeeping",
       period: "2016-2018",
       color: "bg-blue-400",
       bullets: [
@@ -82,8 +100,8 @@ export default function ResumePage() {
   const badgesData = [
     {
       id: "web",
-      iconText: "MERN",
-      iconClass: "bg-slate-800 text-green-500 border-slate-600",
+      icon: WebDeveloper,
+      iconClass: "bg-slate-800 text-green-500 border-slate-600 p-1",
       title: "Web Development Master Class",
       images: [
         { src: WebDev, alt: "Web Dev Bootcamp" },
@@ -94,9 +112,9 @@ export default function ResumePage() {
     },
     {
       id: "data",
-      iconText: "📊",
+      icon: DataChart,
       iconClass:
-        "bg-yellow-600/20 text-yellow-500 border-yellow-600/30 text-lg",
+        "bg-yellow-600/20 text-yellow-500 border-yellow-600/30 text-lg p-1",
       title: "Data Analyst, Excel, Power BI Expert",
       images: [
         { src: DataAnalysis, alt: "Data Analysis" },
@@ -106,7 +124,7 @@ export default function ResumePage() {
     },
     {
       id: "sql",
-      iconText: "🎖️",
+      icon: SQL,
       iconClass: "bg-blue-600/20 text-blue-500 border-blue-600/30 text-lg",
       title: "Database (SQL) Proficiency",
       images: [
@@ -268,11 +286,10 @@ export default function ResumePage() {
                     onClick={() => toggleBadge(badge.id)}
                     className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
                   >
-                    <div
+                    <img
+                      src={badge.icon}
                       className={`w-10 h-10 rounded flex items-center justify-center text-xs border ${badge.iconClass}`}
-                    >
-                      {badge.iconText}
-                    </div>
+                    ></img>
                     <div>
                       <p className="text-sm text-white font-semibold mb-1">
                         {badge.title}
@@ -328,67 +345,99 @@ export default function ResumePage() {
             </h3>
             <div className="space-y-4">
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-24 h-20 bg-slate-100 rounded border border-slate-300 flex-shrink-0 relative overflow-hidden flex flex-col">
-                  <div className="h-4 bg-slate-800 w-full flex items-center px-1">
-                    <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                  </div>
-                  <div className="flex-1 grid grid-cols-2 gap-1 p-1">
-                    <div className="bg-slate-300 rounded-sm"></div>
-                    <div className="bg-slate-300 rounded-sm"></div>
-                  </div>
+                <div className="w-30 h-auto  rounded -mb-2   relative  flex flex-col">
+                  <ProjectGalleryItem
+                    images={[
+                      MainPage,
+                      CreateRoom,
+                      JoinRoom,
+                      HostPage,
+                      PlayerRoom,
+                    ]} // Add more images to this array to enable the slider
+                    projectUrl="https://live-bingo-v2.netlify.app/"
+                  />
                 </div>
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col">
                   <div>
                     <h4 className="text-[13px] font-bold text-white mb-1 leading-tight">
-                      E-Commerce Analytics Dashboard
+                      Live Bingo
                     </h4>
-                    <p className="text-[10px] text-slate-400 line-clamp-2">
-                      E-Commerce Analytics Dashboard and sloppied analytics
-                      economis-tin...
+                    <p className="text-[10px] w-[60%] text-slate-400 line-clamp-2">
+                      A live multiplayer Bingo game where user can host their
+                      own rooms or join others to play. Mark the players cards
+                      in real-time.
                     </p>
                   </div>
                   <div className="flex space-x-2 text-xs mt-2">
-                    <span className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400">
-                      ⚛️
-                    </span>
-                    <span className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-yellow-400">
-                      JS
-                    </span>
-                    <span className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-green-400">
-                      🍃
-                    </span>
+                    <img
+                      src={MongoDb}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={Express}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={ReactJs}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={Node}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={SocketIO}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
                   </div>
                 </div>
               </div>
 
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-24 h-20 bg-slate-100 rounded border border-slate-300 flex-shrink-0 relative overflow-hidden flex flex-col">
-                  <div className="h-4 bg-slate-800 w-full flex items-center px-1">
-                    <div className="w-2 h-2 rounded-full bg-red-400"></div>
-                  </div>
-                  <div className="flex-1 p-1 flex flex-col space-y-1">
-                    <div className="h-2 bg-slate-300 rounded-sm w-3/4"></div>
-                    <div className="h-2 bg-slate-300 rounded-sm w-full"></div>
-                    <div className="h-2 bg-slate-300 rounded-sm w-5/6"></div>
-                  </div>
+                <div className="w-30 h-auto  rounded -mb-2   relative  flex flex-col">
+                  <ProjectGalleryItem
+                    images={[
+                      MainPage,
+                      CreateRoom,
+                      JoinRoom,
+                      HostPage,
+                      PlayerRoom,
+                    ]} // Add more images to this array to enable the slider
+                    projectUrl="https://live-bingo-v2.netlify.app/"
+                  />
                 </div>
-                <div className="flex flex-col justify-between">
+                <div className="flex flex-col">
                   <div>
                     <h4 className="text-[13px] font-bold text-white mb-1 leading-tight">
-                      IT Support Automation Tool
+                      ProShop - Admin Dashboard
                     </h4>
-                    <p className="text-[10px] text-slate-400 line-clamp-2">
-                      IT Support Automation Tool and aremplowataed and the
-                      preomeecess...
+                    <p className="text-[10px] w-[60%] text-slate-400 line-clamp-2">
+                      An exclusive administrative gateway for precision
+                      inventory management, live order tracking, and
+                      comprehensive sales oversight.
                     </p>
                   </div>
                   <div className="flex space-x-2 text-xs mt-2">
-                    <span className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-yellow-400">
-                      JS
-                    </span>
-                    <span className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400">
-                      &lt;/&gt;
-                    </span>
+                    <img
+                      src={MongoDb}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={Express}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={ReactJs}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={Node}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
+                    <img
+                      src={SocketIO}
+                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
+                    ></img>
                   </div>
                 </div>
               </div>

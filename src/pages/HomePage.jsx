@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Card } from "../components/Card";
-import { FaReact, FaDatabase } from "react-icons/fa";
-import { FaFileExcel } from "react-icons/fa6";
+import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 
 import Hero from "../assets/Hero.png";
 import Excel from "../assets/Icons/excel-48.png";
@@ -11,7 +10,11 @@ import SQL from "../assets/Icons/sql-48.png";
 import NodeJs from "../assets/Icons/node-js-48.png";
 import MongoDb from "../assets/Icons/mongodb-48.png";
 import ExpressJs from "../assets/Icons/express-js-48.png";
-import LiveBingo from "../assets/Projects/LiveBingo.png";
+import CreateRoom from "../assets/Projects/LiveBingo/CreateRoom.png";
+import HostPage from "../assets/Projects/LiveBingo/HostPage.png";
+import JoinRoom from "../assets/Projects/LiveBingo/JoinRoom.png";
+import MainPage from "../assets/Projects/LiveBingo/MainPage.png";
+import PlayerRoom from "../assets/Projects/LiveBingo/PlayerRoom.png";
 
 // Custom SVG Gauge
 const CustomGauge = ({ name, value, color }) => {
@@ -211,19 +214,17 @@ export default function HomePage() {
               Project Gallery (Latest)
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              <div>
-                <img
-                  src={LiveBingo}
-                  className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 shrink-0 object-contain"
-                ></img>
-                <p className="text-xs text-center text-slate-400">Live Bingo</p>
-              </div>
-              <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700"></div>
-                <p className="text-xs text-center text-slate-400">
-                  HR Data Reporting
-                </p>
-              </div>
+              {/* Replace static images with new Custom Component */}
+              <ProjectGalleryItem
+                title="Live Bingo"
+                images={[MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom]} // Add more images to this array to enable the slider
+                projectUrl="https://live-bingo-v2.netlify.app/"
+              />
+              <ProjectGalleryItem
+                title="HR Data Reporting"
+                images={[]} // Just empty array if no images available yet
+                projectUrl="#"
+              />
             </div>
           </Card>
         </div>
