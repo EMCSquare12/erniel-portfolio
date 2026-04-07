@@ -2,20 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 
-import Hero from "../assets/Hero.png";
-import Excel from "../assets/Icons/excel-48.png";
-import PowerBI from "../assets/Icons/power-bi-2021-48.png";
-import ReactJs from "../assets/Icons/react-js-48.png";
-import SQL from "../assets/Icons/sql-48.png";
-import NodeJs from "../assets/Icons/node-js-48.png";
-import MongoDb from "../assets/Icons/mongodb-48.png";
-import ExpressJs from "../assets/Icons/express-js-48.png";
-import CreateRoom from "../assets/Projects/LiveBingo/CreateRoom.png";
-import HostPage from "../assets/Projects/LiveBingo/HostPage.png";
-import JoinRoom from "../assets/Projects/LiveBingo/JoinRoom.png";
-import MainPage from "../assets/Projects/LiveBingo/MainPage.png";
-import PlayerRoom from "../assets/Projects/LiveBingo/PlayerRoom.png";
-
+import {
+  Hero,
+  IconExcel as Excel,
+  IconPowerBi as PowerBI,
+  IconReactJs as ReactJs,
+  IconSQL as SQL,
+  IconNodeJs as NodeJs,
+  IconMongoDb as MongoDb,
+  IconExpressJs as ExpressJs,
+  ProjectLiveBingoCreateRoom as CreateRoom,
+  ProjectLiveBingoHostPage as HostPage,
+  ProjectLiveBingoJoinRoom as JoinRoom,
+  ProjectLiveBingoMainPage as MainPage,
+  ProjectLiveBingoPlayerRoom as PlayerRoom,
+} from "../assets";
 // Custom SVG Gauge
 const CustomGauge = ({ name, value, color }) => {
   const [currentValue, setCurrentValue] = useState(0);

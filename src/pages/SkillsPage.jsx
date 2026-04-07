@@ -1,24 +1,25 @@
 import { Card } from "../components/Card";
-
-import ExpressJs from "../assets/Icons/express-js-48.png";
-import ReactJs from "../assets/Icons/react-js-48.png";
-import NodeJs from "../assets/Icons/node-js-48.png";
-import MongoDb from "../assets/Icons/mongodb-48.png";
-import Axios from "../assets/Icons/axios.png";
-import Excel from "../assets/Icons/excel-48.png";
-import GoogleScript from "../assets/Icons/google-sheets-48.png";
-import Mongoose from "../assets/Icons/mongoose-48.png";
-import PowerBI from "../assets/Icons/power-bi-2021-48.png";
-import ReactRouter from "../assets/Icons/react-router.png";
-import SocketIO from "../assets/Icons/socketIO.png";
-import SQL from "../assets/Icons/sql-48.png";
-import Tableau from "../assets/Icons/tableau-software-48.png";
-import Tailwind from "../assets/Icons/tailwind-css-48.png";
-import Redux from "../assets/Icons/redux-48.png";
-import Github from "../assets/Icons/GitHub.png";
-import Gitlab from "../assets/Icons/GitLab.png";
-import Jira from "../assets/Icons/Jira.png";
-import Bootstrap from "../assets/Icons/bootstrap-48.png";
+import {
+  IconExpressJs as ExpressJs,
+  IconReactJs as ReactJs,
+  IconNodeJs as NodeJs,
+  IconMongoDb as MongoDb,
+  IconAxios as Axios,
+  IconExcel as Excel,
+  IconGoogleSheets as GoogleScript,
+  IconMongoose as Mongoose,
+  IconPowerBi as PowerBI,
+  IconReactRouter as ReactRouter,
+  IconSocketIO as SocketIO,
+  IconSQL as SQL,
+  IconTableau as Tableau,
+  IconTailwind as Tailwind,
+  IconRedux as Redux,
+  IconGithub as Github,
+  IconGitlab as Gitlab,
+  IconJira as Jira,
+  IconBootstrap as Bootstrap,
+} from "../assets";
 
 export default function SkillsPage() {
   const ProgressBar = ({ label, percentage, range, colorClass }) => (

@@ -3,34 +3,30 @@ import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
 import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
 import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
-
-// Certificate Image Imports
-import WebDev from "../assets/Certificates/WebDev.jpg";
-import WebDevLite from "../assets/Certificates/WebDevLite.png";
-import NodeJs from "../assets/Certificates/NodeJs.jpg";
-import ReactCert from "../assets/Certificates/React.jpg";
-import DataAnalysis from "../assets/Certificates/DataAnalysis.jpg";
-import Excel from "../assets/Certificates/Excel.jpg";
-import PowerBi from "../assets/Certificates/PowerBi.jpg";
-import SQL1 from "../assets/Certificates/SQL1.jpg";
-import SQL2 from "../assets/Certificates/SQL2.jpg";
-import DataChart from "../assets/Certificates/DataChart.png";
-import WebDeveloper from "../assets/Certificates/WebDeveloper.png";
-import SQL from "../assets/Icons/sql-48.png";
-
-//Icons Image Imports
-import Express from "../assets/Icons/express-js-48.png";
-import ReactJs from "../assets/Icons/react-js-48.png";
-import MongoDb from "../assets/Icons/mongodb-48.png";
-import Node from "../assets/Icons/node-js-48.png";
-import SocketIO from "../assets/Icons/socketIO.png";
-
-//Project Image Imports
-import CreateRoom from "../assets/Projects/LiveBingo/CreateRoom.png";
-import HostPage from "../assets/Projects/LiveBingo/HostPage.png";
-import JoinRoom from "../assets/Projects/LiveBingo/JoinRoom.png";
-import MainPage from "../assets/Projects/LiveBingo/MainPage.png";
-import PlayerRoom from "../assets/Projects/LiveBingo/PlayerRoom.png";
+import {
+  CertWebDev as WebDev,
+  CertWebDevLite as WebDevLite,
+  CertNodeJs as NodeJs,
+  CertReact as ReactCert,
+  CertDataAnalysis as DataAnalysis,
+  CertExcel as Excel,
+  CertPowerBi as PowerBi,
+  CertSQL1 as SQL1,
+  CertSQL2 as SQL2,
+  CertDataChart as DataChart,
+  CertWebDeveloper as WebDeveloper,
+  IconSQL as SQL,
+  IconExpressJs as Express,
+  IconReactJs as ReactJs,
+  IconMongoDb as MongoDb,
+  IconNodeJs as Node,
+  IconSocketIO as SocketIO,
+  ProjectLiveBingoCreateRoom as CreateRoom,
+  ProjectLiveBingoHostPage as HostPage,
+  ProjectLiveBingoJoinRoom as JoinRoom,
+  ProjectLiveBingoMainPage as MainPage,
+  ProjectLiveBingoPlayerRoom as PlayerRoom,
+} from "../assets";
 
 export default function ResumePage() {
   const [expandedBadge, setExpandedBadge] = useState(null);

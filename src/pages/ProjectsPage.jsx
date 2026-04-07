@@ -1,9 +1,10 @@
 import React from "react";
-import ReactJs from "../assets/Icons/react-js-48.png";
-import NodeJs from "../assets/Icons/node-js-48.png";
-import MongoDb from "../assets/Icons/mongodb-48.png";
-import ExpressJs from "../assets/Icons/express-js-48.png";
-
+import {
+  IconReactJs as ReactJs,
+  IconNodeJs as NodeJs,
+  IconMongoDb as MongoDb,
+  IconExpressJs as ExpressJs,
+} from "../assets";
 
 export default function ProjectsPage() {
   // Reusable Card Component matching the dark theme
