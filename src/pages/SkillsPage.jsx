@@ -1,5 +1,24 @@
-import React from "react";
 import { Card } from "../components/Card";
+
+import ExpressJs from "../assets/Icons/express-js-48.png";
+import ReactJs from "../assets/Icons/react-js-48.png";
+import NodeJs from "../assets/Icons/node-js-48.png";
+import MongoDb from "../assets/Icons/mongodb-48.png";
+import Axios from "../assets/Icons/axios.png";
+import Excel from "../assets/Icons/excel-48.png";
+import GoogleScript from "../assets/Icons/google-sheets-48.png";
+import Mongoose from "../assets/Icons/mongoose-48.png";
+import PowerBI from "../assets/Icons/power-bi-2021-48.png";
+import ReactRouter from "../assets/Icons/react-router.png";
+import SocketIO from "../assets/Icons/socketIO.png";
+import SQL from "../assets/Icons/sql-48.png";
+import Tableau from "../assets/Icons/tableau-software-48.png";
+import Tailwind from "../assets/Icons/tailwind-css-48.png";
+import Redux from "../assets/Icons/redux-48.png";
+import Github from "../assets/Icons/Github.png";
+import Gitlab from "../assets/Icons/Gitlab.png";
+import Jira from "../assets/Icons/Jira.png";
+import Bootstrap from "../assets/Icons/bootstrap-48.png";
 
 export default function SkillsPage() {
   // Reusable Component for the small progress bars
@@ -34,7 +53,7 @@ export default function SkillsPage() {
       <div
         className={`relative w-12 h-12 rounded-xl bg-[#161b22] border-2 border-${themeColor}-500/50 flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] shadow-${themeColor}-500/20`}
       >
-        {icon}
+        <img className="w-8 h-8" src={icon} alt={title} />
         <span
           className={`absolute -bottom-2 bg-[#161b22] border border-${themeColor}-500 text-[9px] px-1.5 rounded text-white`}
         >
@@ -50,10 +69,11 @@ export default function SkillsPage() {
   );
 
   // Reusable Tag Component for the new supplementary skills
-  const Tag = ({ children }) => (
-    <span className="px-3 py-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 shadow-sm">
+  const Tag = ({ src, alt, children }) => (
+    <div className=" px-2 py-1 flex flex-row items-center gap-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 shadow-sm">
+      <img src={src} alt={alt} className=" w-5 h-5"></img>
       {children}
-    </span>
+    </div>
   );
 
   return (
@@ -203,7 +223,7 @@ export default function SkillsPage() {
 
         {/* LEFT SIDE SKILL NODES (Web Dev) */}
         <SkillNode
-          icon="⚛️"
+          icon={ReactJs}
           title="React"
           subtitle="MERN App/Web"
           score={90}
@@ -211,7 +231,7 @@ export default function SkillsPage() {
           positionClasses="top-[25%] left-[32%]"
         />
         <SkillNode
-          icon="JS"
+          icon={NodeJs}
           title="NodeJs"
           subtitle="End-to-End Logic"
           score={90}
@@ -219,7 +239,7 @@ export default function SkillsPage() {
           positionClasses="top-[45%] left-[13%]"
         />
         <SkillNode
-          icon="EX"
+          icon={ExpressJs}
           title="Express.js"
           subtitle="API Development"
           score={90}
@@ -227,7 +247,7 @@ export default function SkillsPage() {
           positionClasses="bottom-[40%] left-[24%]"
         />
         <SkillNode
-          icon="🍃"
+          icon={MongoDb}
           title="MongoDB"
           subtitle="Performance Tuning"
           score={90}
@@ -237,7 +257,7 @@ export default function SkillsPage() {
 
         {/* RIGHT SIDE SKILL NODES (Data Analysis) */}
         <SkillNode
-          icon="📊"
+          icon={Excel}
           title="Excel"
           subtitle="Formulas & Pivots"
           score={85}
@@ -245,15 +265,15 @@ export default function SkillsPage() {
           positionClasses="top-[25%] right-[32%]"
         />
         <SkillNode
-          icon="🔄"
-          title="Automation"
-          subtitle="Google Sheet Scripts"
+          icon={Excel}
+          title="Data Cleaning"
+          subtitle="Excel/Power Query"
           score={85}
           themeColor="teal"
           positionClasses="top-[45%] right-[13%]"
         />
         <SkillNode
-          icon="🗄️"
+          icon={SQL}
           title="SQL"
           subtitle="Complex SQL Queries"
           score={85}
@@ -261,7 +281,7 @@ export default function SkillsPage() {
           positionClasses="bottom-[40%] right-[23%]"
         />
         <SkillNode
-          icon="📈"
+          icon={PowerBI}
           title="Data Visualization"
           subtitle="Power BI/Tableau"
           score={85}
@@ -278,12 +298,27 @@ export default function SkillsPage() {
             <span className="text-blue-400 mr-2">📚</span> Frameworks
           </h3>
           <div className="flex flex-wrap gap-2">
-            <Tag>Redux</Tag>
-            <Tag>Axios</Tag>
-            <Tag>Socket.IO</Tag>
-            <Tag>Mongoose</Tag>
-            <Tag>Tailwind CSS</Tag>
-            <Tag>React Router</Tag>
+            <Tag src={Redux} alt={"Redux Icon"}>
+              Redux
+            </Tag>
+            <Tag src={Axios} alt={"Axios Icon"}>
+              Axios
+            </Tag>
+            <Tag src={SocketIO} alt={"Socket.io Icon"}>
+              Socket.io
+            </Tag>
+            <Tag src={Mongoose} alt={"Mongoose Icon"}>
+              Mongoose
+            </Tag>
+            <Tag src={Tailwind} alt={"Tailwind Icon"}>
+              Tailwind
+            </Tag>
+            <Tag src={Bootstrap} alt={"Bootstrap Icon"}>
+              Bootstrap
+            </Tag>
+            <Tag src={ReactRouter} alt={"React Router Icon"}>
+              React Router
+            </Tag>
           </div>
         </Card>
 
@@ -293,9 +328,15 @@ export default function SkillsPage() {
             <span className="text-teal-400 mr-2">🚀</span> Deployment
           </h3>
           <div className="flex flex-wrap gap-2">
-            <Tag>GitHub</Tag>
-            <Tag>GitLab</Tag>
-            <Tag>Jira</Tag>
+            <Tag src={Github} alt={"Github Icon"}>
+              Github
+            </Tag>
+            <Tag src={Gitlab} alt={"Gitlab Icon"}>
+              Gitlab
+            </Tag>
+            <Tag src={Jira} alt={"Jira Icon"}>
+              Jira
+            </Tag>
             <Tag>Netlify</Tag>
             <Tag>Render</Tag>
           </div>
