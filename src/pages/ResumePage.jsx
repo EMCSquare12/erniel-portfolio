@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card } from "../components/Card";
-import { FaChevronCircleDown } from "react-icons/fa";
-import { FaChevronCircleUp } from "react-icons/fa";
+import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
 
 // Certificate Image Imports
 import WebDev from "../assets/Certificates/WebDev.jpg";
@@ -22,7 +21,6 @@ export default function ResumePage() {
     setExpandedBadge((prev) => (prev === badge ? null : badge));
   };
 
-  // Reusable Progress Bar for Skills
   const ProgressBar = ({ label, percentage }) => (
     <div className="flex items-center space-x-4 mb-4">
       <span className="text-sm text-slate-300 w-16">{label}</span>
@@ -38,11 +36,89 @@ export default function ResumePage() {
     </div>
   );
 
+  const timelineData = [
+    {
+      role: "HOUSEKEEPING",
+      period: "2016-2018",
+      color: "bg-blue-400",
+      bullets: [
+        "Maintained cleanliness across all assigned areas.",
+        "Ensured resident comfort by upholding high standards of room upkeep and sanitation.",
+        "Followed safety protocols to consistently meet hygiene and organization requirements.",
+      ],
+    },
+    {
+      role: "Data Encoder",
+      period: "2019-2020",
+      color: "bg-teal-400",
+      bullets: [
+        "Encoded signed delivery receipts into the system.",
+        "Processed high volumes of delivery data for messengers and their respective consignees",
+        "Maintained precise records of telecommunications deliveries",
+      ],
+    },
+    {
+      role: "Admin Clerk",
+      period: "2021-2022",
+      color: "bg-slate-500",
+      bullets: [
+        "Assisted the Store Manager in daily operations and general store management.",
+        "Handled incoming deliveries and verified inventory accuracy.",
+        "Arranged store displays. Optimize product visibility and visual appeal.",
+      ],
+    },
+    {
+      role: "Admin and IT Support",
+      period: "Current",
+      color: "bg-slate-600",
+      bullets: [
+        "Assisted the Store Manager in daily operations and general store management.",
+        "Handled incoming deliveries and verified inventory accuracy.",
+        "Arranged store displays. Optimize product visibility and visual appeal.",
+      ],
+    },
+  ];
+
+  const badgesData = [
+    {
+      id: "web",
+      iconText: "MERN",
+      iconClass: "bg-slate-800 text-green-500 border-slate-600",
+      title: "Web Development Master Class",
+      images: [
+        { src: WebDev, alt: "Web Dev Bootcamp" },
+        { src: WebDevLite, alt: "Web Dev Lite" },
+        { src: NodeJs, alt: "NodeJS Complete Guide" },
+        { src: ReactCert, alt: "React Complete Guide" },
+      ],
+    },
+    {
+      id: "data",
+      iconText: "📊",
+      iconClass:
+        "bg-yellow-600/20 text-yellow-500 border-yellow-600/30 text-lg",
+      title: "Data Analyst, Excel, Power BI Expert",
+      images: [
+        { src: DataAnalysis, alt: "Data Analysis" },
+        { src: Excel, alt: "Excel Expert" },
+        { src: PowerBi, alt: "Power BI Expert" },
+      ],
+    },
+    {
+      id: "sql",
+      iconText: "🎖️",
+      iconClass: "bg-blue-600/20 text-blue-500 border-blue-600/30 text-lg",
+      title: "Database (SQL) Proficiency",
+      images: [
+        { src: SQL1, alt: "SQL Certificate 1" },
+        { src: SQL2, alt: "SQL Certificate 2" },
+      ],
+    },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
-      {/* TOP ACTION BAR */}
       <Card className="bg-[#1c2128] border border-slate-700/50 p-4! rounded-2xl flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
-        {/* Left Links */}
         <div className="flex space-x-6 text-sm font-medium">
           <Link
             to="/"
@@ -64,7 +140,6 @@ export default function ResumePage() {
           </Link>
         </div>
 
-        {/* Right Action Buttons */}
         <div className="flex space-x-4">
           <button className="flex items-center space-x-2 px-4 py-2 border border-teal-500/50 text-teal-400 rounded-lg text-xs font-semibold hover:bg-teal-500/10 transition-colors">
             <svg
@@ -91,120 +166,39 @@ export default function ResumePage() {
         </div>
       </Card>
 
-      {/* MAIN 3-COLUMN GRID */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        {/* COLUMN 1: EVOLUTION (Timeline) */}
         <Card className="col-span-1">
           <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-8">
             EVOLUTION
           </h3>
-
-          {/* Vertical Timeline Container */}
           <div className="relative pl-4">
-            {/* The vertical line */}
             <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-700"></div>
-
-            {/* Timeline Item 1 */}
-            <div className="relative pl-8 mb-8">
-              <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-blue-400 ring-4 ring-[#1c2128]"></div>
-              <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">HOUSEKEEPING</h4>
-                <span className="text-xs text-slate-500">2016-2018</span>
+            {timelineData.map((item, idx) => (
+              <div
+                key={idx}
+                className={`relative pl-8 ${idx !== timelineData.length - 1 ? "mb-8" : ""}`}
+              >
+                <div
+                  className={`absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-4 ring-[#1c2128]`}
+                ></div>
+                <div className="flex justify-between items-center mb-1">
+                  <h4 className="text-white font-bold">{item.role}</h4>
+                  <span className="text-xs text-slate-500">{item.period}</span>
+                </div>
+                <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
+                  <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
+                  <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
+                    {item.bullets.map((bullet, bIdx) => (
+                      <li key={bIdx}>{bullet}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
-                {/* Speech bubble arrow pointer */}
-                <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
-                <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>Maintained cleanliness across all assigned areas.</li>
-                  <li>
-                    Ensured resident comfort by upholding high standards of room
-                    upkeep and sanitation.
-                  </li>
-                  <li>
-                    Followed safety protocols to consistently meet hygiene and
-                    organization requirements.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Timeline Item 2 */}
-            <div className="relative pl-8 mb-8">
-              <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-teal-400 ring-4 ring-[#1c2128]"></div>
-              <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">Data Encoder</h4>
-                <span className="text-xs text-slate-500">2019-2020</span>
-              </div>
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
-                <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
-                <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>Encoded signed delivery receipts into the system.</li>
-                  <li>
-                    Processed high volumes of delivery data for messengers and
-                    their respective consignees
-                  </li>
-                  <li>
-                    Maintained precise records of telecommunications deliveries
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Timeline Item 3 */}
-            <div className="relative pl-8 mb-8">
-              <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-slate-500 ring-4 ring-[#1c2128]"></div>
-              <div className="flex justify-between items-center mb-1">
-                <h4 className="text-white font-bold">Admin Clerk</h4>
-                <span className="text-xs text-slate-500">2021-2022</span>
-              </div>
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
-                <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
-                <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>
-                    Assisted the Store Manager in daily operations and general
-                    store management.
-                  </li>
-                  <li>
-                    Handled incoming deliveries and verified inventory accuracy.
-                  </li>
-                  <li>
-                    Arranged store displays. Optimize product visibility and
-                    visual appeal.
-                  </li>
-                </ul>
-              </div>
-            </div>
-
-            {/* Timeline Item 4 (Bottom) */}
-            <div className="relative pl-8">
-              <div className="absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full bg-slate-600 ring-4 ring-[#1c2128]"></div>
-              <div className="flex justify-between items-center">
-                <h4 className="text-white font-bold">Admin and IT Support</h4>
-                <span className="text-xs text-slate-500">Current</span>
-              </div>
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
-                <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
-                <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                  <li>
-                    Assisted the Store Manager in daily operations and general
-                    store management.
-                  </li>
-                  <li>
-                    Handled incoming deliveries and verified inventory accuracy.
-                  </li>
-                  <li>
-                    Arranged store displays. Optimize product visibility and
-                    visual appeal.
-                  </li>
-                </ul>
-              </div>
-            </div>
+            ))}
           </div>
         </Card>
 
-        {/* COLUMN 2: SUMMARY, EDUCATION, CERTS */}
         <Card className="col-span-1 flex flex-col space-y-8">
-          {/* Section 1: Summary */}
           <div>
             <h3 className="text-sm font-bold text-white uppercase mb-2">
               CAREER BRIDGE SUMMARY
@@ -218,7 +212,6 @@ export default function ResumePage() {
             </p>
           </div>
 
-          {/* Section 2: Education */}
           <div>
             <h3 className="text-sm font-bold text-white uppercase mb-2">
               EDUCATION
@@ -250,7 +243,6 @@ export default function ResumePage() {
             </div>
           </div>
 
-          {/* Section 3: Certifications */}
           <div className="flex-1">
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-sm font-bold text-white uppercase">
@@ -261,171 +253,62 @@ export default function ResumePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="  cursor-pointer">🔗</button>
+                <button className="cursor-pointer">🔗</button>
               </a>
             </div>
             <hr className="border-slate-700 mb-4" />
 
             <div className="grid grid-cols-2 gap-4">
-              {/* Badge 1 */}
-              <div
-                className={`transition-all ${expandedBadge === "web" ? "col-span-2" : "col-span-1"}`}
-              >
+              {badgesData.map((badge) => (
                 <div
-                  onClick={() => toggleBadge("web")}
-                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
+                  key={badge.id}
+                  className={`transition-all ${expandedBadge === badge.id ? "col-span-2" : "col-span-1"}`}
                 >
-                  <div className="w-10 h-10 bg-slate-800 rounded flex items-center justify-center text-xs text-green-500 border border-slate-600">
-                    MERN
+                  <div
+                    onClick={() => toggleBadge(badge.id)}
+                    className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
+                  >
+                    <div
+                      className={`w-10 h-10 rounded flex items-center justify-center text-xs border ${badge.iconClass}`}
+                    >
+                      {badge.iconText}
+                    </div>
+                    <div>
+                      <p className="text-sm text-white font-semibold mb-1">
+                        {badge.title}
+                      </p>
+                      <p className="text-[9px] text-teal-400 flex items-center">
+                        View Certificates{" "}
+                        <span className="ml-1 text-[8px]">
+                          {expandedBadge === badge.id ? "↓" : "↗"}
+                        </span>
+                      </p>
+                    </div>
+                    {expandedBadge === badge.id ? (
+                      <FaChevronCircleUp className="absolute right-5 text-slate-600" />
+                    ) : (
+                      <FaChevronCircleDown className="absolute right-5 text-slate-600" />
+                    )}
                   </div>
-                  <div>
-                    <p className="text-sm text-white font-semibold mb-1">
-                      Web Development Master Class
-                    </p>
-                    <p className="text-[9px] text-teal-400 flex items-center">
-                      View Certificates{" "}
-                      <span className="ml-1 text-[8px]">
-                        {expandedBadge === "web" ? "↓" : "↗"}
-                      </span>
-                    </p>
-                  </div>
-                  {expandedBadge === "web" ? (
-                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
-                  ) : (
-                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
+                  {expandedBadge === badge.id && (
+                    <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
+                      {badge.images.map((img, i) => (
+                        <img
+                          key={i}
+                          src={img.src}
+                          alt={img.alt}
+                          className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
+                        />
+                      ))}
+                    </div>
                   )}
                 </div>
-
-                {/* Dropdown Card for Badge 1 */}
-                {expandedBadge === "web" && (
-                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
-                    <img
-                      src={WebDev}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="Web Dev Bootcamp"
-                    />
-                    <img
-                      src={WebDevLite}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="Web Dev Lite"
-                    />
-                    <img
-                      src={NodeJs}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="NodeJS Complete Guide"
-                    />
-                    <img
-                      src={ReactCert}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="React Complete Guide"
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* Badge 2 */}
-              <div
-                className={`transition-all ${expandedBadge === "data" ? "col-span-2" : "col-span-1"}`}
-              >
-                <div
-                  onClick={() => toggleBadge("data")}
-                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-yellow-600/20 rounded flex items-center justify-center text-lg text-yellow-500 border border-yellow-600/30">
-                    📊
-                  </div>
-                  <div>
-                    <p className="text-sm text-white font-semibold mb-1">
-                      Data Analyst, Excel, Power BI Expert
-                    </p>
-                    <p className="text-[9px] text-teal-400 flex items-center">
-                      View Certificates{" "}
-                      <span className="ml-1 text-[8px]">
-                        {expandedBadge === "data" ? "↓" : "↗"}
-                      </span>
-                    </p>
-                  </div>
-                  {expandedBadge === "data" ? (
-                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
-                  ) : (
-                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
-                  )}{" "}
-                </div>
-
-                {/* Dropdown Card for Badge 2 */}
-                {expandedBadge === "data" && (
-                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
-                    <img
-                      src={DataAnalysis}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="Data Analysis"
-                    />
-                    <img
-                      src={Excel}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="Excel Expert"
-                    />
-                    <img
-                      src={PowerBi}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="Power BI Expert"
-                    />
-                  </div>
-                )}
-              </div>
-
-              {/* Badge 3 */}
-              <div
-                className={`transition-all ${expandedBadge === "sql" ? "col-span-2" : "col-span-1"}`}
-              >
-                <div
-                  onClick={() => toggleBadge("sql")}
-                  className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
-                >
-                  <div className="w-10 h-10 bg-blue-600/20 rounded flex items-center justify-center text-lg text-blue-500 border border-blue-600/30">
-                    🎖️
-                  </div>
-                  <div>
-                    <p className="text-sm text-white font-semibold mb-1">
-                      Database (SQL) Proficiency
-                    </p>
-                    <p className="text-[9px] text-teal-400 flex items-center">
-                      View Certificates{" "}
-                      <span className="ml-1 text-[8px]">
-                        {expandedBadge === "sql" ? "↓" : "↗"}
-                      </span>
-                    </p>
-                  </div>
-                  {expandedBadge === "sql" ? (
-                    <FaChevronCircleUp className="absolute right-5 text-slate-600" />
-                  ) : (
-                    <FaChevronCircleDown className="absolute right-5 text-slate-600" />
-                  )}{" "}
-                </div>
-
-                {/* Dropdown Card for Badge 3 */}
-                {expandedBadge === "sql" && (
-                  <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
-                    <img
-                      src={SQL1}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="SQL Certificate 1"
-                    />
-                    <img
-                      src={SQL2}
-                      className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                      alt="SQL Certificate 2"
-                    />
-                  </div>
-                )}
-              </div>
+              ))}
             </div>
           </div>
         </Card>
 
-        {/* COLUMN 3: SKILLS & PROJECTS */}
         <Card className="col-span-1 flex flex-col space-y-8">
-          {/* Section 1: Toolkit */}
           <div>
             <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-6">
               HYBRID TOOLKIT
@@ -439,16 +322,13 @@ export default function ResumePage() {
             </div>
           </div>
 
-          {/* Section 2: Projects Highlights */}
           <div className="flex-1">
             <h3 className="text-sm font-bold text-white uppercase mb-4">
               SELECTED PROJECTS HIGHLIGHTS
             </h3>
             <div className="space-y-4">
-              {/* Project Card 1 */}
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
                 <div className="w-24 h-20 bg-slate-100 rounded border border-slate-300 flex-shrink-0 relative overflow-hidden flex flex-col">
-                  {/* Fake UI thumbnail */}
                   <div className="h-4 bg-slate-800 w-full flex items-center px-1">
                     <div className="w-2 h-2 rounded-full bg-red-400"></div>
                   </div>
@@ -481,10 +361,8 @@ export default function ResumePage() {
                 </div>
               </div>
 
-              {/* Project Card 2 */}
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
                 <div className="w-24 h-20 bg-slate-100 rounded border border-slate-300 flex-shrink-0 relative overflow-hidden flex flex-col">
-                  {/* Fake UI thumbnail */}
                   <div className="h-4 bg-slate-800 w-full flex items-center px-1">
                     <div className="w-2 h-2 rounded-full bg-red-400"></div>
                   </div>

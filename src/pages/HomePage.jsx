@@ -2,13 +2,21 @@ import React, { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { FaReact, FaDatabase } from "react-icons/fa";
 import { FaFileExcel } from "react-icons/fa6";
-import Hero from "../assets/Hero.png";
 
-// 1. Completely Custom SVG Gauge (No external libraries needed!)
+import Hero from "../assets/Hero.png";
+import Excel from "../assets/Icons/excel-48.png";
+import PowerBI from "../assets/Icons/power-bi-2021-48.png";
+import ReactJs from "../assets/Icons/react-js-48.png";
+import SQL from "../assets/Icons/sql-48.png";
+import NodeJs from "../assets/Icons/node-js-48.png";
+import MongoDb from "../assets/Icons/mongodb-48.png";
+import ExpressJs from "../assets/Icons/express-js-48.png";
+import LiveBingo from "../assets/Projects/LiveBingo.png";
+
+// Custom SVG Gauge
 const CustomGauge = ({ name, value, color }) => {
   const [currentValue, setCurrentValue] = useState(0);
 
-  // Smooth fill animation on load
   useEffect(() => {
     const timeout = setTimeout(() => setCurrentValue(value), 200);
     return () => clearTimeout(timeout);
@@ -21,21 +29,18 @@ const CustomGauge = ({ name, value, color }) => {
 
   return (
     <div className="flex flex-col items-center">
-      {/* Semicircle Gauge */}
       <div className="relative w-8 h-8 md:w-14 md:h-14 mb-2">
         <svg
           viewBox="0 0 100 55"
           className="w-full h-full overflow-visible drop-shadow-md"
         >
-          {/* Background Track */}
           <path
             d="M 10 50 A 40 40 0 0 1 90 50"
             fill="none"
-            stroke="#334155" // Slate-700 background
+            stroke="#334155"
             strokeWidth="10"
             strokeLinecap="round"
           />
-          {/* Filled Progress */}
           <path
             d="M 10 50 A 40 40 0 0 1 90 50"
             fill="none"
@@ -46,68 +51,50 @@ const CustomGauge = ({ name, value, color }) => {
             strokeDashoffset={strokeDashoffset}
             className="transition-all duration-1000 ease-out"
           />
-          {/* Needle */}
           <g
             transform={`translate(50, 50) rotate(${needleRotation - 90})`}
             className="transition-transform duration-1000 ease-out"
           >
-            {/* Tapered pointer */}
             <path d="M -2.5 0 L 0 -32 L 2.5 0 Z" fill={color} />
-            {/* Rounded base */}
             <circle cx="0" cy="0" r="4.5" fill={color} />
           </g>
         </svg>
       </div>
-
-      {/* Label under gauge */}
-      <span className="text-sm  text-white leading-tight">{value}%</span>
-      {/* <span className="text-[10px] text-slate-400 max-w-[65px] leading-tight text-center mt-1">
-        {name}
-      </span> */}
+      <span className="text-sm text-white leading-tight">{value}%</span>
     </div>
   );
 };
 
 export default function HomePage() {
-  // const Card = ({ children, className = "" }) => (
-  //   <div
-  //     className={`bg-[#1c2128]/60 backdrop-blur-md border border-slate-700/50 rounded-2xl p-6 shadow-xl ${className}`}
-  //   >
-  //     {children}
-  //   </div>
-  // );
-
-  // 2. Data structured perfectly for the image layout
   const skillsData = [
     {
       name: "MERN Stack",
       value: 90,
-      color: "#3b82f6", // Royal Blue
-      icon: <FaReact className="text-[#38bdf8] text-xl" />,
+      color: "#3b82f6",
+      icon: ReactJs,
     },
     {
       name: "SQL",
       value: 85,
-      color: "#38bdf8", // Light Blue
-      icon: <FaDatabase className="text-[#60a5fa] text-xl" />,
+      color: "#38bdf8",
+      icon: SQL,
     },
     {
       name: "Excel/Power Query",
       value: 80,
-      color: "#14b8a6", // Teal
-      icon: <FaFileExcel className="text-[#22c55e] text-xl" />,
+      color: "#14b8a6",
+      icon: Excel,
     },
     {
       name: "Power BI/Tableau",
       value: 80,
-      color: "#06b6d4", // Cyan
-      icon: <FaFileExcel className="text-[#eab308] text-xl" />,
+      color: "#06b6d4",
+      icon: PowerBI,
     },
   ];
 
   return (
     <div className="max-w-7xl mx-auto space-y-6">
-      {/* 1. HERO BANNER */}
       <Card className="flex flex-col md:flex-row items-center justify-between">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold text-white mb-2">
@@ -132,37 +119,34 @@ export default function HomePage() {
         <img className="w-60 h-40" src={Hero} alt="Laptop and Mobile Device" />
       </Card>
 
-      {/* 2. THREE-COLUMN DASHBOARD GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Left Column (Featured Project) */}
         <Card className="col-span-1 flex flex-col">
           <h3 className="font-bold text-white mb-1">
-            Featured Project: SaaS Analytics Dashboard
+            Featured Project: ProShop
           </h3>
           <p className="text-sm text-slate-400 mb-4">
-            MERN Stack app with embedded Power BI visualization
+            MERN Stack E-Commerce Platform with Dedicated Admin Dashboard
           </p>
           <div className="bg-slate-800 h-48 rounded-lg mb-4 w-full flex items-center justify-center border border-slate-700">
             [Dashboard Image]
           </div>
           <div className="flex space-x-2 mb-4 justify-center">
-            <span className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
-              ⚛️
-            </span>
-            <span className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
-              JS
-            </span>
-            <span className="w-8 h-8 rounded-full bg-slate-700 flex items-center justify-center">
-              📊
-            </span>
+            {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
+              <div
+                key={idx}
+                className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
+              >
+                <img src={icon}></img>
+              </div>
+            ))}
           </div>
           <p className="text-sm text-slate-400 mt-auto">
-            Full MERN app integrating dynamic SQL backend with custom React
-            frontend visualizing user growth via Power BI.
+            A MERN stack e-commerce app that offers a smooth shopping experience
+            for customers and a secure, easy-to-use management dashboard for
+            admins.
           </p>
         </Card>
 
-        {/* Middle Column (Data Project & Hybrid Approach) */}
         <div className="col-span-1 flex flex-col space-y-6">
           <Card className="flex-1">
             <h3 className="font-bold text-white mb-1">
@@ -194,12 +178,9 @@ export default function HomePage() {
           </Card>
         </div>
 
-        {/* Right Column (Skills & Project Gallery) */}
         <div className="col-span-1 flex flex-col space-y-6">
           <Card>
             <h3 className="font-bold text-white mb-4">Skills Spectrum</h3>
-
-            {/* TOP ROW: The Custom Gauges */}
             <div className="grid grid-cols-4 gap-2 text-center mb-4">
               {skillsData.map((skill, i) => (
                 <CustomGauge
@@ -210,14 +191,13 @@ export default function HomePage() {
                 />
               ))}
             </div>
-
-            {/* BOTTOM ROW: App-style Icons */}
             <div className="grid grid-cols-4 gap-2 text-center">
               {skillsData.map((skill, i) => (
                 <div key={`icon-${i}`} className="flex flex-col items-center">
-                  <div className="w-10 h-10 bg-[#161b22] border border-slate-700/50 rounded-xl flex items-center justify-center mb-2 shadow-inner">
-                    {skill.icon}
+                  <div className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center">
+                    <img src={skill.icon}></img>
                   </div>
+
                   <span className="text-[10px] text-slate-400 leading-tight max-w-[60px]">
                     {skill.name}
                   </span>
@@ -232,10 +212,11 @@ export default function HomePage() {
             </h3>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700"></div>
-                <p className="text-xs text-center text-slate-400">
-                  E-Commerce App
-                </p>
+                <img
+                  src={LiveBingo}
+                  className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 shrink-0 object-contain"
+                ></img>
+                <p className="text-xs text-center text-slate-400">Live Bingo</p>
               </div>
               <div>
                 <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700"></div>
