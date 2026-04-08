@@ -142,23 +142,84 @@ export default function ProjectsPage() {
           </Card>
 
           {/* BOTTOM MIDDLE: IT Support Automation */}
-          <div className="space-y-6">
-            <Card>
-              <h3 className="font-bold text-white mb-2 uppercase text-sm">
-                IT Support Automation
+          <div className="space-y-6 flex justify-stretch">
+            <Card className="col-span-1 flex flex-col">
+              <h3 className="font-bold text-white mb-4 uppercase text-sm">
+                Featured Project: ProShop
               </h3>
-              <p className="text-sm text-slate-400 mb-2">
-                Referencing the previous career
-              </p>
-              <p className="text-sm text-slate-400">
-                MERN tool to automate admin tasks, linked to data reports.
-              </p>
+
+              {/* Main Project Image Placeholder */}
+              <div className="bg-slate-800 h-64 rounded-lg mb-6 w-full flex items-center justify-center border border-slate-700">
+                [Main Dashboard Image]
+              </div>
+
+              {/* Tech Stack Icons */}
+              <div className="flex space-x-2 mb-4 justify-center">
+                {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
+                  <div
+                    key={idx}
+                    className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
+                  >
+                    <img src={icon}></img>
+                  </div>
+                ))}
+              </div>
+
+              {/* Project Description */}
+              <h4 className="font-bold text-white mb-3 text-sm">
+                PROJECT DESCRIPTION
+              </h4>
+              <ul className="space-y-4 mb-6">
+                <li className="flex items-start">
+                  <span className="text-teal-400 mr-2">✓</span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      End-to-End MERN Application with Real-time Data Pipeline
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      End-to-end MERN application with real-time data pipeline.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-400 mr-2">✓</span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      SQL Database Integration for Structured Metrics
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      Integration and access integration for structured metrics.
+                    </p>
+                  </div>
+                </li>
+                <li className="flex items-start">
+                  <span className="text-teal-400 mr-2">✓</span>
+                  <div>
+                    <p className="text-sm font-semibold text-white">
+                      Embedded Interactive Power BI Reports via API
+                    </p>
+                    <p className="text-xs text-slate-400">
+                      Embedded interactive power BI cluster reports via API.
+                    </p>
+                  </div>
+                </li>
+              </ul>
+
+              {/* Data Flow Diagram Placeholder */}
+              {/* <div className="bg-white rounded-lg p-4 mt-auto">
+            <p className="text-center text-black font-semibold text-xs mb-2">
+              Data Flow
+            </p>
+            <div className="h-16 flex items-center justify-between text-black text-xs">
+              [API] -{">"} [SQL] -{">"} [Power BI]
+            </div>
+          </div> */}
             </Card>
-            <Card className="p-0 overflow-hidden border-none">
+            {/* <Card className="p-0 overflow-hidden border-none">
               <div className="bg-slate-800 h-48 w-full border border-slate-700 rounded-2xl flex items-center justify-center">
                 [IT Support Dashboard Image]
               </div>
-            </Card>
+            </Card> */}
           </div>
 
           {/* BOTTOM RIGHT: Project Gallery (ALL) */}
