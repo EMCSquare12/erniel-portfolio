@@ -5,6 +5,7 @@ import {
   IconMongoDb as MongoDb,
   IconExpressJs as ExpressJs,
 } from "../assets";
+import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 
 export default function ProjectsPage() {
   // Reusable Card Component matching the dark theme

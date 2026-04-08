@@ -44,26 +44,45 @@ export default function SkillsPage() {
     score,
     positionClasses,
     themeColor,
-  }) => (
-    <div
-      className={`absolute flex items-center flex-col justify-center ${positionClasses} z-20`}
-    >
+  }) => {
+    // 1. Create a dictionary with the FULL, unbroken Tailwind class names
+    const themeStyles = {
+      blue: {
+        wrapperBorder: "border-blue-500/50",
+        shadow: "shadow-blue-500/20",
+        badgeBorder: "border-blue-500",
+      },
+      teal: {
+        wrapperBorder: "border-teal-500/50",
+        shadow: "shadow-teal-500/20",
+        badgeBorder: "border-teal-500",
+      },
+    };
+
+    // 2. Select the correct theme based on the prop passed
+    const theme = themeStyles[themeColor] || themeStyles.blue;
+
+    return (
       <div
-        className={`relative w-12 h-12 rounded-xl bg-[#161b22] border-2 border-${themeColor}-500/50 flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] shadow-${themeColor}-500/20`}
+        className={`absolute flex items-center flex-col justify-center ${positionClasses} z-20`}
       >
-        <img className="w-8 h-8" src={icon} alt={title} />
-        <span
-          className={`absolute -bottom-2 bg-[#161b22] border border-${themeColor}-500 text-[9px] px-1.5 rounded text-white`}
+        <div
+          className={`relative w-12 h-12 rounded-xl bg-[#161b22] border-2 ${theme.wrapperBorder} flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] ${theme.shadow}`}
         >
-          {score}%
-        </span>
+          <img className="w-8 h-8" src={icon} alt={title} />
+          <span
+            className={`absolute -bottom-2 bg-[#161b22] border ${theme.badgeBorder} text-[9px] px-1.5 rounded text-white`}
+          >
+            {score}%
+          </span>
+        </div>
+        <div className="flex flex-col items-center mt-2">
+          <span className="text-white font-bold text-[12px]">{title}</span>
+          <span className="text-slate-400 text-[10px]">{subtitle}</span>
+        </div>
       </div>
-      <div className="flex flex-col items-center mt-2">
-        <span className="text-white font-bold text-[12px]">{title}</span>
-        <span className="text-slate-400 text-[10px]">{subtitle}</span>
-      </div>
-    </div>
-  );
+    );
+  };
 
   // Updated Tag Component - Conditionally renders the image only if 'src' exists.
   const Tag = ({ src, alt, children }) => (

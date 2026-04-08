@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   FaExternalLinkAlt,
   FaChevronLeft,
@@ -7,6 +7,19 @@ import {
 
 export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  // Auto-slide effect
+  useEffect(() => {
+    // Only run the interval if there are multiple images
+    if (!images || images.length <= 1) return;
+
+    const slideInterval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 2000); // 2000ms = 2 seconds
+
+    // Cleanup the interval on unmount
+    return () => clearInterval(slideInterval);
+  }, [images]);
 
   const nextImage = (e) => {
     e.preventDefault();
