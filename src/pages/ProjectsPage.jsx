@@ -5,18 +5,55 @@ import {
   IconMongoDb as MongoDb,
   IconExpressJs as ExpressJs,
 } from "../assets";
-import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
+
+import { Card } from "../components/Card";
+const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
+const projectDetails = [
+  {
+    title: "Modern Tech Marketplace",
+    descriptions: [
+      "A high-performance e-commerce platform for consumer electronics, combining advanced inventory management with a secure, user-centric shopping experience.",
+    ],
+  },
+  {
+    title: "Frontend Technical Highlights",
+    descriptions: [
+      "Responsive Mobile-First Design: Implemented fluid layouts and media queries to ensure a seamless user experience across all devices, prioritizing performance and readability on mobile screens.",
+      "Global State & Data Fetching: Managed complex application states and streamlined asynchronous API interactions using Redux, ensuring a predictable and centralized data flow.",
+      "Real-Time Updates: Integrated Socket.IO to provide users with instant, live shipping status notifications without requiring page refreshes.",
+      "Performance Optimization: Developed a custom Debounce hook to throttle API requests during search and category filtering, significantly reducing server load and improving UI responsiveness.",
+      "Seamless Data Loading: Implemented Infinite Scroll for a modern, fluid browsing experience, eliminating the friction of traditional pagination.",
+      "Secure Payment Processing: Integrated the Stripe API to handle sensitive transaction data securely, supporting a robust and reliable checkout workflow.",
+      "Flexible Authentication: Built a versatile login system offering both traditional email/password accounts and streamlined Google OAuth for a frictionless user onboarding experience.",
+    ],
+  },
+  {
+    title: "Backend Technical Highlights",
+    descriptions: [
+      "Database Architecture: Leveraged MongoDB with Mongoose ODM to design a flexible, scalable NoSQL schema, ensuring efficient data modeling and high-performance queries.",
+      "Secure Authentication: Implemented JSON Web Tokens (JWT) to manage stateless user sessions, providing a secure and scalable method for verifying user identities across the platform.",
+      "Role-Based Access Control (RBAC): Developed a robust Authorization system to enforce granular permissions, distinguishing between standard clients and administrative users to protect sensitive data and operations.",
+      "RESTful API Development: Engineered a structured and scalable API to facilitate seamless communication between the frontend and the database, following industry-standard design patterns for maintainability.",
+    ],
+  },
+];
+
+// Reusable Mini Gallery Item Component
+const MiniGalleryItem = ({ title, tech, label }) => (
+  <div>
+    <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 flex items-center justify-center text-slate-400 text-sm">
+      [{label}]
+    </div>
+    <p className="text-xs text-white">{title}</p>
+    <p className="text-[10px] text-slate-400 mb-1">({tech})</p>
+    <div className="flex space-x-1">
+      <span className="w-4 h-4 rounded bg-slate-700"></span>
+      <span className="w-4 h-4 rounded bg-slate-700"></span>
+    </div>
+  </div>
+);
 
 export default function ProjectsPage() {
-  // Reusable Card Component matching the dark theme
-  const Card = ({ children, className = "" }) => (
-    <div
-      className={`bg-[#1c2128] border border-slate-700/50 rounded-2xl p-6 shadow-xl ${className}`}
-    >
-      {children}
-    </div>
-  );
-
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       {/* HEADER */}
@@ -30,78 +67,12 @@ export default function ProjectsPage() {
       {/* MAIN GRID */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* LEFT COLUMN: Featured Hybrid Project */}
-        <Card className="col-span-1 flex flex-col">
-          <h3 className="font-bold text-white mb-4 uppercase text-sm">
-            Featured Project: ProShop
-          </h3>
-
-          {/* Main Project Image Placeholder */}
-          <div className="bg-slate-800 h-64 rounded-lg mb-6 w-full flex items-center justify-center border border-slate-700">
-            [Main Dashboard Image]
-          </div>
-
-          {/* Tech Stack Icons */}
-          <div className="flex space-x-2 mb-4 justify-center">
-            {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
-              <div
-                key={idx}
-                className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
-              >
-                <img src={icon}></img>
-              </div>
-            ))}
-          </div>
-
-          {/* Project Description */}
-          <h4 className="font-bold text-white mb-3 text-sm">
-            PROJECT DESCRIPTION
-          </h4>
-          <ul className="space-y-4 mb-6">
-            <li className="flex items-start">
-              <span className="text-teal-400 mr-2">✓</span>
-              <div>
-                <p className="text-sm font-semibold text-white">
-                  End-to-End MERN Application with Real-time Data Pipeline
-                </p>
-                <p className="text-xs text-slate-400">
-                  End-to-end MERN application with real-time data pipeline.
-                </p>
-              </div>
-            </li>
-            <li className="flex items-start">
-              <span className="text-teal-400 mr-2">✓</span>
-              <div>
-                <p className="text-sm font-semibold text-white">
-                  SQL Database Integration for Structured Metrics
-                </p>
-                <p className="text-xs text-slate-400">
-                  Integration and access integration for structured metrics.
-                </p>
-              </div>
-            </li>
-            <li className="flex items-start">
-              <span className="text-teal-400 mr-2">✓</span>
-              <div>
-                <p className="text-sm font-semibold text-white">
-                  Embedded Interactive Power BI Reports via API
-                </p>
-                <p className="text-xs text-slate-400">
-                  Embedded interactive power BI cluster reports via API.
-                </p>
-              </div>
-            </li>
-          </ul>
-
-          {/* Data Flow Diagram Placeholder */}
-          {/* <div className="bg-white rounded-lg p-4 mt-auto">
-            <p className="text-center text-black font-semibold text-xs mb-2">
-              Data Flow
-            </p>
-            <div className="h-16 flex items-center justify-between text-black text-xs">
-              [API] -{">"} [SQL] -{">"} [Power BI]
-            </div>
-          </div> */}
-        </Card>
+        <ProjectsPage
+          icons={icons}
+          title="Featured Project: ProShop"
+          description={projectDetails}
+          className="col-span-1"
+        />
 
         {/* RIGHT AREA: Spans 2 columns */}
         <div className="col-span-1 lg:col-span-2 grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -113,10 +84,10 @@ export default function ProjectsPage() {
 
             {/* 2 Dashboards Side-by-Side */}
             <div className="grid grid-cols-2 gap-4 mb-4">
-              <div className="bg-slate-800 h-40 rounded-lg border border-slate-700 flex items-center justify-center">
+              <div className="bg-slate-800 h-40 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-sm">
                 [Map Dashboard]
               </div>
-              <div className="bg-slate-800 h-40 rounded-lg border border-slate-700 flex items-center justify-center">
+              <div className="bg-slate-800 h-40 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-sm">
                 [Bar Chart Dashboard]
               </div>
             </div>
@@ -141,85 +112,14 @@ export default function ProjectsPage() {
             </p>
           </Card>
 
-          {/* BOTTOM MIDDLE: IT Support Automation */}
+          {/* BOTTOM MIDDLE: ProShop Duplicate / IT Support Placeholder */}
           <div className="space-y-6 flex justify-stretch">
-            <Card className="col-span-1 flex flex-col">
-              <h3 className="font-bold text-white mb-4 uppercase text-sm">
-                Featured Project: ProShop
-              </h3>
-
-              {/* Main Project Image Placeholder */}
-              <div className="bg-slate-800 h-64 rounded-lg mb-6 w-full flex items-center justify-center border border-slate-700">
-                [Main Dashboard Image]
-              </div>
-
-              {/* Tech Stack Icons */}
-              <div className="flex space-x-2 mb-4 justify-center">
-                {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
-                  <div
-                    key={idx}
-                    className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
-                  >
-                    <img src={icon}></img>
-                  </div>
-                ))}
-              </div>
-
-              {/* Project Description */}
-              <h4 className="font-bold text-white mb-3 text-sm">
-                PROJECT DESCRIPTION
-              </h4>
-              <ul className="space-y-4 mb-6">
-                <li className="flex items-start">
-                  <span className="text-teal-400 mr-2">✓</span>
-                  <div>
-                    <p className="text-sm font-semibold text-white">
-                      End-to-End MERN Application with Real-time Data Pipeline
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      End-to-end MERN application with real-time data pipeline.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-teal-400 mr-2">✓</span>
-                  <div>
-                    <p className="text-sm font-semibold text-white">
-                      SQL Database Integration for Structured Metrics
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Integration and access integration for structured metrics.
-                    </p>
-                  </div>
-                </li>
-                <li className="flex items-start">
-                  <span className="text-teal-400 mr-2">✓</span>
-                  <div>
-                    <p className="text-sm font-semibold text-white">
-                      Embedded Interactive Power BI Reports via API
-                    </p>
-                    <p className="text-xs text-slate-400">
-                      Embedded interactive power BI cluster reports via API.
-                    </p>
-                  </div>
-                </li>
-              </ul>
-
-              {/* Data Flow Diagram Placeholder */}
-              {/* <div className="bg-white rounded-lg p-4 mt-auto">
-            <p className="text-center text-black font-semibold text-xs mb-2">
-              Data Flow
-            </p>
-            <div className="h-16 flex items-center justify-between text-black text-xs">
-              [API] -{">"} [SQL] -{">"} [Power BI]
-            </div>
-          </div> */}
-            </Card>
-            {/* <Card className="p-0 overflow-hidden border-none">
-              <div className="bg-slate-800 h-48 w-full border border-slate-700 rounded-2xl flex items-center justify-center">
-                [IT Support Dashboard Image]
-              </div>
-            </Card> */}
+            <ProjectsPage
+              icons={icons}
+              title={projectDetails.title}
+              contents={projectDetails.description}
+              className="col-span-1"
+            />
           </div>
 
           {/* BOTTOM RIGHT: Project Gallery (ALL) */}
@@ -228,63 +128,26 @@ export default function ProjectsPage() {
               Project Gallery (All)
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              {/* Gallery Item 1 */}
-              <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 flex items-center justify-center">
-                  [App]
-                </div>
-                <p className="text-xs text-white">E-Commerce App</p>
-                <p className="text-[10px] text-slate-400 mb-1">(React/Node)</p>
-                <div className="flex space-x-1">
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                </div>
-              </div>
-
-              {/* Gallery Item 2 */}
-              <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 flex items-center justify-center">
-                  [Report]
-                </div>
-                <p className="text-xs text-white">HR Data Reporting</p>
-                <p className="text-[10px] text-slate-400 mb-1">
-                  (Excel/VBA/SQL)
-                </p>
-                <div className="flex space-x-1">
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                </div>
-              </div>
-
-              {/* Gallery Item 3 */}
-              <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 flex items-center justify-center">
-                  [Dashboard]
-                </div>
-                <p className="text-xs text-white">Supply Chain Dashboard</p>
-                <p className="text-[10px] text-slate-400 mb-1">
-                  (Power Query/Power BI)
-                </p>
-                <div className="flex space-x-1">
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                </div>
-              </div>
-
-              {/* Gallery Item 4 */}
-              <div>
-                <div className="bg-slate-800 h-24 rounded-lg mb-2 border border-slate-700 flex items-center justify-center">
-                  [Scraper]
-                </div>
-                <p className="text-xs text-white">Web Scraper & Data Cleaner</p>
-                <p className="text-[10px] text-slate-400 mb-1">
-                  (Python/Node/MERN)
-                </p>
-                <div className="flex space-x-1">
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                  <span className="w-4 h-4 rounded bg-slate-700"></span>
-                </div>
-              </div>
+              <MiniGalleryItem
+                title="E-Commerce App"
+                tech="React/Node"
+                label="App"
+              />
+              <MiniGalleryItem
+                title="HR Data Reporting"
+                tech="Excel/VBA/SQL"
+                label="Report"
+              />
+              <MiniGalleryItem
+                title="Supply Chain Dashboard"
+                tech="Power Query/Power BI"
+                label="Dashboard"
+              />
+              <MiniGalleryItem
+                title="Web Scraper & Data Cleaner"
+                tech="Python/Node/MERN"
+                label="Scraper"
+              />
             </div>
           </Card>
         </div>
