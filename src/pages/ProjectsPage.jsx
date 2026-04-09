@@ -77,7 +77,7 @@ const ShrinkButton = ({ setExpandedCard }) => (
 const SeeMoreButton = ({ id, setExpandedCard }) => (
   <button
     onClick={() => setExpandedCard(id)}
-    className="absolute bottom-5 left-5 text-emerald-400 text-[10px] hover:text-emerald-300 font-bold uppercase bg-emerald-400/10 px-3 py-1.5 rounded z-10"
+    className="absolute bottom-6 left-6 text-emerald-400 text-[10px] hover:text-emerald-300 font-bold uppercase bg-emerald-400/10 px-3 py-1.5 rounded z-10"
   >
     See More &rarr;
   </button>
@@ -101,19 +101,22 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden p-5 w-full ${!isExp ? "pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
       >
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        <h3 className="font-bold text-white mb-2 uppercase text-sm shrink-0">
+
+        <h3
+          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
+        >
           Featured Project: ProShop
         </h3>
 
-        {/* Enforced 160px height for main image */}
-        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-3 h-[160px] min-h-[160px]">
+        {/* Height matched with Data Science */}
+        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 h-[140px] xl:h-[160px] 2xl:h-[180px] overflow-hidden">
           <span className="text-xs">[Main Dashboard Image]</span>
         </div>
 
-        <div className="flex space-x-2 mb-3 justify-center shrink-0">
+        <div className="flex space-x-2 mb-4 justify-center shrink-0">
           {icons.map((Icon, idx) => (
             <div
               key={idx}
@@ -129,7 +132,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="flex flex-col flex-1 min-h-0">
-          <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider shrink-0">
+          <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
             Project Description
           </h4>
           <div className="overflow-y-auto flex-1 pr-2 space-y-3 [&::-webkit-scrollbar]:hidden">
@@ -174,28 +177,31 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden p-5 w-full ${!isExp ? "pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
       >
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        <h3 className="font-bold text-white mb-2 uppercase text-sm pr-20 shrink-0">
+
+        <h3
+          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
+        >
           Data Science Project: Segmentation
         </h3>
 
-        {/* Enforced 160px height matching ProShop */}
-        <div className="grid grid-cols-2 gap-4 shrink-0 w-full mb-3 h-[160px] min-h-[160px]">
-          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full">
+        {/* Height perfectly matched with ProShop */}
+        <div className="grid grid-cols-2 gap-4 shrink-0 w-full mb-4 h-[140px] xl:h-[160px] 2xl:h-[180px] overflow-hidden">
+          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
             [Map Dashboard]
           </div>
-          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full">
+          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
             [Bar Chart Dashboard]
           </div>
         </div>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto [&::-webkit-scrollbar]:hidden pr-2">
-          <h4 className="font-bold text-white text-xs mb-1 shrink-0">
+          <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider shrink-0">
             Tableau dashboard
           </h4>
-          <p className="text-[10px] text-slate-400">
+          <p className="text-[10px] text-slate-400 mt-1">
             MERN-based data capture -&gt; SQL analysis -&gt; Tableau
             visualization.
           </p>
@@ -221,19 +227,21 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden p-5 w-full ${!isExp ? "pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
       >
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        <h3 className="font-bold text-white mb-2 uppercase text-sm pr-20 shrink-0">
+
+        <h3
+          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
+        >
           Modern Tech Marketplace
         </h3>
 
-        {/* Enforced 160px height */}
-        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-3 h-[160px] min-h-[160px]">
+        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 h-[100px] xl:h-[120px] 2xl:h-[140px] overflow-hidden">
           <span className="text-xs">[Main Dashboard Image]</span>
         </div>
 
-        <div className="flex space-x-2 mb-3 justify-center shrink-0">
+        <div className="flex space-x-2 mb-4 justify-center shrink-0">
           {icons.map((Icon, idx) => (
             <div
               key={idx}
@@ -249,7 +257,7 @@ export default function ProjectsPage() {
         </div>
 
         <div className="flex flex-col flex-1 min-h-0">
-          <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider shrink-0">
+          <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
             Project Description
           </h4>
           <div className="overflow-y-auto flex-1 pr-2 space-y-3 [&::-webkit-scrollbar]:hidden">
@@ -294,10 +302,13 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden p-5 w-full ${!isExp ? "pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
       >
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        <h3 className="font-bold text-white mb-3 uppercase text-sm pr-20 shrink-0">
+
+        <h3
+          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
+        >
           Project Gallery (All)
         </h3>
 
@@ -305,7 +316,7 @@ export default function ProjectsPage() {
           {galleryItems.map((it, i) => (
             <div key={i} className="flex flex-col h-full min-h-0">
               <div
-                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-1 ${isExp ? "h-[160px] min-h-[160px]" : "h-16"}`}
+                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${isExp ? "h-[140px] xl:h-[160px]" : "flex-1 min-h-[50px]"}`}
               >
                 [{it.label}]
               </div>
@@ -323,7 +334,6 @@ export default function ProjectsPage() {
   };
 
   return (
-    // Restricts the height to 100vh minus the padding/header space. NO outer scrollbar.
     <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-2 h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)]">
       {/* HEADER */}
       <h2 className="text-2xl font-bold text-white tracking-wide uppercase shrink-0">
@@ -336,26 +346,25 @@ export default function ProjectsPage() {
       {/* DYNAMIC LAYOUT AREA */}
       <div className="flex-1 min-h-0 w-full overflow-hidden">
         {expandedCard === null ? (
-          // --- DEFAULT GRID STATE --- (Based on Sketch)
-          // 3 Columns, 2 Rows
+          // --- DEFAULT GRID STATE ---
           <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 h-full min-h-0 w-full">
-            {/* ProShop: Span 2 Rows, Col 1 */}
+            {/* ProShop: 1st Col, Spans 2 Rows */}
             <div className="lg:col-span-1 lg:row-span-2 h-full min-h-0">
               {renderProShop("default")}
             </div>
 
-            {/* Data Science: Span 2 Cols, Row 1 */}
-            <div className="lg:col-span-2 lg:col-start-2 lg:row-start-1 h-full min-h-0">
+            {/* Data Science: 2nd Col, Spans 2 Cols, 1st Row */}
+            <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-full min-h-0">
               {renderDataScience("default")}
             </div>
 
-            {/* Modern Tech: Col 2, Row 2 */}
-            <div className="lg:col-span-1 lg:col-start-2 lg:row-start-2 h-full min-h-0">
+            {/* Modern Tech: 2nd Col, 2nd Row */}
+            <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-full min-h-0">
               {renderModernTech("default")}
             </div>
 
-            {/* Gallery: Col 3, Row 2 */}
-            <div className="lg:col-span-1 lg:col-start-3 lg:row-start-2 h-full min-h-0">
+            {/* Gallery: 3rd Col, 2nd Row */}
+            <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
               {renderGallery("default")}
             </div>
           </div>
