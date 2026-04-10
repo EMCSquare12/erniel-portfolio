@@ -7,7 +7,7 @@ import {
 } from "../assets";
 
 import { Card } from "../components/Card";
-import { FaCompressArrowsAlt } from "react-icons/fa";
+import { FaCompressArrowsAlt, FaExpandArrowsAlt } from "react-icons/fa";
 
 const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
 
@@ -26,6 +26,26 @@ const proShopDetails = [
       "Database Architecture: Leveraged MongoDB with Mongoose ODM.",
       "Secure Authentication: Implemented JSON Web Tokens (JWT).",
       "Role-Based Access Control: Developed a robust Authorization system.",
+    ],
+  },
+];
+
+// --- Added for Data Science detailed view when expanded ---
+const dataScienceDetails = [
+  {
+    title: "Technical Highlights & Methodologies",
+    descriptions: [
+      "Data Preparation: Cleaned and prepared large datasets for analysis using Python and Pandas.",
+      "Feature Engineering: Created meaningful feature representations for customer segmentation.",
+      "Clustering Algorithms: Applied K-Means clustering techniques to identify distinct customer groups.",
+      "Segmentation Analysis: Interpreted cluster profiles to derive actionable insights for targeting.",
+    ],
+  },
+  {
+    title: "Tableau dashboard & Visualizations",
+    descriptions: [
+      "Interactive Visuals: Developed intuitive dashboards and charts to explore segment trends.",
+      "Data Storytelling: Built visual narratives to communicate complex data patterns to stakeholders.",
     ],
   },
 ];
@@ -56,8 +76,8 @@ const SidebarCard = ({ id, title, setExpandedCard }) => (
     <h3 className="font-bold text-white text-center text-xs line-clamp-2">
       {title}
     </h3>
-    <span className="text-[10px] text-emerald-400 mt-2 bg-emerald-400/10 px-2 py-1 rounded-full font-semibold">
-      View
+    <span className="text-[10px] text-emerald-400 mt-2 bg-emerald-400/10 px-2 py-1 rounded-full font-semibold flex items-center gap-1">
+      <FaExpandArrowsAlt /> Expand
     </span>
   </Card>
 );
@@ -68,18 +88,23 @@ const ShrinkButton = ({ setExpandedCard }) => (
       e.stopPropagation();
       setExpandedCard(null);
     }}
-    className="absolute top-4 right-4 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-2 text-xs font-bold border border-slate-500 shadow-lg"
+    className="absolute top-4 right-4 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-2 text-xs font-bold border border-slate-500 shadow-lg transition-colors"
+    title="Shrink"
   >
     <FaCompressArrowsAlt /> Shrink
   </button>
 );
 
-const SeeMoreButton = ({ id, setExpandedCard }) => (
+const ExpandButton = ({ id, setExpandedCard }) => (
   <button
-    onClick={() => setExpandedCard(id)}
-    className="absolute bottom-6 right-6 text-emerald-400 text-[10px] hover:text-emerald-300 font-bold uppercase bg-emerald-400/10 px-3 py-1.5 rounded z-10"
+    onClick={(e) => {
+      e.stopPropagation();
+      setExpandedCard(id);
+    }}
+    className="absolute top-4 right-4 p-2 text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-colors shadow-sm border border-emerald-500/20"
+    title="Expand"
   >
-    See More &rarr;
+    <FaExpandArrowsAlt size={14} />
   </button>
 );
 
@@ -100,15 +125,12 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
-      >
+      <Card className="flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        {!isExp && <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />}
 
-        <h3
-          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
-        >
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
           Featured Project: ProShop
         </h3>
 
@@ -166,10 +188,6 @@ export default function ProjectsPage() {
             </div>
           </div>
         </div>
-
-        {!isExp && (
-          <SeeMoreButton id="proshop" setExpandedCard={setExpandedCard} />
-        )}
       </Card>
     );
   };
@@ -186,47 +204,75 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
-      >
+      <Card className="flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        {!isExp && <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />}
 
-        <h3
-          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
-        >
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
           Data Science Project: Segmentation
         </h3>
 
-        {/* SCROLLABLE CONTENT PORTION */}
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
-          <div
-            className={`grid grid-cols-2 gap-4 shrink-0 w-full mb-4 overflow-hidden ${
-              isExp
-                ? "aspect-video max-h-[45vh]"
-                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
-            }`}
-          >
+        {/* --- Updated logic for expanded view, mirroring the visual layout structure of image_e475b7.png --- */}
+        {isExp ? (
+          // NEW EXPANDED CONTENT (Single column layout like other projects)
+          <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto custom-scrollbar pr-2 pb-2">
+            {/* 1. Main Visual Visual (Placeholder) at top */}
+            <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh]">
+              <span className="text-xs">[Map Dashboard Visual - Segmentation]</span>
+            </div>
+
+            {/* 2. Horizontal centered tech icons */}
+            <div className="flex space-x-2 mb-4 justify-center shrink-0">
+              {/* Using generic 'icons' or placeholders as defined globally. Modify as needed for Data Science specific logos. */}
+              {icons.map((Icon, idx) => (
+                <div key={idx} className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5">
+                  <img src={Icon} alt="icon" className="w-full h-full object-contain" />
+                </div>
+              ))}
+            </div>
+
+            {/* 3. Detailed Project Description list */}
+            <div className="flex flex-col shrink-0">
+              <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+                Project Description
+              </h4>
+              <div className="space-y-3">
+                {dataScienceDetails.map((detail, idx) => (
+                  <div key={idx}>
+                    <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                      ✓ {detail.title}
+                    </h5>
+                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
+                      {detail.descriptions.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ) : (
+          // RETAIN THE DEFAULT COMPACT VIEW (Two columns)
+          <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 h-[140px] xl:h-[160px] 2xl:h-[180px] shrink-0 w-full overflow-hidden">
+            {/* Left: Map Dashboard (Placeholder) */}
             <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
               [Map Dashboard]
             </div>
 
-            {/* Added to the grid for side-by-side display */}
-            <div className="flex flex-col justify-center shrink-0">
+            {/* Right: Text Details (compact) */}
+            <div className="flex flex-col justify-center overflow-hidden">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
                 Tableau dashboard
               </h4>
-              <p className="text-[10px] text-slate-400 mt-1">
-                MERN-based data capture -&gt; SQL analysis -&gt; Tableau
-                visualization.
+              <p className="text-[10px] text-slate-400 mt-1 line-clamp-3">
+                {"MERN-based data capture -> SQL analysis -> Tableau visualization."}
               </p>
             </div>
           </div>
-        </div>
-
-        {!isExp && (
-          <SeeMoreButton id="datascience" setExpandedCard={setExpandedCard} />
         )}
+
       </Card>
     );
   };
@@ -243,15 +289,12 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
-      >
+      <Card className="flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        {!isExp && <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />}
 
-        <h3
-          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
-        >
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
           Modern Tech Marketplace
         </h3>
 
@@ -324,14 +367,11 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
-      >
+      <Card className="flex flex-col h-full relative overflow-hidden w-full">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        {!isExp && <ExpandButton id="gallery" setExpandedCard={setExpandedCard} />}
 
-        <h3
-          className={`font-bold text-white mb-3 uppercase text-sm shrink-0 truncate ${isExp ? "pr-24" : ""}`}
-        >
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
           Project Gallery (All)
         </h3>
 
