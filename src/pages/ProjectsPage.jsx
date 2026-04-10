@@ -1,3 +1,4 @@
+// src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
   IconReactJs as ReactJs,
@@ -13,19 +14,30 @@ const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
 
 const proShopDetails = [
   {
+    title: "Modern Tech Marketplace",
+    descriptions: [
+      "A high-performance e-commerce platform for consumer electronics, combining advanced inventory management with a secure, user-centric shopping experience.",
+    ],
+  },
+  {
     title: "Frontend Technical Highlights",
     descriptions: [
-      "Responsive Mobile-First Design: Implemented fluid layouts.",
-      "Global State & Data Fetching: Managed complex application states using Redux.",
-      "Real-Time Updates: Integrated Socket.IO to provide users with instant notifications.",
+      "Responsive Mobile-First Design: Implemented fluid layouts and media queries to ensure a seamless user experience across all devices, prioritizing performance and readability on mobile screens.",
+      "Global State & Data Fetching: Managed complex application states and streamlined asynchronous API interactions using Redux, ensuring a predictable and centralized data flow.",
+      "Real-Time Updates: Integrated Socket.IO to provide users with instant, live shipping status notifications without requiring page refreshes.",
+      "Performance Optimization: Developed a custom Debounce hook to throttle API requests during search and category filtering, significantly reducing server load and improving UI responsiveness.",
+      "Seamless Data Loading: Implemented Infinite Scroll for a modern, fluid browsing experience, eliminating the friction of traditional pagination.",
+      "Secure Payment Processing: Integrated the Stripe API to handle sensitive transaction data securely, supporting a robust and reliable checkout workflow.",
+      "Flexible Authentication: Built a versatile login system offering both traditional email/password accounts and streamlined Google OAuth for a frictionless user onboarding experience.",
     ],
   },
   {
     title: "Backend Technical Highlights",
     descriptions: [
-      "Database Architecture: Leveraged MongoDB with Mongoose ODM.",
-      "Secure Authentication: Implemented JSON Web Tokens (JWT).",
-      "Role-Based Access Control: Developed a robust Authorization system.",
+      "Database Management: Leveraged MongoDB and Mongoose to architect a flexible, schema-based NoSQL data model, ensuring efficient data storage and retrieval.",
+      "Secure Authentication: Implemented JSON Web Tokens (JWT) for stateless user authentication, providing a secure method for transmitting verified identity between the client and server.",
+      "Role-Based Access Control (RBAC): Established strict Authorization protocols to differentiate between standard clients and administrative users, securing sensitive endpoints and managing user permissions. ",
+      "RESTful API Development: Engineered a structured and scalable API to facilitate seamless communication between the frontend and the database, following industry-standard design patterns for maintainability.",
     ],
   },
 ];
@@ -101,7 +113,7 @@ const ExpandButton = ({ id, setExpandedCard }) => (
       e.stopPropagation();
       setExpandedCard(id);
     }}
-    className="absolute top-4 right-4 p-2 text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-colors shadow-sm border border-emerald-500/20"
+    className="absolute top-4 right-4 p-2 text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 opacity-0 group-hover:opacity-100"
     title="Expand"
   >
     <FaExpandArrowsAlt size={14} />
@@ -125,17 +137,19 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />}
+        {!isExp && (
+          <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />
+        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Featured Project: ProShop
         </h3>
 
         {/* SCROLLABLE CONTENT PORTION */}
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar  pb-2">
           {/* Dynamic Image height based on state */}
           <div
             className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
@@ -204,10 +218,12 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />}
+        {!isExp && (
+          <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />
+        )}
 
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
           Data Science Project: Segmentation
@@ -219,15 +235,24 @@ export default function ProjectsPage() {
           <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto custom-scrollbar pr-2 pb-2">
             {/* 1. Main Visual Visual (Placeholder) at top */}
             <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh]">
-              <span className="text-xs">[Map Dashboard Visual - Segmentation]</span>
+              <span className="text-xs">
+                [Map Dashboard Visual - Segmentation]
+              </span>
             </div>
 
             {/* 2. Horizontal centered tech icons */}
             <div className="flex space-x-2 mb-4 justify-center shrink-0">
               {/* Using generic 'icons' or placeholders as defined globally. Modify as needed for Data Science specific logos. */}
               {icons.map((Icon, idx) => (
-                <div key={idx} className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5">
-                  <img src={Icon} alt="icon" className="w-full h-full object-contain" />
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
+                >
+                  <img
+                    src={Icon}
+                    alt="icon"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
               ))}
             </div>
@@ -261,18 +286,19 @@ export default function ProjectsPage() {
               [Map Dashboard]
             </div>
 
-            {/* Right: Text Details (compact) */}
-            <div className="flex flex-col justify-center overflow-hidden">
+            {/* Right: Text Details (compact) - Set to justify-start and added scrollbar */}
+            <div className="flex flex-col justify-start overflow-y-auto custom-scrollbar pr-2 pb-2">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
                 Tableau dashboard
               </h4>
-              <p className="text-[10px] text-slate-400 mt-1 line-clamp-3">
-                {"MERN-based data capture -> SQL analysis -> Tableau visualization."}
+              <p className="text-[10px] text-slate-400 mt-1">
+                {
+                  "MERN-based data capture -> SQL analysis -> Tableau visualization."
+                }
               </p>
             </div>
           </div>
         )}
-
       </Card>
     );
   };
@@ -289,12 +315,14 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />}
+        {!isExp && (
+          <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />
+        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Modern Tech Marketplace
         </h3>
 
@@ -304,7 +332,7 @@ export default function ProjectsPage() {
             className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
               isExp
                 ? "aspect-video max-h-[45vh]"
-                : "h-[100px] xl:h-[120px] 2xl:h-[140px]"
+                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
             }`}
           >
             <span className="text-xs">[Main Dashboard Image]</span>
@@ -367,11 +395,13 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && <ExpandButton id="gallery" setExpandedCard={setExpandedCard} />}
+        {!isExp && (
+          <ExpandButton id="gallery" setExpandedCard={setExpandedCard} />
+        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Project Gallery (All)
         </h3>
 
