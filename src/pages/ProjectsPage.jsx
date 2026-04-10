@@ -548,28 +548,15 @@ export default function ProjectsPage() {
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && (
-          <ExpandButton id="gallery" setExpandedCard={setExpandedCard} />
-        )}
 
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Project Gallery (All)
         </h3>
 
-        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-2 pb-2">
-          {galleryItems.map((it, i) => (
-            <div key={i} className="flex flex-col h-full min-h-0">
-              <div
-                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${
-                  isExp ? "aspect-video" : "flex-1 min-h-[50px]"
-                }`}
-              >
-                [{it.label}]
-              </div>
-              <p className="text-[10px] text-white line-clamp-1">{it.title}</p>
-              <p className="text-[9px] text-slate-400">({it.tech})</p>
-            </div>
-          ))}
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
+          <ImageSlider images={mockImages} isExp={isExp} />
+          <ImageSlider images={mockImages} isExp={isExp} />
+          <ImageSlider images={mockImages} isExp={isExp} />
         </div>
       </Card>
     );
