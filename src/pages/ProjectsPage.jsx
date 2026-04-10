@@ -199,7 +199,7 @@ export default function ProjectsPage() {
         </h3>
 
         {/* SCROLLABLE CONTENT PORTION */}
-        <div className="flex flex-row flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
           <div
             className={`grid grid-cols-2 gap-4 shrink-0 w-full mb-4 overflow-hidden ${
               isExp
@@ -210,19 +210,17 @@ export default function ProjectsPage() {
             <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
               [Map Dashboard]
             </div>
-            {/* <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
-              [Bar Chart Dashboard]
-            </div> */}
-          </div>
 
-          <div className="flex flex-col shrink-0">
-            <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
-              Tableau dashboard
-            </h4>
-            <p className="text-[10px] text-slate-400 mt-1">
-              MERN-based data capture -&gt; SQL analysis -&gt; Tableau
-              visualization.
-            </p>
+            {/* Added to the grid for side-by-side display */}
+            <div className="flex flex-col justify-center shrink-0">
+              <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
+                Tableau dashboard
+              </h4>
+              <p className="text-[10px] text-slate-400 mt-1">
+                MERN-based data capture -&gt; SQL analysis -&gt; Tableau
+                visualization.
+              </p>
+            </div>
           </div>
         </div>
 
