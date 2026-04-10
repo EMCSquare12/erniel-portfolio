@@ -17,6 +17,7 @@ import {
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
 } from "../assets";
+
 // Custom SVG Gauge
 const CustomGauge = ({ name, value, color }) => {
   const [currentValue, setCurrentValue] = useState(0);
@@ -97,6 +98,13 @@ export default function HomePage() {
     },
   ];
 
+  const featuredProjectIcons = [
+    { src: MongoDb, name: "MongoDB" },
+    { src: ExpressJs, name: "Express.js" },
+    { src: ReactJs, name: "React" },
+    { src: NodeJs, name: "Node.js" },
+  ];
+
   return (
     <div className="max-w-7xl mx-auto space-y-6">
       <Card className="flex flex-col md:flex-row items-center justify-between">
@@ -135,12 +143,16 @@ export default function HomePage() {
             [Dashboard Image]
           </div>
           <div className="flex space-x-2 mb-4 justify-center">
-            {[MongoDb, ExpressJs, ReactJs, NodeJs].map((icon, idx) => (
+            {featuredProjectIcons.map((iconData, idx) => (
               <div
                 key={idx}
                 className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
               >
-                <img src={icon}></img>
+                <img
+                  src={iconData.src}
+                  alt={iconData.name}
+                  title={iconData.name}
+                />
               </div>
             ))}
           </div>
@@ -199,7 +211,7 @@ export default function HomePage() {
               {skillsData.map((skill, i) => (
                 <div key={`icon-${i}`} className="flex flex-col items-center">
                   <div className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center">
-                    <img src={skill.icon}></img>
+                    <img src={skill.icon} alt={skill.name} title={skill.name} />
                   </div>
 
                   <span className="text-[10px] text-slate-400 leading-tight max-w-[60px]">
@@ -215,15 +227,14 @@ export default function HomePage() {
               Project Gallery (Latest)
             </h3>
             <div className="grid grid-cols-2 gap-4">
-              {/* Replace static images with new Custom Component */}
               <ProjectGalleryItem
                 title="Live Bingo"
-                images={[MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom]} // Add more images to this array to enable the slider
+                images={[MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom]}
                 projectUrl="https://live-bingo-v2.netlify.app/"
               />
               <ProjectGalleryItem
                 title="HR Data Reporting"
-                images={[]} // Just empty array if no images available yet
+                images={[]}
                 projectUrl="#"
               />
             </div>

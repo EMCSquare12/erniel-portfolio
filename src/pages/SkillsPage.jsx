@@ -69,7 +69,7 @@ export default function SkillsPage() {
         <div
           className={`relative w-12 h-12 rounded-xl bg-[#161b22] border-2 ${theme.wrapperBorder} flex items-center justify-center text-xl shadow-[0_0_15px_rgba(0,0,0,0.5)] ${theme.shadow}`}
         >
-          <img className="w-8 h-8" src={icon} alt={title} />
+          <img className="w-8 h-8" src={icon} alt={title} title={title} />
           <span
             className={`absolute -bottom-2 bg-[#161b22] border ${theme.badgeBorder} text-[9px] px-1.5 rounded text-white`}
           >
@@ -87,7 +87,7 @@ export default function SkillsPage() {
   // Updated Tag Component - Conditionally renders the image only if 'src' exists.
   const Tag = ({ src, alt, children }) => (
     <div className="px-2 py-1 flex flex-row items-center gap-1 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 shadow-sm">
-      {src && <img src={src} alt={alt} className="w-5 h-5" />}
+      {src && <img src={src} alt={alt} title={alt} className="w-5 h-5" />}
       {children}
     </div>
   );
@@ -296,25 +296,25 @@ export default function SkillsPage() {
             <span className="text-blue-400 mr-2">📚</span> Frameworks
           </h3>
           <div className="flex flex-wrap gap-2">
-            <Tag src={Redux} alt="Redux Icon">
+            <Tag src={Redux} alt="Redux">
               Redux
             </Tag>
-            <Tag src={Axios} alt="Axios Icon">
+            <Tag src={Axios} alt="Axios">
               Axios
             </Tag>
-            <Tag src={SocketIO} alt="Socket.io Icon">
+            <Tag src={SocketIO} alt="Socket.io">
               Socket.io
             </Tag>
-            <Tag src={Mongoose} alt="Mongoose Icon">
+            <Tag src={Mongoose} alt="Mongoose">
               Mongoose
             </Tag>
-            <Tag src={Tailwind} alt="Tailwind Icon">
+            <Tag src={Tailwind} alt="Tailwind">
               Tailwind
             </Tag>
-            <Tag src={Bootstrap} alt="Bootstrap Icon">
+            <Tag src={Bootstrap} alt="Bootstrap">
               Bootstrap
             </Tag>
-            <Tag src={ReactRouter} alt="React Router Icon">
+            <Tag src={ReactRouter} alt="React Router">
               React Router
             </Tag>
           </div>
@@ -325,13 +325,13 @@ export default function SkillsPage() {
             <span className="text-teal-400 mr-2">🚀</span> Deployment
           </h3>
           <div className="flex flex-wrap gap-2">
-            <Tag src={Github} alt="Github Icon">
+            <Tag src={Github} alt="Github">
               Github
             </Tag>
-            <Tag src={Gitlab} alt="Gitlab Icon">
+            <Tag src={Gitlab} alt="Gitlab">
               Gitlab
             </Tag>
-            <Tag src={Jira} alt="Jira Icon">
+            <Tag src={Jira} alt="Jira">
               Jira
             </Tag>
             <Tag>Netlify</Tag>
@@ -345,7 +345,7 @@ export default function SkillsPage() {
           </h3>
           <div className="flex flex-wrap gap-2">
             <Tag>Excel Formula</Tag>
-            <Tag src={GoogleScript} alt="Google Sheet Script Icon">
+            <Tag src={GoogleScript} alt="Google Sheet Script">
               Google Sheet Script
             </Tag>
             <Tag>Pivot</Tag>

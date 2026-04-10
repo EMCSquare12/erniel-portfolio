@@ -1,4 +1,3 @@
-// emcsquare12/erniel-portfolio/erniel-portfolio-700cf54f400619e458a436b4c3f4bb536b6bba4a/src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
   IconReactJs as ReactJs,
@@ -21,7 +20,12 @@ import {
 } from "react-icons/fa";
 import { Card } from "../components/Card";
 
-const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
+const techIcons = [
+  { src: MongoDb, name: "MongoDB" },
+  { src: ExpressJs, name: "Express.js" },
+  { src: ReactJs, name: "React" },
+  { src: NodeJs, name: "Node.js" },
+];
 const mockImages = [MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom];
 
 const ImageSlider = ({ images, isExp, customClass }) => {
@@ -67,12 +71,14 @@ const ImageSlider = ({ images, isExp, customClass }) => {
           <button
             onClick={prevImage}
             className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
+            title="Previous Image"
           >
             <FaChevronLeft size={12} />
           </button>
           <button
             onClick={nextImage}
             className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
+            title="Next Image"
           >
             <FaChevronRight size={12} />
           </button>
@@ -204,7 +210,6 @@ const ExpandButton = ({ id, setExpandedCard }) => (
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
 
-  // Custom styles to hide scrollbar until the group is hovered
   const hoverScrollbarStyles = `
     .hover-scrollbar {
       scrollbar-width: thin;
@@ -252,7 +257,6 @@ export default function ProjectsPage() {
 
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
-        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />
@@ -262,22 +266,21 @@ export default function ProjectsPage() {
           Featured Project: ProShop
         </h3>
 
-        {/* SCROLLABLE CONTENT PORTION */}
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pb-2">
-          {/* Dynamic Image height based on state */}
           <ImageSlider images={mockImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
             <div className="flex space-x-2">
-              {icons.map((Icon, idx) => (
+              {techIcons.map((tech, idx) => (
                 <div
                   key={idx}
                   className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                 >
                   <img
-                    src={Icon}
-                    alt="icon"
+                    src={tech.src}
+                    alt={tech.name}
+                    title={tech.name}
                     className="w-full h-full object-contain"
                   />
                 </div>
@@ -289,11 +292,15 @@ export default function ProjectsPage() {
               <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                 <img
                   src={Github}
-                  alt="GitHub Icon"
+                  alt="GitHub Repository"
+                  title="GitHub Repository"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+              <div
+                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+                title="External Link"
+              >
                 <FaExternalLinkAlt size={12} />
               </div>
             </div>
@@ -342,7 +349,6 @@ export default function ProjectsPage() {
 
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
-        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />
@@ -352,51 +358,49 @@ export default function ProjectsPage() {
           Data Science Project: Segmentation
         </h3>
 
-        {/* --- Updated logic for expanded view, mirroring the visual layout structure of image_e475b7.png --- */}
         {isExp ? (
-          // NEW EXPANDED CONTENT (Single column layout like other projects)
           <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto hover-scrollbar pr-2 pb-2">
-            {/* 1. Main Visual Visual (Placeholder) at top */}
             <ImageSlider
               images={mockImages}
               isExp={true}
               customClass="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] group/slider"
             />
 
-            {/* 2. Horizontal centered tech icons */}
             <div className="flex justify-between items-center mb-4 shrink-0">
-              {/* Left Side: MERN Tech Stack Icons */}
               <div className="flex space-x-2">
-                {icons.map((Icon, idx) => (
+                {techIcons.map((tech, idx) => (
                   <div
                     key={idx}
                     className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                   >
                     <img
-                      src={Icon}
-                      alt="icon"
+                      src={tech.src}
+                      alt={tech.name}
+                      title={tech.name}
                       className="w-full h-full object-contain"
                     />
                   </div>
                 ))}
               </div>
 
-              {/* Right Side: GitHub and External Link Icons */}
               <div className="flex space-x-2">
                 <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <img
                     src={Github}
-                    alt="GitHub Icon"
+                    alt="GitHub Repository"
+                    title="GitHub Repository"
                     className="w-full h-full object-contain"
                   />
                 </div>
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div
+                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+                  title="External Link"
+                >
                   <FaExternalLinkAlt size={12} />
                 </div>
               </div>
             </div>
 
-            {/* 3. Detailed Project Description list */}
             <div className="flex flex-col shrink-0">
               <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
                 Project Description
@@ -418,16 +422,12 @@ export default function ProjectsPage() {
             </div>
           </div>
         ) : (
-          // RETAIN THE DEFAULT COMPACT VIEW (Two columns)
           <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 h-[140px] xl:h-[160px] 2xl:h-[180px] shrink-0 w-full overflow-hidden">
-            {/* Left: Map Dashboard (Placeholder) */}
             <ImageSlider
               images={mockImages}
               isExp={isExp}
               customClass="relative bg-slate-800 rounded-lg border border-slate-700 h-full w-full overflow-hidden group/slider"
             />
-
-            {/* Right: Text Details (compact) - Set to justify-start and added scrollbar */}
             <div className="flex flex-col justify-start overflow-y-auto hover-scrollbar pr-2 pb-2">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
                 Tableau dashboard
@@ -457,7 +457,6 @@ export default function ProjectsPage() {
 
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
-        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />
@@ -467,37 +466,39 @@ export default function ProjectsPage() {
           ProShop - Admin Dashboard
         </h3>
 
-        {/* SCROLLABLE CONTENT PORTION */}
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
           <ImageSlider images={mockImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
-            {/* Left Side: MERN Tech Stack Icons */}
             <div className="flex space-x-2">
-              {icons.map((Icon, idx) => (
+              {techIcons.map((tech, idx) => (
                 <div
                   key={idx}
                   className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                 >
                   <img
-                    src={Icon}
-                    alt="icon"
+                    src={tech.src}
+                    alt={tech.name}
+                    title={tech.name}
                     className="w-full h-full object-contain"
                   />
                 </div>
               ))}
             </div>
 
-            {/* Right Side: GitHub and External Link Icons */}
             <div className="flex space-x-2">
               <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                 <img
                   src={Github}
-                  alt="GitHub Icon"
+                  alt="GitHub Repository"
+                  title="GitHub Repository"
                   className="w-full h-full object-contain"
                 />
               </div>
-              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+              <div
+                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+                title="External Link"
+              >
                 <FaExternalLinkAlt size={12} />
               </div>
             </div>
@@ -576,11 +577,9 @@ export default function ProjectsPage() {
 
   return (
     <>
-      {/* Inject custom hover scrollbar styles */}
       <style dangerouslySetInnerHTML={{ __html: hoverScrollbarStyles }} />
 
       <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-2 h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)]">
-        {/* HEADER */}
         <h2 className="text-2xl font-bold text-white tracking-wide uppercase shrink-0">
           FEATURED PORTFOLIO{" "}
           <span className="text-slate-400 font-light normal-case">
@@ -588,35 +587,24 @@ export default function ProjectsPage() {
           </span>
         </h2>
 
-        {/* DYNAMIC LAYOUT AREA */}
         <div className="flex-1 min-h-0 w-full overflow-hidden">
           {expandedCard === null ? (
-            // --- DEFAULT GRID STATE ---
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 h-full min-h-0 w-full">
-              {/* ProShop: 1st Col, Spans 2 Rows */}
               <div className="lg:col-span-1 lg:row-span-2 h-full min-h-0">
                 {renderProShop("default")}
               </div>
-
-              {/* Data Science: 2nd Col, Spans 2 Cols, 1st Row */}
               <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-full min-h-0">
                 {renderDataScience("default")}
               </div>
-
-              {/* Modern Tech: 2nd Col, 2nd Row */}
               <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-full min-h-0">
                 {renderModernTech("default")}
               </div>
-
-              {/* Gallery: 3rd Col, 2nd Row */}
               <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
                 {renderGallery("default")}
               </div>
             </div>
           ) : (
-            // --- EXPANDED (SEE MORE) STATE ---
             <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 w-full">
-              {/* Big Expanded Card (Left Side - Non Fixed) */}
               <div className="lg:flex-[3] w-full h-full min-h-0 flex flex-col">
                 {expandedCard === "proshop" && renderProShop("expanded")}
                 {expandedCard === "datascience" &&
@@ -625,7 +613,6 @@ export default function ProjectsPage() {
                 {expandedCard === "gallery" && renderGallery("expanded")}
               </div>
 
-              {/* Stacked Sidebars (Right Side - Scrollable & Non Fixed) */}
               <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2 group">
                 {expandedCard !== "proshop" && renderProShop("sidebar")}
                 {expandedCard !== "datascience" && renderDataScience("sidebar")}

@@ -267,7 +267,9 @@ export default function ResumePage() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                <button className="cursor-pointer">🔗</button>
+                <button className="cursor-pointer" title="View Drive Folder">
+                  🔗
+                </button>
               </a>
             </div>
             <hr className="border-slate-700 mb-4" />
@@ -284,8 +286,10 @@ export default function ResumePage() {
                   >
                     <img
                       src={badge.icon}
+                      alt={badge.title}
+                      title={badge.title}
                       className={`w-10 h-10 rounded flex items-center justify-center text-xs border ${badge.iconClass}`}
-                    ></img>
+                    />
                     <div>
                       <p className="text-sm text-white font-semibold mb-1">
                         {badge.title}
@@ -310,6 +314,7 @@ export default function ResumePage() {
                           key={i}
                           src={img.src}
                           alt={img.alt}
+                          title={img.alt}
                           className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
                         />
                       ))}
@@ -349,7 +354,7 @@ export default function ResumePage() {
                       JoinRoom,
                       HostPage,
                       PlayerRoom,
-                    ]} // Add more images to this array to enable the slider
+                    ]}
                     projectUrl="https://live-bingo-v2.netlify.app/"
                   />
                 </div>
@@ -367,24 +372,34 @@ export default function ResumePage() {
                   <div className="flex space-x-2 text-xs mt-2">
                     <img
                       src={MongoDb}
+                      alt="MongoDB"
+                      title="MongoDB"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={Express}
+                      alt="Express.js"
+                      title="Express.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={ReactJs}
+                      alt="React"
+                      title="React"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={Node}
+                      alt="Node.js"
+                      title="Node.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={SocketIO}
+                      alt="Socket.IO"
+                      title="Socket.IO"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                   </div>
                 </div>
               </div>
@@ -398,7 +413,7 @@ export default function ResumePage() {
                       JoinRoom,
                       HostPage,
                       PlayerRoom,
-                    ]} // Add more images to this array to enable the slider
+                    ]}
                     projectUrl="https://live-bingo-v2.netlify.app/"
                   />
                 </div>
@@ -416,24 +431,34 @@ export default function ResumePage() {
                   <div className="flex space-x-2 text-xs mt-2">
                     <img
                       src={MongoDb}
+                      alt="MongoDB"
+                      title="MongoDB"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={Express}
+                      alt="Express.js"
+                      title="Express.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={ReactJs}
+                      alt="React"
+                      title="React"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={Node}
+                      alt="Node.js"
+                      title="Node.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                     <img
                       src={SocketIO}
+                      alt="Socket.IO"
+                      title="Socket.IO"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    ></img>
+                    />
                   </div>
                 </div>
               </div>
