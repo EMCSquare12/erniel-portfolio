@@ -42,7 +42,6 @@ const proShopDetails = [
   },
 ];
 
-// --- Added for Data Science detailed view when expanded ---
 const dataScienceDetails = [
   {
     title: "Technical Highlights & Methodologies",
@@ -83,7 +82,7 @@ const galleryItems = [
 const SidebarCard = ({ id, title, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors h-full min-h-[100px] flex-1 w-full p-4"
+    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors h-full min-h-[100px] flex-1 w-full p-4 group"
   >
     <h3 className="font-bold text-white text-center text-xs line-clamp-2">
       {title}
@@ -123,6 +122,39 @@ const ExpandButton = ({ id, setExpandedCard }) => (
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
 
+  // Custom styles to hide scrollbar until the group is hovered
+  const hoverScrollbarStyles = `
+    .hover-scrollbar {
+      scrollbar-width: thin;
+      scrollbar-color: transparent transparent;
+      transition: scrollbar-color 0.3s;
+    }
+    .group:hover .hover-scrollbar {
+      scrollbar-color: #475569 transparent;
+    }
+    .hover-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .hover-scrollbar::-webkit-scrollbar-track {
+      background: transparent;
+      border-radius: 8px;
+    }
+    .hover-scrollbar::-webkit-scrollbar-thumb {
+      background-color: transparent;
+      border-radius: 8px;
+      border: 2px solid transparent;
+      background-clip: padding-box;
+      transition: background-color 0.3s;
+    }
+    .group:hover .hover-scrollbar::-webkit-scrollbar-thumb {
+      background-color: #475569;
+    }
+    .group:hover .hover-scrollbar::-webkit-scrollbar-thumb:hover {
+      background-color: #10b981;
+    }
+  `;
+
   // --- RENDER FUNCTIONS FOR EACH CARD ---
 
   const renderProShop = (mode) => {
@@ -149,7 +181,7 @@ export default function ProjectsPage() {
         </h3>
 
         {/* SCROLLABLE CONTENT PORTION */}
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar  pb-2">
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pb-2">
           {/* Dynamic Image height based on state */}
           <div
             className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
@@ -232,7 +264,7 @@ export default function ProjectsPage() {
         {/* --- Updated logic for expanded view, mirroring the visual layout structure of image_e475b7.png --- */}
         {isExp ? (
           // NEW EXPANDED CONTENT (Single column layout like other projects)
-          <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto custom-scrollbar pr-2 pb-2">
+          <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto hover-scrollbar pr-2 pb-2">
             {/* 1. Main Visual Visual (Placeholder) at top */}
             <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh]">
               <span className="text-xs">
@@ -242,7 +274,6 @@ export default function ProjectsPage() {
 
             {/* 2. Horizontal centered tech icons */}
             <div className="flex space-x-2 mb-4 justify-center shrink-0">
-              {/* Using generic 'icons' or placeholders as defined globally. Modify as needed for Data Science specific logos. */}
               {icons.map((Icon, idx) => (
                 <div
                   key={idx}
@@ -287,7 +318,7 @@ export default function ProjectsPage() {
             </div>
 
             {/* Right: Text Details (compact) - Set to justify-start and added scrollbar */}
-            <div className="flex flex-col justify-start overflow-y-auto custom-scrollbar pr-2 pb-2">
+            <div className="flex flex-col justify-start overflow-y-auto hover-scrollbar pr-2 pb-2">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
                 Tableau dashboard
               </h4>
@@ -323,11 +354,11 @@ export default function ProjectsPage() {
         )}
 
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
-          Modern Tech Marketplace
+          ProShop - Admin Dashboard
         </h3>
 
         {/* SCROLLABLE CONTENT PORTION */}
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
           <div
             className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
               isExp
@@ -405,7 +436,7 @@ export default function ProjectsPage() {
           Project Gallery (All)
         </h3>
 
-        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 custom-scrollbar pr-2 pb-2">
+        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-2 pb-2">
           {galleryItems.map((it, i) => (
             <div key={i} className="flex flex-col h-full min-h-0">
               <div
@@ -425,63 +456,69 @@ export default function ProjectsPage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-2 h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)]">
-      {/* HEADER */}
-      <h2 className="text-2xl font-bold text-white tracking-wide uppercase shrink-0">
-        FEATURED PORTFOLIO{" "}
-        <span className="text-slate-400 font-light normal-case">
-          | MERN Stack & Data Analytics
-        </span>
-      </h2>
+    <>
+      {/* Inject custom hover scrollbar styles */}
+      <style dangerouslySetInnerHTML={{ __html: hoverScrollbarStyles }} />
 
-      {/* DYNAMIC LAYOUT AREA */}
-      <div className="flex-1 min-h-0 w-full overflow-hidden">
-        {expandedCard === null ? (
-          // --- DEFAULT GRID STATE ---
-          <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 h-full min-h-0 w-full">
-            {/* ProShop: 1st Col, Spans 2 Rows */}
-            <div className="lg:col-span-1 lg:row-span-2 h-full min-h-0">
-              {renderProShop("default")}
-            </div>
+      <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-2 h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)]">
+        {/* HEADER */}
+        <h2 className="text-2xl font-bold text-white tracking-wide uppercase shrink-0">
+          FEATURED PORTFOLIO{" "}
+          <span className="text-slate-400 font-light normal-case">
+            | MERN Stack & Data Analytics
+          </span>
+        </h2>
 
-            {/* Data Science: 2nd Col, Spans 2 Cols, 1st Row */}
-            <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-full min-h-0">
-              {renderDataScience("default")}
-            </div>
+        {/* DYNAMIC LAYOUT AREA */}
+        <div className="flex-1 min-h-0 w-full overflow-hidden">
+          {expandedCard === null ? (
+            // --- DEFAULT GRID STATE ---
+            <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 h-full min-h-0 w-full">
+              {/* ProShop: 1st Col, Spans 2 Rows */}
+              <div className="lg:col-span-1 lg:row-span-2 h-full min-h-0">
+                {renderProShop("default")}
+              </div>
 
-            {/* Modern Tech: 2nd Col, 2nd Row */}
-            <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-full min-h-0">
-              {renderModernTech("default")}
-            </div>
+              {/* Data Science: 2nd Col, Spans 2 Cols, 1st Row */}
+              <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-full min-h-0">
+                {renderDataScience("default")}
+              </div>
 
-            {/* Gallery: 3rd Col, 2nd Row */}
-            <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
-              {renderGallery("default")}
-            </div>
-          </div>
-        ) : (
-          // --- EXPANDED (SEE MORE) STATE ---
-          <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 w-full">
-            {/* Big Expanded Card (Left Side - Non Fixed) */}
-            <div className="lg:flex-[3] w-full h-full min-h-0 flex flex-col">
-              {expandedCard === "proshop" && renderProShop("expanded")}
-              {expandedCard === "datascience" && renderDataScience("expanded")}
-              {expandedCard === "moderntech" && renderModernTech("expanded")}
-              {expandedCard === "gallery" && renderGallery("expanded")}
-            </div>
+              {/* Modern Tech: 2nd Col, 2nd Row */}
+              <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-full min-h-0">
+                {renderModernTech("default")}
+              </div>
 
-            {/* Stacked Sidebars (Right Side - Scrollable & Non Fixed) */}
-            <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto custom-scrollbar pr-1 pb-2">
-              {expandedCard !== "proshop" && renderProShop("sidebar")}
-              {expandedCard !== "datascience" && renderDataScience("sidebar")}
-              {expandedCard !== "moderntech" && renderModernTech("sidebar")}
-              {expandedCard !== "gallery" && renderGallery("sidebar")}
-              {expandedCard !== "gallery" && renderGallery("sidebar")}
-              {expandedCard !== "gallery" && renderGallery("sidebar")}
+              {/* Gallery: 3rd Col, 2nd Row */}
+              <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
+                {renderGallery("default")}
+              </div>
             </div>
-          </div>
-        )}
+          ) : (
+            // --- EXPANDED (SEE MORE) STATE ---
+            <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 w-full">
+              {/* Big Expanded Card (Left Side - Non Fixed) */}
+              <div className="lg:flex-[3] w-full h-full min-h-0 flex flex-col">
+                {expandedCard === "proshop" && renderProShop("expanded")}
+                {expandedCard === "datascience" &&
+                  renderDataScience("expanded")}
+                {expandedCard === "moderntech" && renderModernTech("expanded")}
+                {expandedCard === "gallery" && renderGallery("expanded")}
+              </div>
+
+              {/* Stacked Sidebars (Right Side - Scrollable & Non Fixed) */}
+              <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2 group">
+                {expandedCard !== "proshop" && renderProShop("sidebar")}
+                {expandedCard !== "datascience" && renderDataScience("sidebar")}
+                {expandedCard !== "moderntech" && renderModernTech("sidebar")}
+                {expandedCard !== "gallery" && renderGallery("sidebar")}
+                {expandedCard !== "gallery" && renderGallery("sidebar")}
+                {expandedCard !== "gallery" && renderGallery("sidebar")}
+              </div>
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+    </>
   );
 }
