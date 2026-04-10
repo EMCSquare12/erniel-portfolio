@@ -1,3 +1,4 @@
+// emcsquare12/erniel-portfolio/erniel-portfolio-700cf54f400619e458a436b4c3f4bb536b6bba4a/src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
   IconReactJs as ReactJs,
@@ -19,6 +20,7 @@ import {
   FaChevronRight,
 } from "react-icons/fa";
 import { Card } from "../components/Card";
+
 const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
 const mockImages = [MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom];
 
@@ -37,7 +39,6 @@ const ImageSlider = ({ images, isExp, customClass }) => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
-  // Removed 'flex items-center justify-center' to allow the image to stretch properly
   const containerClass =
     customClass ||
     `relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden group/slider ${
@@ -59,7 +60,6 @@ const ImageSlider = ({ images, isExp, customClass }) => {
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        // 'block w-full h-full object-cover' forces the image to stretch and crop perfectly to the edges
         className="block w-full h-full object-cover transition-transform duration-500"
       />
       {images.length > 1 && (
@@ -93,6 +93,7 @@ const ImageSlider = ({ images, isExp, customClass }) => {
     </div>
   );
 };
+
 const proShopDetails = [
   {
     title: "Modern Tech Marketplace",
@@ -264,15 +265,7 @@ export default function ProjectsPage() {
         {/* SCROLLABLE CONTENT PORTION */}
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pb-2">
           {/* Dynamic Image height based on state */}
-          <div
-            className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
-              isExp
-                ? "aspect-video max-h-[45vh]"
-                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
-            }`}
-          >
-            <ImageSlider images={mockImages} isExp={isExp} />
-          </div>
+          <ImageSlider images={mockImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
@@ -364,12 +357,11 @@ export default function ProjectsPage() {
           // NEW EXPANDED CONTENT (Single column layout like other projects)
           <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto hover-scrollbar pr-2 pb-2">
             {/* 1. Main Visual Visual (Placeholder) at top */}
-            <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh]">
-              <ImageSlider
-                images={mockImages}
-                customClass="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] group/slider"
-              />
-            </div>
+            <ImageSlider
+              images={mockImages}
+              isExp={true}
+              customClass="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] group/slider"
+            />
 
             {/* 2. Horizontal centered tech icons */}
             <div className="flex justify-between items-center mb-4 shrink-0">
@@ -429,9 +421,11 @@ export default function ProjectsPage() {
           // RETAIN THE DEFAULT COMPACT VIEW (Two columns)
           <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 h-[140px] xl:h-[160px] 2xl:h-[180px] shrink-0 w-full overflow-hidden">
             {/* Left: Map Dashboard (Placeholder) */}
-            <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
-              <ImageSlider images={mockImages} isExp={isExp} />
-            </div>
+            <ImageSlider
+              images={mockImages}
+              isExp={isExp}
+              customClass="relative bg-slate-800 rounded-lg border border-slate-700 h-full w-full overflow-hidden group/slider"
+            />
 
             {/* Right: Text Details (compact) - Set to justify-start and added scrollbar */}
             <div className="flex flex-col justify-start overflow-y-auto hover-scrollbar pr-2 pb-2">
@@ -475,15 +469,7 @@ export default function ProjectsPage() {
 
         {/* SCROLLABLE CONTENT PORTION */}
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <div
-            className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
-              isExp
-                ? "aspect-video max-h-[45vh]"
-                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
-            }`}
-          >
-            <ImageSlider images={mockImages} isExp={isExp} />
-          </div>
+          <ImageSlider images={mockImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
