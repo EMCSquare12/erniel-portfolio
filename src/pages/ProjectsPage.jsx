@@ -5,7 +5,9 @@ import {
   IconNodeJs as NodeJs,
   IconMongoDb as MongoDb,
   IconExpressJs as ExpressJs,
+  IconGithub as Github,
 } from "../assets";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import { Card } from "../components/Card";
 import { FaCompressArrowsAlt, FaExpandArrowsAlt } from "react-icons/fa";
@@ -197,7 +199,7 @@ export default function ProjectsPage() {
             {icons.map((Icon, idx) => (
               <div
                 key={idx}
-                className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
+                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
               >
                 <img
                   src={Icon}
@@ -206,6 +208,16 @@ export default function ProjectsPage() {
                 />
               </div>
             ))}
+            <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1">
+              <img
+                src={Github}
+                alt="GitHub Icon"
+                className="w-full h-full object-contain"
+              />
+            </div>
+            <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1">
+              <FaExternalLinkAlt />
+            </div>
           </div>
 
           <div className="flex flex-col shrink-0">
