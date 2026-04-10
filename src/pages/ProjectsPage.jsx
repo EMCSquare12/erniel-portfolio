@@ -1,4 +1,3 @@
-// src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
   IconReactJs as ReactJs,
@@ -6,14 +5,94 @@ import {
   IconMongoDb as MongoDb,
   IconExpressJs as ExpressJs,
   IconGithub as Github,
+  ProjectLiveBingoMainPage as MainPage,
+  ProjectLiveBingoCreateRoom as CreateRoom,
+  ProjectLiveBingoHostPage as HostPage,
+  ProjectLiveBingoJoinRoom as JoinRoom,
+  ProjectLiveBingoPlayerRoom as PlayerRoom,
 } from "../assets";
-import { FaExternalLinkAlt } from "react-icons/fa";
-
+import {
+  FaExternalLinkAlt,
+  FaCompressArrowsAlt,
+  FaExpandArrowsAlt,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 import { Card } from "../components/Card";
-import { FaCompressArrowsAlt, FaExpandArrowsAlt } from "react-icons/fa";
-
 const icons = [MongoDb, ExpressJs, ReactJs, NodeJs];
+const mockImages = [MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom];
 
+const ImageSlider = ({ images, isExp, customClass }) => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const nextImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  // Removed 'flex items-center justify-center' to allow the image to stretch properly
+  const containerClass =
+    customClass ||
+    `relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden group/slider ${
+      isExp
+        ? "aspect-video max-h-[45vh]"
+        : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
+    }`;
+
+  if (!images || images.length === 0) {
+    return (
+      <div className={`${containerClass} flex items-center justify-center`}>
+        <span className="text-xs text-slate-400">[No Images Available]</span>
+      </div>
+    );
+  }
+
+  return (
+    <div className={containerClass}>
+      <img
+        src={images[currentIndex]}
+        alt={`Slide ${currentIndex}`}
+        // 'block w-full h-full object-cover' forces the image to stretch and crop perfectly to the edges
+        className="block w-full h-full object-cover transition-transform duration-500"
+      />
+      {images.length > 1 && (
+        <>
+          <button
+            onClick={prevImage}
+            className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
+          >
+            <FaChevronLeft size={12} />
+          </button>
+          <button
+            onClick={nextImage}
+            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
+          >
+            <FaChevronRight size={12} />
+          </button>
+
+          {/* Dots indicator */}
+          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
+            {images.map((_, idx) => (
+              <div
+                key={idx}
+                className={`w-1.5 h-1.5 rounded-full transition-all ${
+                  idx === currentIndex ? "bg-emerald-400 w-3" : "bg-white/50"
+                }`}
+              />
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  );
+};
 const proShopDetails = [
   {
     title: "Modern Tech Marketplace",
@@ -192,31 +271,38 @@ export default function ProjectsPage() {
                 : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
             }`}
           >
-            <span className="text-xs">[Main Dashboard Image]</span>
+            <ImageSlider images={mockImages} isExp={isExp} />
           </div>
 
-          <div className="flex space-x-2 mb-4 justify-center shrink-0">
-            {icons.map((Icon, idx) => (
-              <div
-                key={idx}
-                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
-              >
+          <div className="flex justify-between items-center mb-4 shrink-0">
+            {/* Left Side: MERN Tech Stack Icons */}
+            <div className="flex space-x-2">
+              {icons.map((Icon, idx) => (
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                >
+                  <img
+                    src={Icon}
+                    alt="icon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Right Side: GitHub and External Link Icons */}
+            <div className="flex space-x-2">
+              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                 <img
-                  src={Icon}
-                  alt="icon"
+                  src={Github}
+                  alt="GitHub Icon"
                   className="w-full h-full object-contain"
                 />
               </div>
-            ))}
-            <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1">
-              <img
-                src={Github}
-                alt="GitHub Icon"
-                className="w-full h-full object-contain"
-              />
-            </div>
-            <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1">
-              <FaExternalLinkAlt />
+              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <FaExternalLinkAlt size={12} />
+              </div>
             </div>
           </div>
 
@@ -279,25 +365,43 @@ export default function ProjectsPage() {
           <div className="flex flex-col flex-1 min-h-0 w-full overflow-y-auto hover-scrollbar pr-2 pb-2">
             {/* 1. Main Visual Visual (Placeholder) at top */}
             <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh]">
-              <span className="text-xs">
-                [Map Dashboard Visual - Segmentation]
-              </span>
+              <ImageSlider
+                images={mockImages}
+                customClass="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] group/slider"
+              />
             </div>
 
             {/* 2. Horizontal centered tech icons */}
-            <div className="flex space-x-2 mb-4 justify-center shrink-0">
-              {icons.map((Icon, idx) => (
-                <div
-                  key={idx}
-                  className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
-                >
+            <div className="flex justify-between items-center mb-4 shrink-0">
+              {/* Left Side: MERN Tech Stack Icons */}
+              <div className="flex space-x-2">
+                {icons.map((Icon, idx) => (
+                  <div
+                    key={idx}
+                    className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                  >
+                    <img
+                      src={Icon}
+                      alt="icon"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
+
+              {/* Right Side: GitHub and External Link Icons */}
+              <div className="flex space-x-2">
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <img
-                    src={Icon}
-                    alt="icon"
+                    src={Github}
+                    alt="GitHub Icon"
                     className="w-full h-full object-contain"
                   />
                 </div>
-              ))}
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <FaExternalLinkAlt size={12} />
+                </div>
+              </div>
             </div>
 
             {/* 3. Detailed Project Description list */}
@@ -326,7 +430,7 @@ export default function ProjectsPage() {
           <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 h-[140px] xl:h-[160px] 2xl:h-[180px] shrink-0 w-full overflow-hidden">
             {/* Left: Map Dashboard (Placeholder) */}
             <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
-              [Map Dashboard]
+              <ImageSlider images={mockImages} isExp={isExp} />
             </div>
 
             {/* Right: Text Details (compact) - Set to justify-start and added scrollbar */}
@@ -378,22 +482,39 @@ export default function ProjectsPage() {
                 : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
             }`}
           >
-            <span className="text-xs">[Main Dashboard Image]</span>
+            <ImageSlider images={mockImages} isExp={isExp} />
           </div>
 
-          <div className="flex space-x-2 mb-4 justify-center shrink-0">
-            {icons.map((Icon, idx) => (
-              <div
-                key={idx}
-                className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
-              >
+          <div className="flex justify-between items-center mb-4 shrink-0">
+            {/* Left Side: MERN Tech Stack Icons */}
+            <div className="flex space-x-2">
+              {icons.map((Icon, idx) => (
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                >
+                  <img
+                    src={Icon}
+                    alt="icon"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Right Side: GitHub and External Link Icons */}
+            <div className="flex space-x-2">
+              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                 <img
-                  src={Icon}
-                  alt="icon"
+                  src={Github}
+                  alt="GitHub Icon"
                   className="w-full h-full object-contain"
                 />
               </div>
-            ))}
+              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <FaExternalLinkAlt size={12} />
+              </div>
+            </div>
           </div>
 
           <div className="flex flex-col shrink-0">
