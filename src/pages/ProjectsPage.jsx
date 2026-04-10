@@ -51,7 +51,7 @@ const galleryItems = [
 const SidebarCard = ({ id, title, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors h-full min-h-0 w-full p-4"
+    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors h-full min-h-[100px] flex-1 w-full p-4"
   >
     <h3 className="font-bold text-white text-center text-xs line-clamp-2">
       {title}
@@ -77,7 +77,7 @@ const ShrinkButton = ({ setExpandedCard }) => (
 const SeeMoreButton = ({ id, setExpandedCard }) => (
   <button
     onClick={() => setExpandedCard(id)}
-    className="absolute bottom-6 left-6 text-emerald-400 text-[10px] hover:text-emerald-300 font-bold uppercase bg-emerald-400/10 px-3 py-1.5 rounded z-10"
+    className="absolute bottom-6 right-6 text-emerald-400 text-[10px] hover:text-emerald-300 font-bold uppercase bg-emerald-400/10 px-3 py-1.5 rounded z-10"
   >
     See More &rarr;
   </button>
@@ -101,8 +101,9 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
       >
+        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
 
         <h3
@@ -111,49 +112,58 @@ export default function ProjectsPage() {
           Featured Project: ProShop
         </h3>
 
-        {/* Height matched with Data Science */}
-        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 h-[140px] xl:h-[160px] 2xl:h-[180px] overflow-hidden">
-          <span className="text-xs">[Main Dashboard Image]</span>
-        </div>
+        {/* SCROLLABLE CONTENT PORTION */}
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+          {/* Dynamic Image height based on state */}
+          <div
+            className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
+              isExp
+                ? "aspect-video max-h-[45vh]"
+                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
+            }`}
+          >
+            <span className="text-xs">[Main Dashboard Image]</span>
+          </div>
 
-        <div className="flex space-x-2 mb-4 justify-center shrink-0">
-          {icons.map((Icon, idx) => (
-            <div
-              key={idx}
-              className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
-            >
-              <img
-                src={Icon}
-                alt="icon"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col flex-1 min-h-0">
-          <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
-            Project Description
-          </h4>
-          <div className="overflow-y-auto flex-1 pr-2 space-y-3 [&::-webkit-scrollbar]:hidden">
-            {proShopDetails.map((detail, idx) => (
-              <div key={idx}>
-                <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
-                  ✓ {detail.title}
-                </h5>
-                {isExp ? (
-                  <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
-                    {detail.descriptions.map((desc, i) => (
-                      <li key={i}>{desc}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                    {detail.descriptions[0]}
-                  </p>
-                )}
+          <div className="flex space-x-2 mb-4 justify-center shrink-0">
+            {icons.map((Icon, idx) => (
+              <div
+                key={idx}
+                className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
+              >
+                <img
+                  src={Icon}
+                  alt="icon"
+                  className="w-full h-full object-contain"
+                />
               </div>
             ))}
+          </div>
+
+          <div className="flex flex-col shrink-0">
+            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+              Project Description
+            </h4>
+            <div className="space-y-3">
+              {proShopDetails.map((detail, idx) => (
+                <div key={idx}>
+                  <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                    ✓ {detail.title}
+                  </h5>
+                  {isExp ? (
+                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
+                      {detail.descriptions.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
+                      {detail.descriptions[0]}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -177,8 +187,9 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
       >
+        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
 
         <h3
@@ -187,24 +198,32 @@ export default function ProjectsPage() {
           Data Science Project: Segmentation
         </h3>
 
-        {/* Height perfectly matched with ProShop */}
-        <div className="grid grid-cols-2 gap-4 shrink-0 w-full mb-4 h-[140px] xl:h-[160px] 2xl:h-[180px] overflow-hidden">
-          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
-            [Map Dashboard]
+        {/* SCROLLABLE CONTENT PORTION */}
+        <div className="flex flex-row flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+          <div
+            className={`grid grid-cols-2 gap-4 shrink-0 w-full mb-4 overflow-hidden ${
+              isExp
+                ? "aspect-video max-h-[45vh]"
+                : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
+            }`}
+          >
+            <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
+              [Map Dashboard]
+            </div>
+            {/* <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
+              [Bar Chart Dashboard]
+            </div> */}
           </div>
-          <div className="bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs p-2 h-full w-full overflow-hidden">
-            [Bar Chart Dashboard]
-          </div>
-        </div>
 
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto [&::-webkit-scrollbar]:hidden pr-2">
-          <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider shrink-0">
-            Tableau dashboard
-          </h4>
-          <p className="text-[10px] text-slate-400 mt-1">
-            MERN-based data capture -&gt; SQL analysis -&gt; Tableau
-            visualization.
-          </p>
+          <div className="flex flex-col shrink-0">
+            <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
+              Tableau dashboard
+            </h4>
+            <p className="text-[10px] text-slate-400 mt-1">
+              MERN-based data capture -&gt; SQL analysis -&gt; Tableau
+              visualization.
+            </p>
+          </div>
         </div>
 
         {!isExp && (
@@ -227,8 +246,9 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
       >
+        {/* FIXED HEADER PORTION */}
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
 
         <h3
@@ -237,54 +257,59 @@ export default function ProjectsPage() {
           Modern Tech Marketplace
         </h3>
 
-        <div className="bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 h-[100px] xl:h-[120px] 2xl:h-[140px] overflow-hidden">
-          <span className="text-xs">[Main Dashboard Image]</span>
-        </div>
+        {/* SCROLLABLE CONTENT PORTION */}
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto custom-scrollbar pr-2 pb-2">
+          <div
+            className={`bg-slate-800 rounded-lg flex items-center justify-center text-slate-400 border border-slate-700 shrink-0 w-full mb-4 overflow-hidden ${
+              isExp
+                ? "aspect-video max-h-[45vh]"
+                : "h-[100px] xl:h-[120px] 2xl:h-[140px]"
+            }`}
+          >
+            <span className="text-xs">[Main Dashboard Image]</span>
+          </div>
 
-        <div className="flex space-x-2 mb-4 justify-center shrink-0">
-          {icons.map((Icon, idx) => (
-            <div
-              key={idx}
-              className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
-            >
-              <img
-                src={Icon}
-                alt="icon"
-                className="w-full h-full object-contain"
-              />
-            </div>
-          ))}
-        </div>
-
-        <div className="flex flex-col flex-1 min-h-0">
-          <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
-            Project Description
-          </h4>
-          <div className="overflow-y-auto flex-1 pr-2 space-y-3 [&::-webkit-scrollbar]:hidden">
-            {modernTechDetails.map((detail, idx) => (
-              <div key={idx}>
-                <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
-                  ✓ {detail.title}
-                </h5>
-                {isExp ? (
-                  <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
-                    {detail.descriptions.map((desc, i) => (
-                      <li key={i}>{desc}</li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-[10px] text-slate-400 line-clamp-2 pl-4">
-                    {detail.descriptions[0]}
-                  </p>
-                )}
+          <div className="flex space-x-2 mb-4 justify-center shrink-0">
+            {icons.map((Icon, idx) => (
+              <div
+                key={idx}
+                className="w-7 h-7 rounded-full bg-slate-800 border border-slate-700 flex items-center justify-center p-1.5"
+              >
+                <img
+                  src={Icon}
+                  alt="icon"
+                  className="w-full h-full object-contain"
+                />
               </div>
             ))}
           </div>
-        </div>
 
-        {!isExp && (
-          <SeeMoreButton id="moderntech" setExpandedCard={setExpandedCard} />
-        )}
+          <div className="flex flex-col shrink-0">
+            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+              Project Description
+            </h4>
+            <div className="space-y-3">
+              {modernTechDetails.map((detail, idx) => (
+                <div key={idx}>
+                  <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                    ✓ {detail.title}
+                  </h5>
+                  {isExp ? (
+                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
+                      {detail.descriptions.map((desc, i) => (
+                        <li key={i}>{desc}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-[10px] text-slate-400 line-clamp-2 pl-4">
+                      {detail.descriptions[0]}
+                    </p>
+                  )}
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
       </Card>
     );
   };
@@ -302,7 +327,7 @@ export default function ProjectsPage() {
 
     return (
       <Card
-        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-16" : ""}`}
+        className={`flex flex-col h-full relative overflow-hidden w-full ${!isExp ? "!pb-6" : ""}`}
       >
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
 
@@ -312,11 +337,13 @@ export default function ProjectsPage() {
           Project Gallery (All)
         </h3>
 
-        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 [&::-webkit-scrollbar]:hidden pr-2">
+        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 custom-scrollbar pr-2 pb-2">
           {galleryItems.map((it, i) => (
             <div key={i} className="flex flex-col h-full min-h-0">
               <div
-                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${isExp ? "h-[140px] xl:h-[160px]" : "flex-1 min-h-[50px]"}`}
+                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${
+                  isExp ? "aspect-video" : "flex-1 min-h-[50px]"
+                }`}
               >
                 [{it.label}]
               </div>
@@ -325,10 +352,6 @@ export default function ProjectsPage() {
             </div>
           ))}
         </div>
-
-        {!isExp && (
-          <SeeMoreButton id="gallery" setExpandedCard={setExpandedCard} />
-        )}
       </Card>
     );
   };
@@ -371,19 +394,21 @@ export default function ProjectsPage() {
         ) : (
           // --- EXPANDED (SEE MORE) STATE ---
           <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 w-full">
-            {/* Big Expanded Card (Left Side) */}
-            <div className="lg:w-3/4 h-full min-h-0 flex flex-col">
+            {/* Big Expanded Card (Left Side - Non Fixed) */}
+            <div className="lg:flex-[3] w-full h-full min-h-0 flex flex-col">
               {expandedCard === "proshop" && renderProShop("expanded")}
               {expandedCard === "datascience" && renderDataScience("expanded")}
               {expandedCard === "moderntech" && renderModernTech("expanded")}
               {expandedCard === "gallery" && renderGallery("expanded")}
             </div>
 
-            {/* Stacked Sidebars (Right Side) */}
-            <div className="lg:w-1/4 h-full min-h-0 flex flex-col gap-4 overflow-y-auto [&::-webkit-scrollbar]:hidden pr-1 pb-2">
+            {/* Stacked Sidebars (Right Side - Scrollable & Non Fixed) */}
+            <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto custom-scrollbar pr-1 pb-2">
               {expandedCard !== "proshop" && renderProShop("sidebar")}
               {expandedCard !== "datascience" && renderDataScience("sidebar")}
               {expandedCard !== "moderntech" && renderModernTech("sidebar")}
+              {expandedCard !== "gallery" && renderGallery("sidebar")}
+              {expandedCard !== "gallery" && renderGallery("sidebar")}
               {expandedCard !== "gallery" && renderGallery("sidebar")}
             </div>
           </div>
