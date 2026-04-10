@@ -1,3 +1,4 @@
+// src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
   IconReactJs as ReactJs,
@@ -170,7 +171,8 @@ const galleryItems = [
 const SidebarCard = ({ id, title, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors h-full min-h-[100px] flex-1 w-full p-4 group"
+    // Ensures exact 3-item fit with gap-4 without shrinking if more exist
+    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[120px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-4 group"
   >
     <h3 className="font-bold text-white text-center text-xs line-clamp-2">
       {title}
@@ -210,13 +212,13 @@ const ExpandButton = ({ id, setExpandedCard }) => (
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
 
+  // Show scrollbar only when hovering exactly over the scrollable area
   const hoverScrollbarStyles = `
     .hover-scrollbar {
       scrollbar-width: thin;
       scrollbar-color: transparent transparent;
-      transition: scrollbar-color 0.3s;
     }
-    .group:hover .hover-scrollbar {
+    .hover-scrollbar:hover {
       scrollbar-color: #475569 transparent;
     }
     .hover-scrollbar::-webkit-scrollbar {
@@ -232,13 +234,12 @@ export default function ProjectsPage() {
       border-radius: 8px;
       border: 2px solid transparent;
       background-clip: padding-box;
-      transition: background-color 0.3s;
     }
-    .group:hover .hover-scrollbar::-webkit-scrollbar-thumb {
+    .hover-scrollbar:hover::-webkit-scrollbar-thumb {
       background-color: #475569;
     }
-    .group:hover .hover-scrollbar::-webkit-scrollbar-thumb:hover {
-      background-color: #10b981;
+    .hover-scrollbar::-webkit-scrollbar-thumb:hover {
+      background-color: #10b981 !important;
     }
   `;
 
@@ -548,15 +549,28 @@ export default function ProjectsPage() {
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        {!isExp && (
+          <ExpandButton id="gallery" setExpandedCard={setExpandedCard} />
+        )}
 
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Project Gallery (All)
         </h3>
 
-        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <ImageSlider images={mockImages} isExp={isExp} />
-          <ImageSlider images={mockImages} isExp={isExp} />
-          <ImageSlider images={mockImages} isExp={isExp} />
+        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-2 pb-2">
+          {galleryItems.map((it, i) => (
+            <div key={i} className="flex flex-col h-full min-h-0">
+              <div
+                className={`bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${
+                  isExp ? "aspect-video" : "flex-1 min-h-[50px]"
+                }`}
+              >
+                [{it.label}]
+              </div>
+              <p className="text-[10px] text-white line-clamp-1">{it.title}</p>
+              <p className="text-[9px] text-slate-400">({it.tech})</p>
+            </div>
+          ))}
         </div>
       </Card>
     );
@@ -600,7 +614,8 @@ export default function ProjectsPage() {
                 {expandedCard === "gallery" && renderGallery("expanded")}
               </div>
 
-              <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2 group">
+              {/* Using flex column layout with strict heights to allow scroll for extra items */}
+              <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2">
                 {expandedCard !== "proshop" && renderProShop("sidebar")}
                 {expandedCard !== "datascience" && renderDataScience("sidebar")}
                 {expandedCard !== "moderntech" && renderModernTech("sidebar")}
