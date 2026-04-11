@@ -1,4 +1,10 @@
-import { IconReactJs, IconNodeJs, IconMongoDb, IconExpressJs } from "../assets";
+import {
+  IconReactJs,
+  IconNodeJs,
+  IconMongoDb,
+  IconExpressJs,
+  ProjectLiveBingoMainPage,
+} from "../assets";
 
 export const techIcons = [
   { src: IconMongoDb, name: "MongoDB" },
@@ -66,8 +72,28 @@ export const modernTechDetails = [
 ];
 
 export const galleryItems = [
-  { title: "E-Commerce App", tech: "React/Node", label: "App" },
-  { title: "HR Data Reporting", tech: "Excel/SQL", label: "Report" },
-  { title: "Supply Dashboard", tech: "Power BI", label: "Dashboard" },
-  { title: "Web Scraper", tech: "Python", label: "Scraper" },
+  {
+    title: "Live Bingo",
+    tech: "MERN",
+    label: "App",
+    image: ProjectLiveBingoMainPage,
+  },
+  {
+    title: "HR Data Reporting",
+    tech: "Excel/SQL",
+    label: "Report",
+    image: ProjectLiveBingoMainPage,
+  },
+  {
+    title: "Supply Dashboard",
+    tech: "Power BI",
+    label: "Dashboard",
+    image: ProjectLiveBingoMainPage,
+  },
+  {
+    title: "Web Scraper",
+    tech: "Python",
+    label: "Scraper",
+    image: ProjectLiveBingoMainPage,
+  },
 ];

@@ -105,13 +105,17 @@ const ShrinkButton = ({ setExpandedCard }) => (
   </button>
 );
 
-const ExpandButton = ({ id, setExpandedCard }) => (
+const ExpandButton = ({
+  id,
+  setExpandedCard,
+  className = "top-4 right-4 p-2",
+}) => (
   <button
     onClick={(e) => {
       e.stopPropagation();
       setExpandedCard(id);
     }}
-    className="absolute top-4 right-4 p-2 text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 opacity-0 group-hover:opacity-100"
+    className={`absolute ${className} text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 opacity-0 group-hover:opacity-100`}
     title="Expand"
   >
     <FaExpandArrowsAlt size={14} />
@@ -230,11 +234,13 @@ export default function ProjectsPage() {
             <div className="space-y-3">
               {proShopDetails.map((detail, idx) => (
                 <div key={idx}>
-                  <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                  <h5
+                    className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                  >
                     ✓ {detail.title}
                   </h5>
                   {isExp ? (
-                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
+                    <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
@@ -325,14 +331,22 @@ export default function ProjectsPage() {
               <div className="space-y-3">
                 {dataScienceDetails.map((detail, idx) => (
                   <div key={idx}>
-                    <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                    <h5
+                      className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                    >
                       ✓ {detail.title}
                     </h5>
-                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
-                      {detail.descriptions.map((desc, i) => (
-                        <li key={i}>{desc}</li>
-                      ))}
-                    </ul>
+                    {isExp ? (
+                      <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                        {detail.descriptions.map((desc, i) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
+                        {detail.descriptions[0]}
+                      </p>
+                    )}
                   </div>
                 ))}
               </div>
@@ -438,17 +452,19 @@ export default function ProjectsPage() {
             <div className="space-y-3">
               {modernTechDetails.map((detail, idx) => (
                 <div key={idx}>
-                  <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                  <h5
+                    className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                  >
                     ✓ {detail.title}
                   </h5>
                   {isExp ? (
-                    <ul className="text-[10px] text-slate-400 pl-4 list-disc space-y-1">
+                    <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{desc}</li>
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-[10px] text-slate-400 line-clamp-2 pl-4">
+                    <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
                       {detail.descriptions[0]}
                     </p>
                   )}
@@ -461,43 +477,80 @@ export default function ProjectsPage() {
     );
   };
 
-  const renderGallery = (mode) => {
-    if (mode === "sidebar")
-      return (
-        <SidebarCard
-          id="gallery"
-          title="Project Gallery"
-          setExpandedCard={setExpandedCard}
-        />
-      );
-    const isExp = mode === "expanded";
-
+  const renderSingleGalleryExpanded = (index) => {
+    const it = galleryItems[index];
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
-        {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
+        <ShrinkButton setExpandedCard={setExpandedCard} />
 
+        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
+          {it.title}
+        </h3>
+
+        <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
+          <div className="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] flex items-center justify-center text-slate-400 group/slider">
+            [{it.label} Preview]
+          </div>
+
+          <div className="flex justify-between items-center mb-4 shrink-0">
+            <div className="flex space-x-2">
+              <div className="px-2 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300">
+                {it.tech}
+              </div>
+            </div>
+            <div className="flex space-x-2">
+              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <FaExternalLinkAlt size={12} />
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col shrink-0">
+            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+              Project Description
+            </h4>
+            <div className="space-y-3">
+              <div>
+                <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                  ✓ Overview
+                </h5>
+                <p className="text-[10px] text-slate-400 pl-4">
+                  This is a detailed view for the {it.title} project,
+                  highlighting its core functionality and tech stack: {it.tech}.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Card>
+    );
+  };
+
+  const renderGalleryDefault = () => {
+    return (
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
           Project Gallery (All)
         </h3>
 
         <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-2 pb-2">
           {galleryItems.map((it, i) => (
-            <div key={i} className=" flex flex-col h-full min-h-0">
-              <div
-                className={`relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full overflow-hidden ${
-                  isExp ? "aspect-video" : "flex-1 min-h-[50px]"
-                }`}
-              >
-                {!isExp && (
-                  <ExpandButton
-                    id={`gallery-${i}`}
-                    setExpandedCard={setExpandedCard}
-                  />
-                )}
-                [{it.label}]
+            <div
+              key={i}
+              className="group flex flex-col h-[100px] shrink-0 min-h-0"
+            >
+              <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full flex-1 overflow-hidden">
+                <ExpandButton
+                  id={`gallery-${i}`}
+                  setExpandedCard={setExpandedCard}
+                  className="top-1 right-1 p-1.5"
+                />
+                <img src={it.image} alt={it.label} />
               </div>
-              <p className="text-[10px] text-white line-clamp-1">{it.title}</p>
-              <p className="text-[9px] text-slate-400">({it.tech})</p>
+              <p className="text-[10px] text-white line-clamp-1 shrink-0">
+                {it.title}
+              </p>
+              <p className="text-[9px] text-slate-400 shrink-0">({it.tech})</p>
             </div>
           ))}
         </div>
@@ -530,7 +583,7 @@ export default function ProjectsPage() {
                 {renderModernTech("default")}
               </div>
               <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
-                {renderGallery("default")}
+                {renderGalleryDefault()}
               </div>
             </div>
           ) : (
@@ -540,7 +593,10 @@ export default function ProjectsPage() {
                 {expandedCard === "datascience" &&
                   renderDataScience("expanded")}
                 {expandedCard === "moderntech" && renderModernTech("expanded")}
-                {expandedCard === "gallery" && renderGallery("expanded")}
+                {expandedCard?.startsWith("gallery-") &&
+                  renderSingleGalleryExpanded(
+                    parseInt(expandedCard.split("-")[1]),
+                  )}
               </div>
 
               {/* Using flex column layout with strict heights to allow scroll for extra items */}
@@ -548,9 +604,17 @@ export default function ProjectsPage() {
                 {expandedCard !== "proshop" && renderProShop("sidebar")}
                 {expandedCard !== "datascience" && renderDataScience("sidebar")}
                 {expandedCard !== "moderntech" && renderModernTech("sidebar")}
-                {expandedCard !== "gallery" && renderGallery("sidebar")}
-                {expandedCard !== "gallery" && renderGallery("sidebar")}
-                {expandedCard !== "gallery" && renderGallery("sidebar")}
+                {galleryItems.map(
+                  (it, i) =>
+                    expandedCard !== `gallery-${i}` && (
+                      <SidebarCard
+                        key={`sidebar-gallery-${i}`}
+                        id={`gallery-${i}`}
+                        title={it.title}
+                        setExpandedCard={setExpandedCard}
+                      />
+                    ),
+                )}
               </div>
             </div>
           )}
