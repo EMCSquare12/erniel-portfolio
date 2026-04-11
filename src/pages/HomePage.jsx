@@ -4,6 +4,7 @@ import { CustomGauge } from "../components/ui/CustomGauge";
 import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 import { homeSkillsData } from "../data/skillsData";
 import { techIcons } from "../data/projectsData";
+import { FaExternalLinkAlt } from "react-icons/fa";
 
 import {
   Hero,
@@ -12,6 +13,8 @@ import {
   ProjectLiveBingoJoinRoom as JoinRoom,
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
+  ProjectProshop_1 as ProShopHome,
+  IconGithub as GitHub,
 } from "../assets";
 
 export default function HomePage() {
@@ -49,18 +52,58 @@ export default function HomePage() {
           <p className="text-sm text-slate-400 mb-4">
             MERN Stack E-Commerce Platform with Dedicated Admin Dashboard
           </p>
-          <div className="bg-slate-800 h-48 rounded-lg mb-4 w-full flex items-center justify-center border border-slate-700">
-            [Dashboard Image]
+          <div className="bg-slate-800 h-48 rounded-lg mb-4 w-full flex overflow-hidden items-center justify-center border border-slate-700">
+            <img
+              className="block w-full h-full object-cover transition-transform duration-500"
+              src={ProShopHome}
+              alt="ProShop"
+            />
           </div>
-          <div className="flex space-x-2 mb-4 justify-center">
-            {techIcons.map((tech, idx) => (
-              <div
-                key={idx}
-                className="w-8 h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center"
+          <div className="flex justify-between items-center mb-4 shrink-0">
+            {/* Left Side: MERN Tech Stack Icons */}
+            <div className="flex space-x-2">
+              {techIcons.map((tech, idx) => (
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                >
+                  <img
+                    src={tech.src}
+                    alt={tech.name}
+                    title={tech.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
+            </div>
+
+            {/* Right Side: GitHub and External Link Icons */}
+            <div className="flex space-x-2">
+              <a
+                href="https://github.com/EMCSquare12/e-commerce-project.git"
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub Repository"
               >
-                <img src={tech.src} alt={tech.name} title={tech.name} />
-              </div>
-            ))}
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <img
+                    src={GitHub}
+                    alt="GitHub Repository"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://pro-shop-ecommerce.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
+                title="External Link"
+              >
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <FaExternalLinkAlt size={12} />
+                </div>
+              </a>
+            </div>
           </div>
           <p className="text-sm text-slate-400 mt-auto">
             A MERN stack e-commerce app that offers a smooth shopping experience
