@@ -43,3 +43,26 @@ export { default as ProjectLiveBingoHostPage } from "./Projects/LiveBingo/HostPa
 export { default as ProjectLiveBingoJoinRoom } from "./Projects/LiveBingo/JoinRoom.png";
 export { default as ProjectLiveBingoMainPage } from "./Projects/LiveBingo/MainPage.png";
 export { default as ProjectLiveBingoPlayerRoom } from "./Projects/LiveBingo/PlayerRoom.png";
+
+// Projects - ProsShop Client
+export { default as ProjectProshop_1 } from "./Projects/ProShop_Client/ProShop_Client_1.png";
+export { default as ProjectProshop_2 } from "./Projects/ProShop_Client/ProShop_Client_2.png";
+export { default as ProjectProshop_3 } from "./Projects/ProShop_Client/ProShop_Client_3.png";
+export { default as ProjectProshop_4 } from "./Projects/ProShop_Client/ProShop_Client_4.png";
+export { default as ProjectProshop_5 } from "./Projects/ProShop_Client/ProShop_Client_5.png";
+export { default as ProjectProshop_6 } from "./Projects/ProShop_Client/ProShop_Client_6.png";
+export { default as ProjectProshop_7 } from "./Projects/ProShop_Client/ProShop_Client_7.png";
+export { default as ProjectProshop_8 } from "./Projects/ProShop_Client/ProShop_Client_8.png";
+export { default as ProjectProshop_9 } from "./Projects/ProShop_Client/ProShop_Client_9.png";
+export { default as ProjectProshop_10 } from "./Projects/ProShop_Client/ProShop_Client_10.png";
+export { default as ProjectProshop_11 } from "./Projects/ProShop_Client/ProShop_Client_11.png";
+
+// Projects - ProsShop Client
+export { default as ProShop_Admin_1 } from "./Projects/ProShop_Admin/ProShop_Admin_1.png";
+export { default as ProShop_Admin_2 } from "./Projects/ProShop_Admin/ProShop_Admin_2.png";
+export { default as ProShop_Admin_3 } from "./Projects/ProShop_Admin/ProShop_Admin_3.png";
+export { default as ProShop_Admin_4 } from "./Projects/ProShop_Admin/ProShop_Admin_4.png";
+export { default as ProShop_Admin_5 } from "./Projects/ProShop_Admin/ProShop_Admin_5.png";
+export { default as ProShop_Admin_6 } from "./Projects/ProShop_Admin/ProShop_Admin_6.png";
+export { default as ProShop_Admin_7 } from "./Projects/ProShop_Admin/ProShop_Admin_7.png";
+export { default as ProShop_Admin_8 } from "./Projects/ProShop_Admin/ProShop_Admin_8.png";

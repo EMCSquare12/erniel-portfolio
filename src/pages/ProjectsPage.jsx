@@ -1,17 +1,43 @@
 // src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
+  //Icons
   IconReactJs as ReactJs,
   IconNodeJs as NodeJs,
   IconMongoDb as MongoDb,
   IconExpressJs as ExpressJs,
   IconGithub as Github,
+  //Project Live Bingo
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoCreateRoom as CreateRoom,
   ProjectLiveBingoHostPage as HostPage,
   ProjectLiveBingoJoinRoom as JoinRoom,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
+
+  //Project Proshop-Client
+  ProjectProshop_1 as ProjectProshop_Client_1,
+  ProjectProshop_2 as ProjectProshop_Client_2,
+  ProjectProshop_3 as ProjectProshop_Client_3,
+  ProjectProshop_4 as ProjectProshop_Client_4,
+  ProjectProshop_5 as ProjectProshop_Client_5,
+  ProjectProshop_6 as ProjectProshop_Client_6,
+  ProjectProshop_7 as ProjectProshop_Client_7,
+  ProjectProshop_8 as ProjectProshop_Client_8,
+  ProjectProshop_9 as ProjectProshop_Client_9,
+  ProjectProshop_10 as ProjectProshop_Client_10,
+  ProjectProshop_11 as ProjectProshop_Client_11,
+
+  //Project Proshop-Admin
+  ProShop_Admin_1 as ProShop_Admin_1,
+  ProShop_Admin_2 as ProShop_Admin_2,
+  ProShop_Admin_3 as ProShop_Admin_3,
+  ProShop_Admin_4 as ProShop_Admin_4,
+  ProShop_Admin_5 as ProShop_Admin_5,
+  ProShop_Admin_6 as ProShop_Admin_6,
+  ProShop_Admin_7 as ProShop_Admin_7,
+  ProShop_Admin_8 as ProShop_Admin_8,
 } from "../assets";
+
 import {
   FaExternalLinkAlt,
   FaCompressArrowsAlt,
@@ -28,6 +54,30 @@ const techIcons = [
   { src: NodeJs, name: "Node.js" },
 ];
 const mockImages = [MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom];
+const mockImagesProShopClient = [
+  ProjectProshop_Client_1,
+  ProjectProshop_Client_2,
+  ProjectProshop_Client_3,
+  ProjectProshop_Client_4,
+  ProjectProshop_Client_5,
+  ProjectProshop_Client_6,
+  ProjectProshop_Client_7,
+  ProjectProshop_Client_8,
+  ProjectProshop_Client_9,
+  ProjectProshop_Client_10,
+  ProjectProshop_Client_11,
+];
+
+const mockImagesProShopAdmin = [
+  ProShop_Admin_1,
+  ProShop_Admin_2,
+  ProShop_Admin_3,
+  ProShop_Admin_4,
+  ProShop_Admin_5,
+  ProShop_Admin_6,
+  ProShop_Admin_7,
+  ProShop_Admin_8,
+];
 
 const ImageSlider = ({ images, isExp, customClass }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -268,7 +318,7 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pb-2">
-          <ImageSlider images={mockImages} isExp={isExp} />
+          <ImageSlider images={mockImagesProShopClient} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
@@ -290,20 +340,30 @@ export default function ProjectsPage() {
 
             {/* Right Side: GitHub and External Link Icons */}
             <div className="flex space-x-2">
-              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
-                <img
-                  src={Github}
-                  alt="GitHub Repository"
-                  title="GitHub Repository"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div
-                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+              <a
+                href="https://github.com/EMCSquare12/e-commerce-project.git"
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub Repository"
+              >
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <img
+                    src={Github}
+                    alt="GitHub Repository"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://pro-shop-ecommerce.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
                 title="External Link"
               >
-                <FaExternalLinkAlt size={12} />
-              </div>
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <FaExternalLinkAlt size={12} />
+                </div>
+              </a>
             </div>
           </div>
 
@@ -468,7 +528,7 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <ImageSlider images={mockImages} isExp={isExp} />
+          <ImageSlider images={mockImagesProShopAdmin} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             <div className="flex space-x-2">
@@ -488,20 +548,30 @@ export default function ProjectsPage() {
             </div>
 
             <div className="flex space-x-2">
-              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
-                <img
-                  src={Github}
-                  alt="GitHub Repository"
-                  title="GitHub Repository"
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <div
-                className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+              <a
+                href="https://github.com/EMCSquare12/e-commerce-project.git"
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub Repository"
+              >
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <img
+                    src={Github}
+                    alt="GitHub Repository"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://pro-shop-ecommerce-admin.netlify.app/admin"
+                target="_blank"
+                rel="noreferrer"  
                 title="External Link"
               >
-                <FaExternalLinkAlt size={12} />
-              </div>
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <FaExternalLinkAlt size={12} />
+                </div>
+              </a>
             </div>
           </div>
 
