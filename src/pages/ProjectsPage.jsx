@@ -1,20 +1,33 @@
-// src/pages/ProjectsPage.jsx
 import React, { useState } from "react";
 import {
-  //Icons
-  IconReactJs as ReactJs,
-  IconNodeJs as NodeJs,
-  IconMongoDb as MongoDb,
-  IconExpressJs as ExpressJs,
+  FaExternalLinkAlt,
+  FaCompressArrowsAlt,
+  FaExpandArrowsAlt,
+} from "react-icons/fa";
+
+// Reusable UI Components
+import { Card } from "../components/ui/Card";
+import { ImageSlider } from "../components/ui/ImageSlider";
+
+// Data
+import {
+  techIcons,
+  proShopDetails,
+  dataScienceDetails,
+  modernTechDetails,
+  galleryItems,
+} from "../data/projectsData";
+
+// Assets
+import {
   IconGithub as Github,
-  //Project Live Bingo
+  // Project Live Bingo
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoCreateRoom as CreateRoom,
-  ProjectLiveBingoHostPage as HostPage,
   ProjectLiveBingoJoinRoom as JoinRoom,
+  ProjectLiveBingoHostPage as HostPage,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
-
-  //Project Proshop-Client
+  // Project Proshop-Client
   ProjectProshop_1 as ProjectProshop_Client_1,
   ProjectProshop_2 as ProjectProshop_Client_2,
   ProjectProshop_3 as ProjectProshop_Client_3,
@@ -26,34 +39,19 @@ import {
   ProjectProshop_9 as ProjectProshop_Client_9,
   ProjectProshop_10 as ProjectProshop_Client_10,
   ProjectProshop_11 as ProjectProshop_Client_11,
-
-  //Project Proshop-Admin
-  ProShop_Admin_1 as ProShop_Admin_1,
-  ProShop_Admin_2 as ProShop_Admin_2,
-  ProShop_Admin_3 as ProShop_Admin_3,
-  ProShop_Admin_4 as ProShop_Admin_4,
-  ProShop_Admin_5 as ProShop_Admin_5,
-  ProShop_Admin_6 as ProShop_Admin_6,
-  ProShop_Admin_7 as ProShop_Admin_7,
-  ProShop_Admin_8 as ProShop_Admin_8,
+  // Project Proshop-Admin
+  ProShop_Admin_1,
+  ProShop_Admin_2,
+  ProShop_Admin_3,
+  ProShop_Admin_4,
+  ProShop_Admin_5,
+  ProShop_Admin_6,
+  ProShop_Admin_7,
+  ProShop_Admin_8,
 } from "../assets";
 
-import {
-  FaExternalLinkAlt,
-  FaCompressArrowsAlt,
-  FaExpandArrowsAlt,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
-import { Card } from "../components/Card";
-
-const techIcons = [
-  { src: MongoDb, name: "MongoDB" },
-  { src: ExpressJs, name: "Express.js" },
-  { src: ReactJs, name: "React" },
-  { src: NodeJs, name: "Node.js" },
-];
 const mockImages = [MainPage, CreateRoom, JoinRoom, HostPage, PlayerRoom];
+
 const mockImagesProShopClient = [
   ProjectProshop_Client_1,
   ProjectProshop_Client_2,
@@ -79,149 +77,10 @@ const mockImagesProShopAdmin = [
   ProShop_Admin_8,
 ];
 
-const ImageSlider = ({ images, isExp, customClass }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-
-  const nextImage = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev + 1) % images.length);
-  };
-
-  const prevImage = (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
-
-  const containerClass =
-    customClass ||
-    `relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden group/slider ${
-      isExp
-        ? "aspect-video max-h-[45vh]"
-        : "h-[140px] xl:h-[160px] 2xl:h-[180px]"
-    }`;
-
-  if (!images || images.length === 0) {
-    return (
-      <div className={`${containerClass} flex items-center justify-center`}>
-        <span className="text-xs text-slate-400">[No Images Available]</span>
-      </div>
-    );
-  }
-
-  return (
-    <div className={containerClass}>
-      <img
-        src={images[currentIndex]}
-        alt={`Slide ${currentIndex}`}
-        className="block w-full h-full object-cover transition-transform duration-500"
-      />
-      {images.length > 1 && (
-        <>
-          <button
-            onClick={prevImage}
-            className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
-            title="Previous Image"
-          >
-            <FaChevronLeft size={12} />
-          </button>
-          <button
-            onClick={nextImage}
-            className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-emerald-500 transition-all z-10 cursor-pointer"
-            title="Next Image"
-          >
-            <FaChevronRight size={12} />
-          </button>
-
-          {/* Dots indicator */}
-          <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex space-x-1.5 z-10">
-            {images.map((_, idx) => (
-              <div
-                key={idx}
-                className={`w-1.5 h-1.5 rounded-full transition-all ${
-                  idx === currentIndex ? "bg-emerald-400 w-3" : "bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
-        </>
-      )}
-    </div>
-  );
-};
-
-const proShopDetails = [
-  {
-    title: "Modern Tech Marketplace",
-    descriptions: [
-      "A high-performance e-commerce platform for consumer electronics, combining advanced inventory management with a secure, user-centric shopping experience.",
-    ],
-  },
-  {
-    title: "Frontend Technical Highlights",
-    descriptions: [
-      "Responsive Mobile-First Design: Implemented fluid layouts and media queries to ensure a seamless user experience across all devices, prioritizing performance and readability on mobile screens.",
-      "Global State & Data Fetching: Managed complex application states and streamlined asynchronous API interactions using Redux, ensuring a predictable and centralized data flow.",
-      "Real-Time Updates: Integrated Socket.IO to provide users with instant, live shipping status notifications without requiring page refreshes.",
-      "Performance Optimization: Developed a custom Debounce hook to throttle API requests during search and category filtering, significantly reducing server load and improving UI responsiveness.",
-      "Seamless Data Loading: Implemented Infinite Scroll for a modern, fluid browsing experience, eliminating the friction of traditional pagination.",
-      "Secure Payment Processing: Integrated the Stripe API to handle sensitive transaction data securely, supporting a robust and reliable checkout workflow.",
-      "Flexible Authentication: Built a versatile login system offering both traditional email/password accounts and streamlined Google OAuth for a frictionless user onboarding experience.",
-    ],
-  },
-  {
-    title: "Backend Technical Highlights",
-    descriptions: [
-      "Database Management: Leveraged MongoDB and Mongoose to architect a flexible, schema-based NoSQL data model, ensuring efficient data storage and retrieval.",
-      "Secure Authentication: Implemented JSON Web Tokens (JWT) for stateless user authentication, providing a secure method for transmitting verified identity between the client and server.",
-      "Role-Based Access Control (RBAC): Established strict Authorization protocols to differentiate between standard clients and administrative users, securing sensitive endpoints and managing user permissions. ",
-      "RESTful API Development: Engineered a structured and scalable API to facilitate seamless communication between the frontend and the database, following industry-standard design patterns for maintainability.",
-    ],
-  },
-];
-
-const dataScienceDetails = [
-  {
-    title: "Technical Highlights & Methodologies",
-    descriptions: [
-      "Data Preparation: Cleaned and prepared large datasets for analysis using Python and Pandas.",
-      "Feature Engineering: Created meaningful feature representations for customer segmentation.",
-      "Clustering Algorithms: Applied K-Means clustering techniques to identify distinct customer groups.",
-      "Segmentation Analysis: Interpreted cluster profiles to derive actionable insights for targeting.",
-    ],
-  },
-  {
-    title: "Tableau dashboard & Visualizations",
-    descriptions: [
-      "Interactive Visuals: Developed intuitive dashboards and charts to explore segment trends.",
-      "Data Storytelling: Built visual narratives to communicate complex data patterns to stakeholders.",
-    ],
-  },
-];
-
-const modernTechDetails = [
-  {
-    title: "Modern Tech Marketplace",
-    descriptions: [
-      "A high-performance e-commerce platform for consumer electronics, combining advanced inventory management with a secure, user-centric shopping experience.",
-    ],
-  },
-];
-
-const galleryItems = [
-  { title: "E-Commerce App", tech: "React/Node", label: "App" },
-  { title: "HR Data Reporting", tech: "Excel/SQL", label: "Report" },
-  { title: "Supply Dashboard", tech: "Power BI", label: "Dashboard" },
-  { title: "Web Scraper", tech: "Python", label: "Scraper" },
-];
-
 // --- LOCAL HELPER COMPONENTS ---
-
 const SidebarCard = ({ id, title, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    // Ensures exact 3-item fit with gap-4 without shrinking if more exist
     className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[120px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-4 group"
   >
     <h3 className="font-bold text-white text-center text-xs line-clamp-2">
@@ -262,7 +121,6 @@ const ExpandButton = ({ id, setExpandedCard }) => (
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
 
-  // Show scrollbar only when hovering exactly over the scrollable area
   const hoverScrollbarStyles = `
     .hover-scrollbar {
       scrollbar-width: thin;
@@ -292,8 +150,6 @@ export default function ProjectsPage() {
       background-color: #10b981 !important;
     }
   `;
-
-  // --- RENDER FUNCTIONS FOR EACH CARD ---
 
   const renderProShop = (mode) => {
     if (mode === "sidebar")
@@ -565,7 +421,7 @@ export default function ProjectsPage() {
               <a
                 href="https://pro-shop-ecommerce-admin.netlify.app/admin"
                 target="_blank"
-                rel="noreferrer"  
+                rel="noreferrer"
                 title="External Link"
               >
                 <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">

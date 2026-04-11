@@ -1,26 +1,22 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Card } from "../components/Card";
 import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
+
+// Reusable Components
+import { Card } from "../components/ui/Card";
+import { ProgressBar } from "../components/ui/ProgressBar";
 import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
+
+// Data
+import { timelineData, badgesData } from "../data/resumeData";
+
+// Assets
 import {
-  CertWebDev as WebDev,
-  CertWebDevLite as WebDevLite,
-  CertNodeJs as NodeJs,
-  CertReact as ReactCert,
-  CertDataAnalysis as DataAnalysis,
-  CertExcel as Excel,
-  CertPowerBi as PowerBi,
-  CertSQL1 as SQL1,
-  CertSQL2 as SQL2,
-  CertDataChart as DataChart,
-  CertWebDeveloper as WebDeveloper,
-  IconSQL as SQL,
-  IconExpressJs as Express,
-  IconReactJs as ReactJs,
-  IconMongoDb as MongoDb,
-  IconNodeJs as Node,
-  IconSocketIO as SocketIO,
+  IconMongoDb,
+  IconExpressJs,
+  IconReactJs,
+  IconNodeJs,
+  IconSocketIO,
   ProjectLiveBingoCreateRoom as CreateRoom,
   ProjectLiveBingoHostPage as HostPage,
   ProjectLiveBingoJoinRoom as JoinRoom,
@@ -35,103 +31,9 @@ export default function ResumePage() {
     setExpandedBadge((prev) => (prev === badge ? null : badge));
   };
 
-  const ProgressBar = ({ label, percentage }) => (
-    <div className="flex items-center space-x-4 mb-4">
-      <span className="text-sm text-slate-300 w-16">{label}</span>
-      <div className="flex-1 h-3 bg-slate-800 rounded-full overflow-hidden">
-        <div
-          className="h-full bg-gradient-to-r from-blue-500 to-teal-400 rounded-full"
-          style={{ width: `${percentage}%` }}
-        />
-      </div>
-      <span className="text-sm text-slate-300 w-8 text-right">
-        {percentage}%
-      </span>
-    </div>
-  );
-
-  const timelineData = [
-    {
-      role: "Housekeeping",
-      period: "2016-2018",
-      color: "bg-blue-400",
-      bullets: [
-        "Maintained cleanliness across all assigned areas.",
-        "Ensured resident comfort by upholding high standards of room upkeep and sanitation.",
-        "Followed safety protocols to consistently meet hygiene and organization requirements.",
-      ],
-    },
-    {
-      role: "Data Encoder",
-      period: "2019-2020",
-      color: "bg-teal-400",
-      bullets: [
-        "Encoded signed delivery receipts into the system.",
-        "Processed high volumes of delivery data for messengers and their respective consignees",
-        "Maintained precise records of telecommunications deliveries",
-      ],
-    },
-    {
-      role: "Admin Clerk",
-      period: "2021-2022",
-      color: "bg-slate-500",
-      bullets: [
-        "Assisted the Store Manager in daily operations and general store management.",
-        "Handled incoming deliveries and verified inventory accuracy.",
-        "Arranged store displays. Optimize product visibility and visual appeal.",
-      ],
-    },
-    {
-      role: "Admin and IT Support",
-      period: "Current",
-      color: "bg-slate-600",
-      bullets: [
-        "Assisted the Store Manager in daily operations and general store management.",
-        "Handled incoming deliveries and verified inventory accuracy.",
-        "Arranged store displays. Optimize product visibility and visual appeal.",
-      ],
-    },
-  ];
-
-  const badgesData = [
-    {
-      id: "web",
-      icon: WebDeveloper,
-      iconClass: "bg-slate-800 text-green-500 border-slate-600 p-1",
-      title: "Web Development Master Class",
-      images: [
-        { src: WebDev, alt: "Web Dev Bootcamp" },
-        { src: WebDevLite, alt: "Web Dev Lite" },
-        { src: NodeJs, alt: "NodeJS Complete Guide" },
-        { src: ReactCert, alt: "React Complete Guide" },
-      ],
-    },
-    {
-      id: "data",
-      icon: DataChart,
-      iconClass:
-        "bg-yellow-600/20 text-yellow-500 border-yellow-600/30 text-lg p-1",
-      title: "Data Analyst, Excel, Power BI Expert",
-      images: [
-        { src: DataAnalysis, alt: "Data Analysis" },
-        { src: Excel, alt: "Excel Expert" },
-        { src: PowerBi, alt: "Power BI Expert" },
-      ],
-    },
-    {
-      id: "sql",
-      icon: SQL,
-      iconClass: "bg-blue-600/20 text-blue-500 border-blue-600/30 text-lg",
-      title: "Database (SQL) Proficiency",
-      images: [
-        { src: SQL1, alt: "SQL Certificate 1" },
-        { src: SQL2, alt: "SQL Certificate 2" },
-      ],
-    },
-  ];
-
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
+      {/* HEADER CARD */}
       <Card className="bg-[#1c2128] border border-slate-700/50 p-4! rounded-2xl flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
         <div className="flex space-x-6 text-sm font-medium">
           <Link
@@ -180,7 +82,9 @@ export default function ResumePage() {
         </div>
       </Card>
 
+      {/* MAIN CONTENT GRID */}
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        {/* COLUMN 1: EVOLUTION */}
         <Card className="col-span-1">
           <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-8">
             EVOLUTION
@@ -212,6 +116,7 @@ export default function ResumePage() {
           </div>
         </Card>
 
+        {/* COLUMN 2: EDUCATION & CERTIFICATIONS */}
         <Card className="col-span-1 flex flex-col space-y-8">
           <div>
             <h3 className="text-sm font-bold text-white uppercase mb-2">
@@ -326,17 +231,22 @@ export default function ResumePage() {
           </div>
         </Card>
 
+        {/* COLUMN 3: SKILLS & PROJECTS HIGHLIGHTS */}
         <Card className="col-span-1 flex flex-col space-y-8">
           <div>
             <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-6">
               HYBRID TOOLKIT
             </h3>
             <div className="space-y-1">
-              <ProgressBar label="React" percentage={85} />
-              <ProgressBar label="Node.js" percentage={80} />
-              <ProgressBar label="SQL" percentage={90} />
-              <ProgressBar label="Power BI" percentage={85} />
-              <ProgressBar label="Excel" percentage={95} />
+              <ProgressBar label="React" percentage={85} variant="gradient" />
+              <ProgressBar label="Node.js" percentage={80} variant="gradient" />
+              <ProgressBar label="SQL" percentage={90} variant="gradient" />
+              <ProgressBar
+                label="Power BI"
+                percentage={85}
+                variant="gradient"
+              />
+              <ProgressBar label="Excel" percentage={95} variant="gradient" />
             </div>
           </div>
 
@@ -345,8 +255,9 @@ export default function ResumePage() {
               SELECTED PROJECTS HIGHLIGHTS
             </h3>
             <div className="space-y-4">
+              {/* Highlight Project 1 */}
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-30 h-auto  rounded -mb-2   relative  flex flex-col">
+                <div className="w-30 h-auto rounded -mb-2 relative flex flex-col">
                   <ProjectGalleryItem
                     images={[
                       MainPage,
@@ -371,31 +282,31 @@ export default function ResumePage() {
                   </div>
                   <div className="flex space-x-2 text-xs mt-2">
                     <img
-                      src={MongoDb}
+                      src={IconMongoDb}
                       alt="MongoDB"
                       title="MongoDB"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={Express}
+                      src={IconExpressJs}
                       alt="Express.js"
                       title="Express.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={ReactJs}
+                      src={IconReactJs}
                       alt="React"
                       title="React"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={Node}
+                      src={IconNodeJs}
                       alt="Node.js"
                       title="Node.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={SocketIO}
+                      src={IconSocketIO}
                       alt="Socket.IO"
                       title="Socket.IO"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
@@ -404,8 +315,9 @@ export default function ResumePage() {
                 </div>
               </div>
 
+              {/* Highlight Project 2 */}
               <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-30 h-auto  rounded -mb-2   relative  flex flex-col">
+                <div className="w-30 h-auto rounded -mb-2 relative flex flex-col">
                   <ProjectGalleryItem
                     images={[
                       MainPage,
@@ -430,31 +342,31 @@ export default function ResumePage() {
                   </div>
                   <div className="flex space-x-2 text-xs mt-2">
                     <img
-                      src={MongoDb}
+                      src={IconMongoDb}
                       alt="MongoDB"
                       title="MongoDB"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={Express}
+                      src={IconExpressJs}
                       alt="Express.js"
                       title="Express.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={ReactJs}
+                      src={IconReactJs}
                       alt="React"
                       title="React"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={Node}
+                      src={IconNodeJs}
                       alt="Node.js"
                       title="Node.js"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
                     />
                     <img
-                      src={SocketIO}
+                      src={IconSocketIO}
                       alt="Socket.IO"
                       title="Socket.IO"
                       className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
