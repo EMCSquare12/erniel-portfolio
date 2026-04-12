@@ -488,14 +488,16 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <div className="relative bg-slate-800 rounded-lg border border-slate-700 shrink-0 w-full mb-4 overflow-hidden aspect-video max-h-[45vh] flex items-center justify-center text-slate-400 group/slider">
-            [{it.label} Preview]
-          </div>
+          {/* Replaced placeholder with ImageSlider, matching other expanded layouts */}
+          <ImageSlider images={[it.image]} isExp={true} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             <div className="flex space-x-2">
-              <div className="px-2 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300">
+              <div className="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300 font-semibold flex items-center justify-center">
                 {it.tech}
+              </div>
+              <div className="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300 font-semibold flex items-center justify-center">
+                {it.label}
               </div>
             </div>
             <div className="flex space-x-2">
@@ -511,10 +513,11 @@ export default function ProjectsPage() {
             </h4>
             <div className="space-y-3">
               <div>
-                <h5 className="text-emerald-400 text-[11px] font-semibold mb-1 flex items-center gap-1.5">
+                {/* Updated text classes to 'text-md' and 'text-sm' to match expanded layout sizes */}
+                <h5 className="text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5">
                   ✓ Overview
                 </h5>
-                <p className="text-[10px] text-slate-400 pl-4">
+                <p className="text-sm text-slate-400 pl-4">
                   This is a detailed view for the {it.title} project,
                   highlighting its core functionality and tech stack: {it.tech}.
                 </p>
