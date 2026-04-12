@@ -3,10 +3,26 @@ import {
   IconNodeJs,
   IconMongoDb,
   IconExpressJs,
+  IconSocketIO,
   ProjectLiveBingoMainPage,
 } from "../assets";
 
 export const techIcons = [
+  { src: IconMongoDb, name: "MongoDB" },
+  { src: IconExpressJs, name: "Express.js" },
+  { src: IconReactJs, name: "React" },
+  { src: IconNodeJs, name: "Node.js" },
+];
+
+export const liveBingoIcons = [
+  { src: IconMongoDb, name: "MongoDB" },
+  { src: IconExpressJs, name: "Express.js" },
+  { src: IconReactJs, name: "React" },
+  { src: IconNodeJs, name: "Node.js" },
+  { src: IconSocketIO, name: "Socket.io" },
+];
+
+export const proShopClientIcons = [
   { src: IconMongoDb, name: "MongoDB" },
   { src: IconExpressJs, name: "Express.js" },
   { src: IconReactJs, name: "React" },
@@ -64,9 +80,29 @@ export const dataScienceDetails = [
 
 export const modernTechDetails = [
   {
-    title: "Modern Tech Marketplace",
+    title: "E-Commerce Admin Management Portal",
     descriptions: [
-      "A high-performance e-commerce platform for consumer electronics, combining advanced inventory management with a secure, user-centric shopping experience.",
+      "A high-performance e-commerce  management portal for store managers. It features a clean UI/UX for inventory control, business analytics, and secure role-based access control (RBAC) to ensure streamlined, protected operations.",
+    ],
+  },
+  {
+    title: "Frontend Technical Highlights",
+    descriptions: [
+      "Inventory Management (CRUD): Full administrative control to Add, Read, Update, and Delete gadget product listings seamlessly.",
+      "Real-Time Analytics Dashboard: A daily performance overview displaying crucial business metrics, including Daily Total Orders, Total Daily Revenue, and Total Daily New Users.",
+      "Live Order & Status Notifications: Integrated Socket.io to push real-time alerts to the admin regarding new customer orders and critical item status updates without needing a page refresh.",
+      "Optimized Search & Filtering: Utilized debouncing techniques on search inputs to minimize unnecessary API calls, ensuring high performance even with a large product database.",
+      "Seamless Media Management: Integrated Cloudinary for highly optimized, reliable product image uploads and hosting.",
+    ],
+  },
+  {
+    title: "Backend Technical Highlights",
+    descriptions: [
+      "Role-Based Security: Implemented strict authentication protocols ensuring only verified administrator accounts can access the dashboard and execute backend operations.",
+      "RESTful API Architecture: Designed and deployed a clean, efficient REST API to handle all client-to-server communications, including product CRUD operations and secure data fetching.",
+      "Real-Time Event Broadcasting: Configured a Socket.io server to maintain persistent, bidirectional connections with the client, instantly emitting payload data for new orders and inventory updates.",
+      "Secure Data Modeling: Utilized MongoDB (with Mongoose) to create well-structured, relational schemas for Users, Products, and Orders, ensuring data integrity and efficient querying.",
+      "Third-Party Service Integration: Securely managed API keys and backend logic to route image data to Cloudinary for cloud-based storage, returning optimized image URLs to the database.",
     ],
   },
 ];

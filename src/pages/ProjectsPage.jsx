@@ -11,11 +11,13 @@ import { ImageSlider } from "../components/ui/ImageSlider";
 
 // Data
 import {
+  proShopClientIcons,
   techIcons,
   proShopDetails,
   dataScienceDetails,
   modernTechDetails,
   galleryItems,
+  liveBingoIcons,
 } from "../data/projectsData";
 
 // Assets
@@ -77,18 +79,40 @@ const mockImagesProShopAdmin = [
   ProShop_Admin_8,
 ];
 
-// --- LOCAL HELPER COMPONENTS ---
-const SidebarCard = ({ id, title, setExpandedCard }) => (
+const mockImagesLiveBingo = [
+  MainPage,
+  CreateRoom,
+  JoinRoom,
+  HostPage,
+  PlayerRoom,
+];
+
+const SidebarCard = ({ id, title, image, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    className="flex flex-col justify-center items-center cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[120px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-4 group"
+    className="relative flex flex-col cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[120px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-0 group overflow-hidden rounded-lg border border-slate-700 bg-slate-800"
   >
-    <h3 className="font-bold text-white text-center text-xs line-clamp-2">
-      {title}
-    </h3>
-    <span className="text-[10px] text-emerald-400 mt-2 bg-emerald-400/10 px-2 py-1 rounded-full font-semibold flex items-center gap-1">
-      <FaExpandArrowsAlt /> Expand
-    </span>
+    {/* Image Container covering the card */}
+    <div className="absolute inset-0 w-full h-full">
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          className="block w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+        />
+      ) : (
+        <div className="w-full h-full flex items-center justify-center text-slate-500 text-xs bg-slate-800">
+          No Image
+        </div>
+      )}
+    </div>
+
+    {/* Title Overlay with Gradient for readability */}
+    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950/80 to-transparent z-10">
+      <h3 className="font-bold text-white text-center text-[11px] line-clamp-1">
+        {title}
+      </h3>
+    </div>
   </Card>
 );
 
@@ -124,6 +148,7 @@ const ExpandButton = ({
 
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
+  const [projectGalleryId, setProjectGalleryId] = useState(null);
 
   const hoverScrollbarStyles = `
     .hover-scrollbar {
@@ -161,6 +186,7 @@ export default function ProjectsPage() {
         <SidebarCard
           id="proshop"
           title="Featured Project: ProShop"
+          image={mockImagesProShopClient[0]}
           setExpandedCard={setExpandedCard}
         />
       );
@@ -183,7 +209,7 @@ export default function ProjectsPage() {
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
             <div className="flex space-x-2">
-              {techIcons.map((tech, idx) => (
+              {proShopClientIcons.map((tech, idx) => (
                 <div
                   key={idx}
                   className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
@@ -228,7 +254,9 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+            <h4
+              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+            >
               Project Description
             </h4>
             <div className="space-y-3">
@@ -264,6 +292,7 @@ export default function ProjectsPage() {
       return (
         <SidebarCard
           id="datascience"
+          image={mockImages[0]}
           title="Customer Segmentation"
           setExpandedCard={setExpandedCard}
         />
@@ -325,7 +354,9 @@ export default function ProjectsPage() {
             </div>
 
             <div className="flex flex-col shrink-0">
-              <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+              <h4
+                className={`font-bold text-white ${isExp ? "text-md" : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+              >
                 Project Description
               </h4>
               <div className="space-y-3">
@@ -380,6 +411,7 @@ export default function ProjectsPage() {
       return (
         <SidebarCard
           id="moderntech"
+          image={mockImagesProShopAdmin[0]}
           title="Marketplace"
           setExpandedCard={setExpandedCard}
         />
@@ -446,7 +478,9 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+            <h4
+              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+            >
               Project Description
             </h4>
             <div className="space-y-3">
@@ -478,6 +512,8 @@ export default function ProjectsPage() {
   };
 
   const renderSingleGalleryExpanded = (index) => {
+    const isExp = index === "expanded";
+
     const it = galleryItems[index];
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
@@ -488,27 +524,59 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          {/* Replaced placeholder with ImageSlider, matching other expanded layouts */}
-          <ImageSlider images={[it.image]} isExp={true} />
+          <ImageSlider images={mockImagesLiveBingo} isExp={true} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
+            {/* Left Side: MERN Tech Stack Icons */}
             <div className="flex space-x-2">
-              <div className="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300 font-semibold flex items-center justify-center">
-                {it.tech}
-              </div>
-              <div className="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs text-slate-300 font-semibold flex items-center justify-center">
-                {it.label}
-              </div>
+              {liveBingoIcons.map((tech, idx) => (
+                <div
+                  key={idx}
+                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                >
+                  <img
+                    src={tech.src}
+                    alt={tech.name}
+                    title={tech.name}
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              ))}
             </div>
+
+            {/* Right Side: GitHub and External Link Icons */}
             <div className="flex space-x-2">
-              <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
-                <FaExternalLinkAlt size={12} />
-              </div>
+              <a
+                href="https://github.com/EMCSquare12/Live-Bingo-v2.git"
+                target="_blank"
+                rel="noreferrer"
+                title="GitHub Repository"
+              >
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <img
+                    src={Github}
+                    alt="GitHub Repository"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+              </a>
+              <a
+                href="https://live-bingo-v2.netlify.app/"
+                target="_blank"
+                rel="noreferrer"
+                title="External Link"
+              >
+                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <FaExternalLinkAlt size={12} />
+                </div>
+              </a>
             </div>
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+            <h4
+              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+            >
               Project Description
             </h4>
             <div className="space-y-3">
@@ -530,7 +598,6 @@ export default function ProjectsPage() {
   };
 
   const renderGalleryDefault = () => {
-    const [projectGalleryId, setProjectGalleryId] = useState(null);
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
@@ -545,10 +612,9 @@ export default function ProjectsPage() {
               className="group flex flex-col h-[120px] shrink-0 min-h-0"
             >
               <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full flex-1 overflow-hidden">
-                {/* CORRECTED CONDITIONAL RENDER HERE */}
                 {projectGalleryId === i && (
                   <ExpandButton
-                    id={`project-${i}`}
+                    id={`gallery-${i}`}
                     setExpandedCard={setExpandedCard}
                     className="top-1 right-1 p-1.5"
                   />
@@ -624,6 +690,7 @@ export default function ProjectsPage() {
                         key={`sidebar-gallery-${i}`}
                         id={`gallery-${i}`}
                         title={it.title}
+                        image={it.image}
                         setExpandedCard={setExpandedCard}
                       />
                     ),
