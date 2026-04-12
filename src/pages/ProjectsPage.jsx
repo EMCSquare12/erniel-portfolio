@@ -98,10 +98,10 @@ const ShrinkButton = ({ setExpandedCard }) => (
       e.stopPropagation();
       setExpandedCard(null);
     }}
-    className="absolute top-4 right-4 px-3 py-1.5 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-2 text-xs font-bold border border-slate-500 shadow-lg transition-colors"
+    className="absolute top-4 right-4 p-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-2 text-xs font-bold border border-slate-500 shadow-lg transition-colors"
     title="Shrink"
   >
-    <FaCompressArrowsAlt /> Shrink
+    <FaCompressArrowsAlt />
   </button>
 );
 
@@ -527,6 +527,7 @@ export default function ProjectsPage() {
   };
 
   const renderGalleryDefault = () => {
+    const [projectGalleryId, setProjectGalleryId] = useState(null);
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
@@ -537,15 +538,24 @@ export default function ProjectsPage() {
           {galleryItems.map((it, i) => (
             <div
               key={i}
-              className="group flex flex-col h-[100px] shrink-0 min-h-0"
+              onMouseEnter={() => setProjectGalleryId(i)}
+              className="group flex flex-col h-[120px] shrink-0 min-h-0"
             >
               <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full flex-1 overflow-hidden">
-                <ExpandButton
-                  id={`gallery-${i}`}
-                  setExpandedCard={setExpandedCard}
-                  className="top-1 right-1 p-1.5"
+                {/* CORRECTED CONDITIONAL RENDER HERE */}
+                {projectGalleryId === i && (
+                  <ExpandButton
+                    id={`project-${i}`}
+                    setExpandedCard={setExpandedCard}
+                    className="top-1 right-1 p-1.5"
+                  />
+                )}
+
+                <img
+                  className="block w-full h-full object-cover transition-transform duration-500"
+                  src={it.image}
+                  alt={it.label}
                 />
-                <img src={it.image} alt={it.label} />
               </div>
               <p className="text-[10px] text-white line-clamp-1 shrink-0">
                 {it.title}

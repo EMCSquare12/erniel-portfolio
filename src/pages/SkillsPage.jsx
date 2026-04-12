@@ -99,6 +99,8 @@ export default function SkillsPage() {
           <div className="w-[800px] h-[800px] rounded-full border border-slate-600 border-dashed absolute"></div>
           <div className="w-[600px] h-[600px] rounded-full border border-slate-500 absolute"></div>
           <div className="w-[400px] h-[400px] rounded-full border border-slate-400 absolute"></div>
+          <div className="w-[200px] h-[200px] rounded-full border border-slate-400 absolute"></div>
+
           <div className="w-px h-full bg-gradient-to-b from-transparent via-slate-500 to-transparent absolute"></div>
         </div>
 
