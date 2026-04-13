@@ -107,6 +107,53 @@ export const modernTechDetails = [
   },
 ];
 
+export const liveBingoDetails = [
+  {
+    title: "Real-Time Multiplayer Bingo",
+    descriptions: [
+      `A full-stack, interactive Bingo platform built for competitive play. The application utilizes a "Host-Client" architecture to provide a synchronized, high-stakes gaming experience where every number called and every victory achieved is broadcasted in real-time.`,
+    ],
+  },
+  {
+    title: "Game Mechanics & Logic",
+    descriptions: [
+      "The game centers on a dynamic room-based system. Unlike static web apps, the game state is strictly controlled by the backend to ensure fair play and synchronization across all connected devices.",
+    ],
+  },
+  {
+    title: "The Host (Game Administrator)",
+    descriptions: [
+      "Room Management: Generate room codes and manage the participant list (ability to kick players or spectators).",
+      "Game Configuration: Set the specific winning patterns (e.g., Line, Patterns, or Full House) before the match begins.",
+      "Flow Control: Trigger the game start (locking all player cards), restart the session, or end the game entirely.",
+      "Monitoring: Access to a dedicated Dashboard to view the count of active players and the progression of the game.",
+    ],
+  },
+  {
+    title: "The Players",
+    descriptions: [
+      `Card Customization: Players have the agency to shuffle their Bingo cards to find a "lucky" layout, provided the game hasn't started.`,
+      `Active Participation: To win, players must manually click numbers as they are called; the system does not "auto-fill," testing the player’s speed and focus.`,
+      "Real-Time Notifications: Instant visual and audio cues when a player hits the winning pattern, announcing the victor to the entire room.",
+    ],
+  },
+  {
+    title: "The Spectators",
+    descriptions: [
+      "View-Only Access: Spectators can watch the Host’s Dashboard and follow the game's progress in real-time.",
+      `Seamless Transition: This allows for an "audience" experience without disrupting the competitive balance of an active round.`,
+    ],
+  },
+  {
+    title: "Key Technical Challenges Solved",
+    descriptions: [
+      "Concurrency: Managed multiple users interacting with a single game state simultaneously via Socket.io events.",
+      `Late-Joiner Logic: Implemented logic to automatically redirect users to "Spectator Mode" if a game is already in progress.`,
+      "Validation: Developed a system to verify winning patterns on the server side to prevent cheating.",
+    ],
+  },
+];
+
 export const galleryItems = [
   {
     title: "Live Bingo",

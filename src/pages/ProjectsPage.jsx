@@ -18,6 +18,7 @@ import {
   modernTechDetails,
   galleryItems,
   liveBingoIcons,
+  liveBingoDetails,
 } from "../data/projectsData";
 
 // Assets
@@ -581,14 +582,26 @@ export default function ProjectsPage() {
             </h4>
             <div className="space-y-3">
               <div>
-                {/* Updated text classes to 'text-md' and 'text-sm' to match expanded layout sizes */}
-                <h5 className="text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5">
-                  ✓ Overview
-                </h5>
-                <p className="text-sm text-slate-400 pl-4">
-                  This is a detailed view for the {it.title} project,
-                  highlighting its core functionality and tech stack: {it.tech}.
-                </p>
+                {liveBingoDetails.map((detail, idx) => (
+                  <div key={idx}>
+                    <h5
+                      className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                    >
+                      ✓ {detail.title}
+                    </h5>
+                    {isExp ? (
+                      <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                        {detail.descriptions.map((desc, i) => (
+                          <li key={i}>{desc}</li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
+                        {detail.descriptions}
+                      </p>
+                    )}
+                  </div>
+                ))}
               </div>
             </div>
           </div>
