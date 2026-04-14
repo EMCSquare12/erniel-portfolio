@@ -43,10 +43,10 @@ export default function ContactPage() {
                 <div>
                   <p className="text-sm font-semibold text-white">Email</p>
                   <a
-                    href="mailto:ernielcaalim@liveph.com"
+                    href="mailto:ninelcaalim12@gmail.com"
                     className="text-sm text-slate-400 hover:text-cyan-400 transition-colors"
                   >
-                    ernielcaalim@liveph.com
+                    ninelcaalim12@gmail.com
                   </a>
                 </div>
               </div>
@@ -118,7 +118,7 @@ export default function ContactPage() {
                 </label>
                 <input
                   type="text"
-                  placeholder="John Doe"
+                  placeholder="Ermiel Caalim"
                   className="w-full bg-[#0d1117] border border-slate-600 rounded-lg p-3 text-sm text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all shadow-sm"
                   required
                 />
@@ -130,7 +130,7 @@ export default function ContactPage() {
                 </label>
                 <input
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="sample@email.com"
                   className="w-full bg-[#0d1117] border border-slate-600 rounded-lg p-3 text-sm text-white focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 outline-none transition-all shadow-sm"
                   required
                 />

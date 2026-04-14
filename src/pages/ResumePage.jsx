@@ -52,9 +52,9 @@ export default function ResumePage() {
         </div>
 
         {/* Right: Content Area */}
-        <div className="flex-1 flex flex-col min-w-0 w-full justify-between">
+        <div className="flex-1 flex flex-col min-w-0 w-full">
           {/* Top: Professional Summary */}
-          <div className="bg-[#161b22]/80 border border-slate-700/60 p-5 rounded-xl shadow-inner h-48 w-full mb-4 flex-1">
+          <div className="bg-[#161b22]/80 border border-slate-700/60 p-5 rounded-xl shadow-inner h-48 w-full mb-4 shrink-0 overflow-y-auto custom-scrollbar">
             <p className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-3">
               Professional Summary
             </p>
@@ -70,7 +70,7 @@ export default function ResumePage() {
           </div>
 
           {/* Bottom: Navigation & Action Buttons */}
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full mt-auto ">
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full mt-auto">
             {/* Navigation Links */}
             <div className="flex flex-wrap justify-center lg:justify-start gap-5 sm:gap-6">
               <Link
@@ -123,7 +123,7 @@ export default function ResumePage() {
           {/* Timeline Section */}
           <Card>
             <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-              <span className="text-blue-500">📈</span> Career Evolution
+              <span className="text-blue-500">💼</span> Career Evolution
             </h3>
             <div className="relative pl-6 border-l-2 border-slate-700/50 space-y-10">
               {timelineData.map((item, idx) => (
@@ -296,7 +296,7 @@ export default function ResumePage() {
           {/* Featured Projects Highlight */}
           <Card>
             <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-              <span className="text-emerald-400">💻</span> Top Projects
+              <span className="text-emerald-400">💡</span> Top Projects
             </h3>
 
             <div className="space-y-4">
