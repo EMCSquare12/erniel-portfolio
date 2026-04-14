@@ -96,8 +96,9 @@ export default function ResumePage() {
                 key={idx}
                 className={`relative pl-8 ${idx !== timelineData.length - 1 ? "mb-8" : ""}`}
               >
+                {/* Changed the offset to -left-[6px] to precisely center the dot */}
                 <div
-                  className={`absolute -left-[1.5px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-4 ring-[#1c2128]`}
+                  className={`absolute -left-[6px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-4 ring-[#1c2128]`}
                 ></div>
                 <div className="flex justify-between items-center mb-1">
                   <h4 className="text-white font-bold">{item.role}</h4>
