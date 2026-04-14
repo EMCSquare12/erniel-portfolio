@@ -88,6 +88,25 @@ const mockImagesLiveBingo = [
   PlayerRoom,
 ];
 
+// Formatting Helper to highlight text before the colon
+const formatDescription = (text) => {
+  if (typeof text !== "string") return text;
+  const colonIndex = text.indexOf(":");
+
+  // Only format if a colon exists and it's reasonably near the beginning (avoids formatting mid-sentence colons/URLs)
+  if (colonIndex !== -1 && colonIndex < 60) {
+    const label = text.slice(0, colonIndex + 1);
+    const remainder = text.slice(colonIndex + 1);
+    return (
+      <span>
+        <strong className="text-slate-200 font-semibold">{label}</strong>
+        {remainder}
+      </span>
+    );
+  }
+  return text;
+};
+
 const SidebarCard = ({ id, title, image, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
@@ -271,12 +290,12 @@ export default function ProjectsPage() {
                   {isExp ? (
                     <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
-                        <li key={i}>{desc}</li>
+                        <li key={i}>{formatDescription(desc)}</li>
                       ))}
                     </ul>
                   ) : (
                     <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                      {detail.descriptions[0]}
+                      {formatDescription(detail.descriptions[0])}
                     </p>
                   )}
                 </div>
@@ -371,12 +390,12 @@ export default function ProjectsPage() {
                     {isExp ? (
                       <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                         {detail.descriptions.map((desc, i) => (
-                          <li key={i}>{desc}</li>
+                          <li key={i}>{formatDescription(desc)}</li>
                         ))}
                       </ul>
                     ) : (
                       <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                        {detail.descriptions[0]}
+                        {formatDescription(detail.descriptions[0])}
                       </p>
                     )}
                   </div>
@@ -495,12 +514,12 @@ export default function ProjectsPage() {
                   {isExp ? (
                     <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
-                        <li key={i}>{desc}</li>
+                        <li key={i}>{formatDescription(desc)}</li>
                       ))}
                     </ul>
                   ) : (
                     <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                      {detail.descriptions[0]}
+                      {formatDescription(detail.descriptions[0])}
                     </p>
                   )}
                 </div>
@@ -633,7 +652,7 @@ export default function ProjectsPage() {
                             : ""
                         }
                       >
-                        {desc}
+                        {formatDescription(desc)}
                       </li>
                     ))}
                   </ul>
