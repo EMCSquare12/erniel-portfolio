@@ -513,10 +513,37 @@ export default function ProjectsPage() {
   };
 
   const renderSingleGalleryExpanded = (index) => {
-    // FIX: Set isExp to true since this function is exclusively for the expanded state
     const isExp = true;
-
     const it = galleryItems[index];
+
+    // Check if the selected project is Live Bingo
+    const isLiveBingo = it.title === "Live Bingo";
+
+    // If it's Live Bingo, load its actual data. Otherwise, load placeholder data for the ongoing project.
+    const currentImages = isLiveBingo ? mockImagesLiveBingo : [it.image];
+    const currentIcons = isLiveBingo ? liveBingoIcons : [];
+
+    // Set URLs to empty strings for ongoing projects so the buttons hide automatically
+    const currentRepoUrl = isLiveBingo
+      ? "https://github.com/EMCSquare12/Live-Bingo-v2.git"
+      : "";
+    const currentLiveUrl = isLiveBingo
+      ? "https://live-bingo-v2.netlify.app/"
+      : "";
+
+    const currentDetails = isLiveBingo
+      ? liveBingoDetails
+      : [
+          {
+            title: "Currently in Development 🚧",
+            descriptions: [
+              `This project (${it.title}) is currently an ongoing work in progress.`,
+              `Expected Tech Stack: ${it.tech}`,
+              "Detailed information, screenshots, and source code links will be updated here once the project reaches its next milestone.",
+            ],
+          },
+        ];
+
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full">
         <ShrinkButton setExpandedCard={setExpandedCard} />
@@ -526,12 +553,12 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <ImageSlider images={mockImagesLiveBingo} isExp={isExp} />
+          <ImageSlider images={currentImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
-            {/* Left Side: MERN Tech Stack Icons */}
-            <div className="flex space-x-2">
-              {liveBingoIcons.map((tech, idx) => (
+            {/* Left Side: Tech Stack Icons */}
+            <div className="flex space-x-2 items-center">
+              {currentIcons.map((tech, idx) => (
                 <div
                   key={idx}
                   className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
@@ -544,34 +571,43 @@ export default function ProjectsPage() {
                   />
                 </div>
               ))}
+              {!isLiveBingo && (
+                <span className="text-xs text-slate-500 italic bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700">
+                  Tech stack pending / Work in progress...
+                </span>
+              )}
             </div>
 
-            {/* Right Side: GitHub and External Link Icons */}
+            {/* Right Side: GitHub and External Link Icons (Hidden for ongoing projects) */}
             <div className="flex space-x-2">
-              <a
-                href="https://github.com/EMCSquare12/Live-Bingo-v2.git"
-                target="_blank"
-                rel="noreferrer"
-                title="GitHub Repository"
-              >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
-                  <img
-                    src={Github}
-                    alt="GitHub Repository"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-              </a>
-              <a
-                href="https://live-bingo-v2.netlify.app/"
-                target="_blank"
-                rel="noreferrer"
-                title="External Link"
-              >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
-                  <FaExternalLinkAlt size={12} />
-                </div>
-              </a>
+              {currentRepoUrl && (
+                <a
+                  href={currentRepoUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="GitHub Repository"
+                >
+                  <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                    <img
+                      src={Github}
+                      alt="GitHub Repository"
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                </a>
+              )}
+              {currentLiveUrl && (
+                <a
+                  href={currentLiveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  title="External Link"
+                >
+                  <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                    <FaExternalLinkAlt size={12} />
+                  </div>
+                </a>
+              )}
             </div>
           </div>
 
@@ -580,14 +616,25 @@ export default function ProjectsPage() {
               Project Description
             </h4>
             <div className="space-y-3">
-              {liveBingoDetails.map((detail, idx) => (
+              {currentDetails.map((detail, idx) => (
                 <div key={idx}>
-                  <h5 className="text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5">
-                    ✓ {detail.title}
+                  <h5
+                    className={`text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5 ${!isLiveBingo && "text-yellow-400"}`}
+                  >
+                    {isLiveBingo ? "✓" : "⚡"} {detail.title}
                   </h5>
                   <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
                     {detail.descriptions.map((desc, i) => (
-                      <li key={i}>{desc}</li>
+                      <li
+                        key={i}
+                        className={
+                          !isLiveBingo && i === 1
+                            ? "text-slate-300 font-medium"
+                            : ""
+                        }
+                      >
+                        {desc}
+                      </li>
                     ))}
                   </ul>
                 </div>
