@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
+import {GitHubCalendar} from "react-github-calendar";
 
 // Reusable Components
 import { Card } from "../components/ui/Card";
@@ -34,8 +35,9 @@ export default function ResumePage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 pb-12">
       {/* HEADER CARD */}
-      <Card className="bg-[#1c2128] border border-slate-700/50 p-4! rounded-2xl flex flex-col md:flex-row justify-between items-center shadow-xl gap-4">
-        <div className="flex space-x-6 text-sm font-medium">
+      <Card className="bg-[#1c2128] border border-slate-700/50 rounded-2xl flex flex-col md:flex-row justify-between items-center md:items-stretch shadow-xl gap-4 overflow-visible p-0!">
+        {/* Left: Nav Links with border */}
+        <div className="flex space-x-6 text-sm font-medium p-4 md:p-6 flex-shrink-0 border-b md:border-b-0 md:border-r border-slate-700/50">
           <Link
             to="/"
             className="text-slate-400 hover:text-white transition-colors"
@@ -56,29 +58,82 @@ export default function ResumePage() {
           </Link>
         </div>
 
-        <div className="flex space-x-4">
-          <button className="flex items-center space-x-2 px-4 py-2 border border-teal-500/50 text-teal-400 rounded-lg text-xs font-semibold hover:bg-teal-500/10 transition-colors">
-            <svg
-              className="w-4 h-4"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              ></path>
-            </svg>
-            <span>DOWNLOAD PDF RESUME</span>
-          </button>
-          <button className="flex items-center space-x-2 px-4 py-2 border border-blue-500/50 text-blue-400 rounded-lg text-xs font-semibold hover:bg-blue-500/10 transition-colors">
-            <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-            </svg>
-            <span>VIEW LINKEDIN PROFILE</span>
-          </button>
+        {/* Right Area: Calendar (Left) and Profile Picture (Right) */}
+        <div className="flex flex-col-reverse md:flex-row items-center justify-end gap-6 p-4 md:p-6 flex-grow max-w-full overflow-hidden">
+          {/* Stats & Buttons Container */}
+          <div className="flex flex-col items-center md:items-end gap-3 text-center md:text-right max-w-full min-w-0">
+            {/* GitHub Contributions Calendar */}
+            <div className="bg-[#1c2128] border border-slate-700/50 p-4 rounded-xl flex flex-col w-full max-w-full">
+              <p className="text-[10px] text-emerald-400 font-medium uppercase tracking-wider mb-3 text-left md:text-right">
+                GitHub Contributions
+              </p>
+              <div className="overflow-x-auto custom-scrollbar pb-2 w-full flex md:justify-end">
+                <GitHubCalendar
+                  username="EMCSquare12"
+                  colorScheme="dark"
+                  theme={{
+                    dark: [
+                      "#161b22",
+                      "#0e4429",
+                      "#006d32",
+                      "#26a641",
+                      "#39d353",
+                    ],
+                  }}
+                  blockSize={11}
+                  blockMargin={4}
+                  fontSize={10}
+                />
+              </div>
+            </div>
+
+            {/* Links for Download PDF / View LinkedIn */}
+            <div className="flex flex-wrap justify-center md:justify-end gap-3 mt-1">
+              <a
+                href="/path/to/resume.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-4 py-2 border border-teal-500/50 text-teal-400 rounded-lg text-xs font-semibold hover:bg-teal-500/10 transition-colors"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  ></path>
+                </svg>
+                <span>DOWNLOAD PDF RESUME</span>
+              </a>
+              <a
+                href="https://linkedin.com/in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center space-x-2 px-4 py-2 border border-blue-500/50 text-blue-400 rounded-lg text-xs font-semibold hover:bg-blue-500/10 transition-colors"
+              >
+                <svg
+                  className="w-4 h-4"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                </svg>
+                <span>VIEW LINKEDIN PROFILE</span>
+              </a>
+            </div>
+          </div>
+
+          {/* Profile Picture (Floating on the right) */}
+          <img
+            src="/path/to/your/profile-picture.png"
+            alt="Erniel Caalim"
+            className="w-24 h-24 md:w-32 md:h-32 rounded-full border-8 border-[#1c2128] shadow-2xl object-cover md:-mt-20 bg-[#21262d] flex-shrink-0 relative z-10"
+          />
         </div>
       </Card>
 
@@ -96,7 +151,6 @@ export default function ResumePage() {
                 key={idx}
                 className={`relative pl-8 ${idx !== timelineData.length - 1 ? "mb-8" : ""}`}
               >
-                {/* Changed the offset to -left-[6px] to precisely center the dot */}
                 <div
                   className={`absolute -left-[6px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-4 ring-[#1c2128]`}
                 ></div>
