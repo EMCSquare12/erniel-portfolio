@@ -54,7 +54,7 @@ export default function ResumePage() {
         {/* Right: Content Area */}
         <div className="flex-1 flex flex-col min-w-0 w-full">
           {/* Top: Professional Summary */}
-          <div className="bg-[#161b22]/80 border border-slate-700/60 p-5 rounded-xl shadow-inner h-48 w-full mb-4 shrink-0 overflow-y-auto custom-scrollbar">
+          <div className="bg-[#161b22]/50 border border-slate-700/60 p-5 rounded-xl shadow-inner h-48 w-full mb-4 shrink-0 overflow-y-auto custom-scrollbar">
             <p className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-3">
               Professional Summary
             </p>
@@ -120,22 +120,21 @@ export default function ResumePage() {
       <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
         {/* LEFT COLUMN: Experience & Education (Wider) */}
         <div className="xl:col-span-7 space-y-8">
-          {/* Timeline Section */}
           <Card>
             <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-              <span className="text-blue-500">💼</span> Career Evolution
+              <span className="text-blue-500">直</span> Career Evolution
             </h3>
             <div className="relative pl-6 border-l-2 border-slate-700/50 space-y-10">
               {timelineData.map((item, idx) => (
-                <div key={idx} className="relative group">
+                <div key={idx} className="relative">
                   {/* Glowing Node */}
                   <div
-                    className={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${item.color} ring-4 ring-[#1c2128] group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(255,255,255,0.2)]`}
+                    className={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${item.color} ring-4 ring-[#1c2128] shadow-[0_0_10px_rgba(255,255,255,0.2)]`}
                   ></div>
 
                   {/* Content */}
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3">
-                    <h4 className="text-white font-bold text-base group-hover:text-teal-400 transition-colors">
+                    <h4 className="text-white font-bold text-base">
                       {item.role}
                     </h4>
                     <span className="text-xs font-semibold text-slate-500 bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700/50 mt-2 sm:mt-0 inline-block w-max">
@@ -143,7 +142,7 @@ export default function ResumePage() {
                     </span>
                   </div>
 
-                  <div className="bg-[#161b22]/50 border border-slate-700/50 p-5 rounded-xl hover:border-slate-600 transition-colors">
+                  <div className="bg-[#161b22]/50 border border-slate-700/50 p-5 rounded-xl">
                     <ul className="text-sm text-slate-400 space-y-2 list-none">
                       {item.bullets.map((bullet, bIdx) => (
                         <li key={bIdx} className="flex gap-2">

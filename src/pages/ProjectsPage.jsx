@@ -677,7 +677,7 @@ export default function ProjectsPage() {
             <div
               key={i}
               onMouseEnter={() => setProjectGalleryId(i)}
-              className="group flex flex-col h-[120px] shrink-0 min-h-0"
+              className="group/gallery-item flex flex-col h-[120px] shrink-0 min-h-0 cursor-pointer"
             >
               <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full flex-1 overflow-hidden">
                 {projectGalleryId === i && (
@@ -689,7 +689,7 @@ export default function ProjectsPage() {
                 )}
 
                 <img
-                  className="block w-full h-full object-cover transition-transform duration-500"
+                  className="block w-full h-full object-cover transition-transform duration-500 group-hover/gallery-item:scale-110"
                   src={it.image}
                   alt={it.label}
                 />

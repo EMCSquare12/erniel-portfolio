@@ -37,13 +37,15 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
     <div className="relative group cursor-pointer">
       {/* Main Thumbnail */}
       {images && images.length > 0 ? (
-        <img
-          src={images[0]}
-          alt={title}
-          className="bg-slate-800 h-24 w-full rounded-lg mb-2 border border-slate-700 shrink-0 object-cover group-hover:ring-2 group-hover:ring-blue-500 transition-all"
-        />
+        <div className="bg-slate-800 h-24 w-full rounded-lg mb-2 border border-slate-700 shrink-0 overflow-hidden group-hover:ring-2 group-hover:ring-blue-500 transition-all">
+          <img
+            src={images[0]}
+            alt={title}
+            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+          />
+        </div>
       ) : (
-        <div className="bg-slate-800 h-24 w-full rounded-lg mb-2 border border-slate-700 flex items-center justify-center group-hover:ring-2 group-hover:ring-blue-500 transition-all">
+        <div className="bg-slate-800 h-24 w-full rounded-lg mb-2 border border-slate-700 flex items-center justify-center group-hover:ring-2 group-hover:ring-blue-500 transition-all overflow-hidden">
           <span className="text-slate-500 text-xs">No Image</span>
         </div>
       )}
@@ -60,7 +62,7 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
               <img
                 src={images[currentIndex]}
                 alt={title}
-                className="w-full h-full object-cover transition-transform duration-500"
+                className="w-full h-full object-cover transition-transform duration-500 group-hover/slider:scale-110"
               />
             ) : (
               <div className="w-full h-full bg-slate-800 flex items-center justify-center text-xs text-slate-500">

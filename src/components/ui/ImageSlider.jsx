@@ -33,7 +33,7 @@ export const ImageSlider = ({ images, isExp, customClass }) => {
       <img
         src={images[currentIndex]}
         alt={`Slide ${currentIndex}`}
-        className="block w-full h-full object-cover transition-transform duration-500"
+        className="block w-full h-full object-cover transition-transform duration-500 group-hover/slider:scale-105"
       />
       {images.length > 1 && (
         <>

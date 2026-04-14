@@ -52,9 +52,9 @@ export default function HomePage() {
           <p className="text-sm text-slate-400 mb-4">
             MERN Stack E-Commerce Platform with Dedicated Admin Dashboard
           </p>
-          <div className="bg-slate-800 h-48 rounded-lg mb-4 w-full flex overflow-hidden items-center justify-center border border-slate-700">
+          <div className="group/proshop bg-slate-800 h-48 rounded-lg mb-4 w-full flex overflow-hidden items-center justify-center border border-slate-700 cursor-pointer">
             <img
-              className="block w-full h-full object-cover transition-transform duration-500"
+              className="block w-full h-full object-cover transition-transform duration-500 group-hover/proshop:scale-110"
               src={ProShopHome}
               alt="ProShop"
             />
