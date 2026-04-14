@@ -1,7 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { FaChevronCircleDown, FaChevronCircleUp } from "react-icons/fa";
-import {GitHubCalendar} from "react-github-calendar";
+import {
+  FaChevronCircleDown,
+  FaChevronCircleUp,
+  FaDownload,
+  FaLinkedin,
+  FaExternalLinkAlt,
+} from "react-icons/fa";
+import { GitHubCalendar } from "react-github-calendar";
 
 // Reusable Components
 import { Card } from "../components/ui/Card";
@@ -33,266 +39,170 @@ export default function ResumePage() {
   };
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6 pb-12">
-      {/* HEADER CARD */}
-      <Card className="bg-[#1c2128] border border-slate-700/50 rounded-2xl flex flex-col md:flex-row justify-between items-center md:items-stretch shadow-xl gap-4 overflow-visible p-0!">
-        {/* Left: Nav Links with border */}
-        <div className="flex space-x-6 text-sm font-medium p-4 md:p-6 flex-shrink-0 border-b md:border-b-0 md:border-r border-slate-700/50">
-          <Link
-            to="/"
-            className="text-slate-400 hover:text-white transition-colors"
-          >
-            LANDING PORTFOLIO
-          </Link>
-          <Link
-            to="/resume"
-            className="text-teal-400 border-b-2 border-teal-400 pb-1"
-          >
-            RESUME
-          </Link>
-          <Link
-            to="/contact"
-            className="text-slate-400 hover:text-white transition-colors"
-          >
-            CONTACT
-          </Link>
+    <div className="max-w-7xl mx-auto space-y-8 pb-12">
+      {/* ----------------- HEADER CARD ----------------- */}
+      <Card className="bg-[#1c2128]/80 backdrop-blur-md border border-slate-700/50 rounded-2xl flex flex-col lg:flex-row gap-6 shadow-xl p-6 items-stretch">
+        {/* Left: Profile Picture */}
+        <div className="shrink-0 flex items-start justify-center lg:justify-start">
+          <img
+            src="/path/to/your/profile-picture.png"
+            alt="Erniel Caalim"
+            className="w-48 h-48 rounded-xl border border-slate-700/50 shadow-sm object-cover bg-[#21262d]"
+          />
         </div>
 
-        {/* Right Area: Calendar (Left) and Profile Picture (Right) */}
-        <div className="flex flex-col-reverse md:flex-row items-center justify-end gap-6 p-4 md:p-6 flex-grow max-w-full overflow-hidden">
-          {/* Stats & Buttons Container */}
-          <div className="flex flex-col items-center md:items-end gap-3 text-center md:text-right max-w-full min-w-0">
-            {/* GitHub Contributions Calendar */}
-            <div className="bg-[#1c2128] border border-slate-700/50 p-4 rounded-xl flex flex-col w-full max-w-full">
-              <p className="text-[10px] text-emerald-400 font-medium uppercase tracking-wider mb-3 text-left md:text-right">
-                GitHub Contributions
-              </p>
-              <div className="overflow-x-auto custom-scrollbar pb-2 w-full flex md:justify-end">
-                <GitHubCalendar
-                  username="EMCSquare12"
-                  colorScheme="dark"
-                  theme={{
-                    dark: [
-                      "#161b22",
-                      "#0e4429",
-                      "#006d32",
-                      "#26a641",
-                      "#39d353",
-                    ],
-                  }}
-                  blockSize={11}
-                  blockMargin={4}
-                  fontSize={10}
-                />
-              </div>
+        {/* Right: Content Area */}
+        <div className="flex-1 flex flex-col min-w-0 w-full justify-between">
+          {/* Top: Professional Summary */}
+          <div className="bg-[#161b22]/80 border border-slate-700/60 p-5 rounded-xl shadow-inner h-48 w-full mb-4 flex-1">
+            <p className="text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-3">
+              Professional Summary
+            </p>
+            <p className="text-sm text-slate-300 leading-relaxed text-justify">
+              A dynamic professional bridging the gap between IT operations,
+              data analysis, and modern web development. With a strong
+              foundation in administrative support and data encoding, I have
+              transitioned into full-stack development (MERN) and business
+              intelligence (Power BI, SQL). I specialize in building data-driven
+              applications that streamline workflows and deliver actionable
+              insights.
+            </p>
+          </div>
+
+          {/* Bottom: Navigation & Action Buttons */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full mt-auto ">
+            {/* Navigation Links */}
+            <div className="flex flex-wrap justify-center lg:justify-start gap-5 sm:gap-6">
+              <Link
+                to="/"
+                className="text-slate-400 hover:text-white transition-colors text-sm font-semibold tracking-wider whitespace-nowrap"
+              >
+                Landing portfolio
+              </Link>
+              <Link
+                to="/resume"
+                className="text-teal-400 hover:text-teal-300 transition-colors text-sm font-semibold tracking-wider whitespace-nowrap"
+              >
+                Resume
+              </Link>
+              <Link
+                to="/contact"
+                className="text-slate-400 hover:text-white transition-colors text-sm font-semibold tracking-wider whitespace-nowrap"
+              >
+                Contact
+              </Link>
             </div>
 
-            {/* Links for Download PDF / View LinkedIn */}
-            <div className="flex flex-wrap justify-center md:justify-end gap-3 mt-1">
+            {/* Action Buttons */}
+            <div className="flex flex-wrap justify-center gap-3">
               <a
                 href="/path/to/resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-4 py-2 border border-teal-500/50 text-teal-400 rounded-lg text-xs font-semibold hover:bg-teal-500/10 transition-colors"
+                className="flex items-center justify-center px-5 py-2.5 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  ></path>
-                </svg>
-                <span>DOWNLOAD PDF RESUME</span>
+                Download Resume
               </a>
               <a
                 href="https://linkedin.com/in/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 px-4 py-2 border border-blue-500/50 text-blue-400 rounded-lg text-xs font-semibold hover:bg-blue-500/10 transition-colors"
+                className="flex items-center justify-center px-5 py-2.5 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
               >
-                <svg
-                  className="w-4 h-4"
-                  fill="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                <span>VIEW LINKEDIN PROFILE</span>
+                Linkedin
               </a>
             </div>
           </div>
-
-          {/* Profile Picture (Floating on the right) */}
-          <img
-            src="/path/to/your/profile-picture.png"
-            alt="Erniel Caalim"
-            className="w-24 h-24 md:w-32 md:h-32 rounded-full border-8 border-[#1c2128] shadow-2xl object-cover md:-mt-20 bg-[#21262d] flex-shrink-0 relative z-10"
-          />
         </div>
       </Card>
 
-      {/* MAIN CONTENT GRID */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
-        {/* COLUMN 1: EVOLUTION */}
-        <Card className="col-span-1">
-          <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-8">
-            EVOLUTION
-          </h3>
-          <div className="relative pl-4">
-            <div className="absolute left-[15px] top-2 bottom-2 w-0.5 bg-slate-700"></div>
-            {timelineData.map((item, idx) => (
-              <div
-                key={idx}
-                className={`relative pl-8 ${idx !== timelineData.length - 1 ? "mb-8" : ""}`}
-              >
-                <div
-                  className={`absolute -left-[6px] top-1.5 w-3 h-3 rounded-full ${item.color} ring-4 ring-[#1c2128]`}
-                ></div>
-                <div className="flex justify-between items-center mb-1">
-                  <h4 className="text-white font-bold">{item.role}</h4>
-                  <span className="text-xs text-slate-500">{item.period}</span>
-                </div>
-                <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl mt-2 relative">
-                  <div className="absolute top-4 -left-2 w-4 h-4 bg-[#21262d] border-l border-b border-slate-700/50 transform rotate-45"></div>
-                  <ul className="text-xs text-slate-400 space-y-1.5 list-disc pl-3">
-                    {item.bullets.map((bullet, bIdx) => (
-                      <li key={bIdx}>{bullet}</li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </Card>
-
-        {/* COLUMN 2: EDUCATION & CERTIFICATIONS */}
-        <Card className="col-span-1 flex flex-col space-y-8">
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase mb-2">
-              CAREER BRIDGE SUMMARY
+      {/* ----------------- MAIN CONTENT GRID ----------------- */}
+      <div className="grid grid-cols-1 xl:grid-cols-12 gap-8">
+        {/* LEFT COLUMN: Experience & Education (Wider) */}
+        <div className="xl:col-span-7 space-y-8">
+          {/* Timeline Section */}
+          <Card>
+            <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-8 flex items-center gap-2">
+              <span className="text-blue-500">📈</span> Career Evolution
             </h3>
-            <hr className="border-slate-700 mb-4" />
-            <p className="text-[13px] text-slate-400 leading-relaxed">
-              Career guide connects the past IT support role on our action
-              overflow, process virotainerments and current Web/Data skills anii
-              ennative. Honr, tusos sanntirnative contributing the fast motion
-              to current Web/Data skills.
-            </p>
-          </div>
-
-          <div>
-            <h3 className="text-sm font-bold text-white uppercase mb-2">
-              EDUCATION
-            </h3>
-            <hr className="border-slate-700 mb-4" />
-            <div className="space-y-4">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-sm text-white font-semibold">
-                    Information Technology Programming
-                  </p>
-                  <p className="text-[11px] text-slate-500">
-                    System Technology Institute (STI College)
-                  </p>
-                </div>
-                <span className="text-xs text-slate-400">2016-2019</span>
-              </div>
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="text-sm text-white font-semibold">
-                    Web Development Boothcamp
-                  </p>
-                  <p className="text-[11px] text-slate-500">
-                    Uplift Code Camp (2 months intensive course)
-                  </p>
-                </div>
-                <span className="text-xs text-slate-400">2024</span>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex-1">
-            <div className="flex justify-between items-center mb-2">
-              <h3 className="text-sm font-bold text-white uppercase">
-                CERTIFICATIONS
-              </h3>
-              <a
-                href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <button className="cursor-pointer" title="View Drive Folder">
-                  🔗
-                </button>
-              </a>
-            </div>
-            <hr className="border-slate-700 mb-4" />
-
-            <div className="grid grid-cols-2 gap-4">
-              {badgesData.map((badge) => (
-                <div
-                  key={badge.id}
-                  className={`transition-all ${expandedBadge === badge.id ? "col-span-2" : "col-span-1"}`}
-                >
+            <div className="relative pl-6 border-l-2 border-slate-700/50 space-y-10">
+              {timelineData.map((item, idx) => (
+                <div key={idx} className="relative group">
+                  {/* Glowing Node */}
                   <div
-                    onClick={() => toggleBadge(badge.id)}
-                    className="relative bg-[#21262d] border border-slate-700/50 p-3 rounded-xl flex items-center space-x-3 hover:border-teal-500/50 transition-colors cursor-pointer"
-                  >
-                    <img
-                      src={badge.icon}
-                      alt={badge.title}
-                      title={badge.title}
-                      className={`w-10 h-10 rounded flex items-center justify-center text-xs border ${badge.iconClass}`}
-                    />
-                    <div>
-                      <p className="text-sm text-white font-semibold mb-1">
-                        {badge.title}
-                      </p>
-                      <p className="text-[9px] text-teal-400 flex items-center">
-                        View Certificates{" "}
-                        <span className="ml-1 text-[8px]">
-                          {expandedBadge === badge.id ? "↓" : "↗"}
-                        </span>
-                      </p>
-                    </div>
-                    {expandedBadge === badge.id ? (
-                      <FaChevronCircleUp className="absolute right-5 text-slate-600" />
-                    ) : (
-                      <FaChevronCircleDown className="absolute right-5 text-slate-600" />
-                    )}
+                    className={`absolute -left-[31px] top-1 w-4 h-4 rounded-full ${item.color} ring-4 ring-[#1c2128] group-hover:scale-125 transition-transform duration-300 shadow-[0_0_10px_rgba(255,255,255,0.2)]`}
+                  ></div>
+
+                  {/* Content */}
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-3">
+                    <h4 className="text-white font-bold text-base group-hover:text-teal-400 transition-colors">
+                      {item.role}
+                    </h4>
+                    <span className="text-xs font-semibold text-slate-500 bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700/50 mt-2 sm:mt-0 inline-block w-max">
+                      {item.period}
+                    </span>
                   </div>
-                  {expandedBadge === badge.id && (
-                    <div className="mt-3 p-4 bg-[#21262d] border border-slate-700/50 rounded-xl grid grid-cols-1 md:grid-cols-3 gap-4 animate-fadeIn">
-                      {badge.images.map((img, i) => (
-                        <img
-                          key={i}
-                          src={img.src}
-                          alt={img.alt}
-                          title={img.alt}
-                          className="rounded-lg shadow-md hover:scale-105 transition-transform w-full h-full"
-                        />
+
+                  <div className="bg-[#161b22]/50 border border-slate-700/50 p-5 rounded-xl hover:border-slate-600 transition-colors">
+                    <ul className="text-sm text-slate-400 space-y-2 list-none">
+                      {item.bullets.map((bullet, bIdx) => (
+                        <li key={bIdx} className="flex gap-2">
+                          <span className="text-teal-500/50 mt-0.5">▹</span>
+                          <span>{bullet}</span>
+                        </li>
                       ))}
-                    </div>
-                  )}
+                    </ul>
+                  </div>
                 </div>
               ))}
             </div>
-          </div>
-        </Card>
+          </Card>
 
-        {/* COLUMN 3: SKILLS & PROJECTS HIGHLIGHTS */}
-        <Card className="col-span-1 flex flex-col space-y-8">
-          <div>
-            <h3 className="text-xl font-bold text-blue-400 uppercase tracking-widest mb-6">
-              HYBRID TOOLKIT
+          {/* Education Section */}
+          <Card>
+            <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+              <span className="text-purple-400">🎓</span> Education
             </h3>
-            <div className="space-y-1">
+            <div className="space-y-6">
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-[#161b22]/50 p-4 rounded-xl border border-slate-700/50">
+                <div>
+                  <p className="text-base text-white font-bold">
+                    Web Development Bootcamp
+                  </p>
+                  <p className="text-sm text-slate-400 mt-1">
+                    Uplift Code Camp (Intensive Course)
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-slate-500 bg-slate-800 px-3 py-1 rounded-full mt-3 sm:mt-0 w-max">
+                  2024
+                </span>
+              </div>
+
+              <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-[#161b22]/50 p-4 rounded-xl border border-slate-700/50">
+                <div>
+                  <p className="text-base text-white font-bold">
+                    Information Technology Programming
+                  </p>
+                  <p className="text-sm text-slate-400 mt-1">
+                    System Technology Institute (STI College)
+                  </p>
+                </div>
+                <span className="text-xs font-bold text-slate-500 bg-slate-800 px-3 py-1 rounded-full mt-3 sm:mt-0 w-max">
+                  2016 - 2019
+                </span>
+              </div>
+            </div>
+          </Card>
+        </div>
+
+        {/* RIGHT COLUMN: Skills, Certs, Projects (Narrower) */}
+        <div className="xl:col-span-5 space-y-8">
+          {/* Hybrid Toolkit */}
+          <Card>
+            <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+              <span className="text-blue-500">🛠️</span> Core Toolkit
+            </h3>
+            <div className="space-y-2">
               <ProgressBar label="React" percentage={85} variant="gradient" />
               <ProgressBar label="Node.js" percentage={80} variant="gradient" />
               <ProgressBar label="SQL" percentage={90} variant="gradient" />
@@ -303,16 +213,96 @@ export default function ResumePage() {
               />
               <ProgressBar label="Excel" percentage={95} variant="gradient" />
             </div>
-          </div>
+          </Card>
 
-          <div className="flex-1">
-            <h3 className="text-sm font-bold text-white uppercase mb-4">
-              SELECTED PROJECTS HIGHLIGHTS
+          {/* Certifications */}
+          <Card className="flex flex-col">
+            <div className="flex justify-between items-center mb-6">
+              <h3 className="text-lg font-bold text-white uppercase tracking-widest flex items-center gap-2">
+                <span className="text-yellow-400">🏆</span> Certifications
+              </h3>
+              <a
+                href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-teal-400 hover:text-teal-300 flex items-center gap-1 bg-teal-500/10 px-3 py-1.5 rounded-lg transition-colors"
+              >
+                Drive <FaExternalLinkAlt size={10} />
+              </a>
+            </div>
+
+            <div className="flex flex-col gap-4">
+              {badgesData.map((badge) => {
+                const isExpanded = expandedBadge === badge.id;
+                return (
+                  <div key={badge.id} className="flex flex-col">
+                    <div
+                      onClick={() => toggleBadge(badge.id)}
+                      className={`relative bg-[#161b22]/80 border ${isExpanded ? "border-teal-500/50 shadow-[0_0_15px_rgba(20,184,166,0.1)]" : "border-slate-700/50"} p-4 rounded-xl flex items-center space-x-4 hover:border-teal-500/50 transition-all cursor-pointer group`}
+                    >
+                      <img
+                        src={badge.icon}
+                        alt={badge.title}
+                        className={`w-12 h-12 rounded-lg flex items-center justify-center p-1.5 border shadow-inner ${badge.iconClass}`}
+                      />
+                      <div className="flex-1 pr-6">
+                        <p className="text-sm text-white font-bold leading-tight group-hover:text-teal-300 transition-colors">
+                          {badge.title}
+                        </p>
+                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-wider">
+                          {badge.images.length} Certificates
+                        </p>
+                      </div>
+                      <div className="absolute right-4 text-slate-500 group-hover:text-teal-400 transition-colors">
+                        {isExpanded ? (
+                          <FaChevronCircleUp size={18} />
+                        ) : (
+                          <FaChevronCircleDown size={18} />
+                        )}
+                      </div>
+                    </div>
+
+                    {/* Expanded Content */}
+                    <div
+                      className={`overflow-hidden transition-all duration-300 ease-in-out ${isExpanded ? "max-h-[800px] mt-3 opacity-100" : "max-h-0 opacity-0"}`}
+                    >
+                      <div className="p-4 bg-[#161b22] border border-slate-700/50 rounded-xl grid grid-cols-2 gap-3">
+                        {badge.images.map((img, i) => (
+                          <div
+                            key={i}
+                            className="relative group/img aspect-[4/3] rounded-lg overflow-hidden border border-slate-600"
+                          >
+                            <img
+                              src={img.src}
+                              alt={img.alt}
+                              title={img.alt}
+                              className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/60 opacity-0 group-hover/img:opacity-100 flex items-center justify-center transition-opacity duration-300 backdrop-blur-sm">
+                              <span className="text-[10px] text-white text-center px-2 font-semibold">
+                                {img.alt}
+                              </span>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </Card>
+
+          {/* Featured Projects Highlight */}
+          <Card>
+            <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
+              <span className="text-emerald-400">💻</span> Top Projects
             </h3>
+
             <div className="space-y-4">
-              {/* Highlight Project 1 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-30 h-auto rounded -mb-2 relative flex flex-col">
+              {/* Project 1 */}
+              <div className="bg-[#161b22]/80 border border-slate-700/50 p-4 rounded-xl flex flex-col sm:flex-row gap-4 hover:border-emerald-500/30 transition-colors">
+                <div className="w-full sm:w-32 shrink-0">
                   <ProjectGalleryItem
                     images={[
                       MainPage,
@@ -324,114 +314,64 @@ export default function ResumePage() {
                     projectUrl="https://live-bingo-v2.netlify.app/"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-between">
                   <div>
-                    <h4 className="text-[13px] font-bold text-white mb-1 leading-tight">
+                    <h4 className="text-sm font-bold text-white mb-1">
                       Live Bingo
                     </h4>
-                    <p className="text-[10px] w-[60%] text-slate-400 line-clamp-2">
-                      A live multiplayer Bingo game where user can host their
-                      own rooms or join others to play. Mark the players cards
-                      in real-time.
+                    <p className="text-xs text-slate-400 line-clamp-3">
+                      A live multiplayer Bingo game utilizing WebSockets for
+                      real-time synchronization between hosts and players.
                     </p>
                   </div>
-                  <div className="flex space-x-2 text-xs mt-2">
-                    <img
-                      src={IconMongoDb}
-                      alt="MongoDB"
-                      title="MongoDB"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconExpressJs}
-                      alt="Express.js"
-                      title="Express.js"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconReactJs}
-                      alt="React"
-                      title="React"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconNodeJs}
-                      alt="Node.js"
-                      title="Node.js"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconSocketIO}
-                      alt="Socket.IO"
-                      title="Socket.IO"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
+                  <div className="flex gap-2 mt-3">
+                    {[IconReactJs, IconNodeJs, IconSocketIO].map((Icon, i) => (
+                      <img
+                        key={i}
+                        src={Icon}
+                        alt="Tech Icon"
+                        className="w-5 h-5 opacity-70"
+                      />
+                    ))}
                   </div>
                 </div>
               </div>
 
-              {/* Highlight Project 2 */}
-              <div className="bg-[#21262d] border border-slate-700/50 p-4 rounded-xl flex space-x-4 hover:border-slate-500 transition-colors cursor-pointer">
-                <div className="w-30 h-auto rounded -mb-2 relative flex flex-col">
+              {/* Project 2 */}
+              <div className="bg-[#161b22]/80 border border-slate-700/50 p-4 rounded-xl flex flex-col sm:flex-row gap-4 hover:border-emerald-500/30 transition-colors">
+                <div className="w-full sm:w-32 shrink-0">
                   <ProjectGalleryItem
-                    images={[
-                      MainPage,
-                      CreateRoom,
-                      JoinRoom,
-                      HostPage,
-                      PlayerRoom,
-                    ]}
-                    projectUrl="https://live-bingo-v2.netlify.app/"
+                    images={[MainPage, CreateRoom]}
+                    projectUrl="https://pro-shop-ecommerce-admin.netlify.app/admin"
                   />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col justify-between">
                   <div>
-                    <h4 className="text-[13px] font-bold text-white mb-1 leading-tight">
-                      ProShop - Admin Dashboard
+                    <h4 className="text-sm font-bold text-white mb-1">
+                      ProShop Admin
                     </h4>
-                    <p className="text-[10px] w-[60%] text-slate-400 line-clamp-2">
-                      An exclusive administrative gateway for precision
-                      inventory management, live order tracking, and
-                      comprehensive sales oversight.
+                    <p className="text-xs text-slate-400 line-clamp-3">
+                      Administrative gateway for precision inventory management,
+                      live order tracking, and sales analytics.
                     </p>
                   </div>
-                  <div className="flex space-x-2 text-xs mt-2">
-                    <img
-                      src={IconMongoDb}
-                      alt="MongoDB"
-                      title="MongoDB"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconExpressJs}
-                      alt="Express.js"
-                      title="Express.js"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconReactJs}
-                      alt="React"
-                      title="React"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconNodeJs}
-                      alt="Node.js"
-                      title="Node.js"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
-                    <img
-                      src={IconSocketIO}
-                      alt="Socket.IO"
-                      title="Socket.IO"
-                      className="w-5 h-5 bg-slate-800 rounded flex items-center justify-center text-blue-400"
-                    />
+                  <div className="flex gap-2 mt-3">
+                    {[IconReactJs, IconMongoDb, IconExpressJs].map(
+                      (Icon, i) => (
+                        <img
+                          key={i}
+                          src={Icon}
+                          alt="Tech Icon"
+                          className="w-5 h-5 opacity-70"
+                        />
+                      ),
+                    )}
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        </Card>
+          </Card>
+        </div>
       </div>
     </div>
   );
