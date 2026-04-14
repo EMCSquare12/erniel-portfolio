@@ -513,7 +513,8 @@ export default function ProjectsPage() {
   };
 
   const renderSingleGalleryExpanded = (index) => {
-    const isExp = index === "expanded";
+    // FIX: Set isExp to true since this function is exclusively for the expanded state
+    const isExp = true;
 
     const it = galleryItems[index];
     return (
@@ -525,7 +526,7 @@ export default function ProjectsPage() {
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pr-2 pb-2">
-          <ImageSlider images={mockImagesLiveBingo} isExp={true} />
+          <ImageSlider images={mockImagesLiveBingo} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
             {/* Left Side: MERN Tech Stack Icons */}
@@ -575,34 +576,22 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4
-              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
-            >
+            <h4 className="font-bold text-white text-md mb-2 uppercase tracking-wider shrink-0">
               Project Description
             </h4>
             <div className="space-y-3">
-              <div>
-                {liveBingoDetails.map((detail, idx) => (
-                  <div key={idx}>
-                    <h5
-                      className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
-                    >
-                      ✓ {detail.title}
-                    </h5>
-                    {isExp ? (
-                      <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
-                        {detail.descriptions.map((desc, i) => (
-                          <li key={i}>{desc}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                        {detail.descriptions}
-                      </p>
-                    )}
-                  </div>
-                ))}
-              </div>
+              {liveBingoDetails.map((detail, idx) => (
+                <div key={idx}>
+                  <h5 className="text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5">
+                    ✓ {detail.title}
+                  </h5>
+                  <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                    {detail.descriptions.map((desc, i) => (
+                      <li key={i}>{desc}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
             </div>
           </div>
         </div>
