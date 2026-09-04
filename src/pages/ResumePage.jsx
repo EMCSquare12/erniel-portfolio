@@ -122,7 +122,7 @@ export default function ResumePage() {
         <div className="xl:col-span-7 space-y-8">
           <Card>
             <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-8 flex items-center gap-2">
-              <span className="text-blue-500">直</span> Career Evolution
+              Career Evolution
             </h3>
             <div className="relative pl-6 border-l-2 border-slate-700/50 space-y-10">
               {timelineData.map((item, idx) => (
@@ -160,7 +160,7 @@ export default function ResumePage() {
           {/* Education Section */}
           <Card>
             <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-              <span className="text-purple-400">🎓</span> Education
+              Education
             </h3>
             <div className="space-y-6">
               <div className="flex flex-col sm:flex-row justify-between sm:items-center bg-[#161b22]/50 p-4 rounded-xl border border-slate-700/50">
@@ -199,7 +199,7 @@ export default function ResumePage() {
           {/* Hybrid Toolkit */}
           <Card>
             <h3 className="text-lg font-bold text-blue-400 uppercase tracking-widest mb-6 flex items-center gap-2">
-              <span className="text-blue-500">🛠️</span> Core Toolkit
+              Core Toolkit
             </h3>
             <div className="space-y-2">
               <ProgressBar label="React" percentage={85} variant="gradient" />
@@ -218,7 +218,7 @@ export default function ResumePage() {
           <Card className="flex flex-col">
             <div className="flex justify-between items-center mb-6">
               <h3 className="text-lg font-bold text-white uppercase tracking-widest flex items-center gap-2">
-                <span className="text-yellow-400">🏆</span> Certifications
+                Certifications
               </h3>
               <a
                 href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
@@ -295,7 +295,7 @@ export default function ResumePage() {
           {/* Featured Projects Highlight */}
           <Card>
             <h3 className="text-lg font-bold text-white uppercase tracking-widest mb-6 flex items-center gap-2">
-              <span className="text-emerald-400">💡</span> Top Projects
+              Top Projects
             </h3>
 
             <div className="space-y-4">

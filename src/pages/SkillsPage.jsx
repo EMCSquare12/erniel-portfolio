@@ -147,9 +147,7 @@ export default function SkillsPage() {
                   Embedded BI in React apps
                 </p>
               </div>
-              <div className="absolute left-1/2 -translate-x-1/2 text-2xl">
-                🌉
-              </div>
+
               <div className="text-center w-1/2 px-2">
                 <p className="text-teal-400 text-xs font-bold mb-1">
                   Live Data Feeds & Visualizations
@@ -171,7 +169,6 @@ export default function SkillsPage() {
               <span className="text-2xl mb-1 text-blue-400">👨‍💼</span>
               <span className="text-[10px]">Admin/IT Support</span>
             </div>
-            <span className="text-xl text-teal-400">🌉&rarr;</span>
             <div className="flex flex-col items-center">
               <span className="text-2xl mb-1 text-teal-400">💼</span>
               <span className="text-[10px]">New careers</span>
@@ -187,7 +184,7 @@ export default function SkillsPage() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <Card>
           <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
-            <span className="text-blue-400 mr-2">📚</span> Frameworks
+            Frameworks
           </h3>
           <div className="flex flex-wrap gap-2">
             <Tag src={Redux} alt="Redux">
@@ -216,7 +213,7 @@ export default function SkillsPage() {
 
         <Card>
           <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
-            <span className="text-teal-400 mr-2">🚀</span> Deployment
+            Deployment
           </h3>
           <div className="flex flex-wrap gap-2">
             <Tag src={Github} alt="Github">
@@ -235,7 +232,7 @@ export default function SkillsPage() {
 
         <Card>
           <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
-            <span className="text-yellow-400 mr-2">📈</span> Data Analytics
+            Data Analytics
           </h3>
           <div className="flex flex-wrap gap-2">
             <Tag>Excel Formula</Tag>
@@ -248,7 +245,7 @@ export default function SkillsPage() {
 
         <Card>
           <h3 className="font-bold text-white uppercase text-sm mb-4 flex items-center">
-            <span className="text-purple-400 mr-2">🤖</span> AI Techniques
+            AI Techniques
           </h3>
           <div className="flex flex-wrap gap-2">
             <Tag>AI Prompting Technique</Tag>

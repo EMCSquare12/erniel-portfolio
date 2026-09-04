@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
-import {
-  FaExternalLinkAlt,
-  FaChevronLeft,
-  FaChevronRight,
-} from "react-icons/fa";
+import { ExternalLink, ChevronLeft, ChevronRight } from "lucide-react";
 
-export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
+export const ProjectGalleryItem = ({
+  title,
+  images,
+  projectUrl,
+  align = "center",
+}) => {
   const [currentIndex, setCurrentIndex] = useState(0);
 
   // Auto-slide effect
@@ -33,6 +34,20 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
     setCurrentIndex((prev) => (prev - 1 + images.length) % images.length);
   };
 
+  // Determine dynamic classes based on tooltip alignment
+  let popupClasses = "left-1/2 -translate-x-1/2";
+  let arrowClasses = "left-1/2 -translate-x-1/2";
+
+  if (align === "left") {
+    popupClasses = "left-1/2 -translate-x-1/2 sm:left-0 sm:translate-x-0";
+    arrowClasses = "left-1/2 -translate-x-1/2 sm:left-16 sm:translate-x-0";
+  } else if (align === "right") {
+    popupClasses =
+      "left-1/2 -translate-x-1/2 sm:right-0 sm:translate-x-0 sm:left-auto";
+    arrowClasses =
+      "left-1/2 -translate-x-1/2 sm:right-16 sm:translate-x-0 sm:left-auto";
+  }
+
   return (
     <div className="relative group cursor-pointer">
       {/* Main Thumbnail */}
@@ -54,7 +69,9 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
       </p>
 
       {/* Tooltip Popup */}
-      <div className="absolute left-1/2 -translate-x-1/2 bottom-full mb-3 w-64 md:w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-100">
+      <div
+        className={`absolute bottom-full mb-3 w-64 md:w-80 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 z-[100] ${popupClasses}`}
+      >
         <div className="bg-[#1c2128] border border-slate-600 rounded-xl p-2 shadow-2xl relative">
           {/* Image Slider */}
           <div className="h-40 overflow-hidden rounded-lg relative group/slider">
@@ -79,7 +96,7 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
                 className="absolute top-2 right-2 p-2 bg-black/70 backdrop-blur-sm rounded-lg text-white hover:bg-blue-500 hover:scale-110 transition-all z-10 flex items-center gap-2"
                 title="Open to Web"
               >
-                <FaExternalLinkAlt size={12} />
+                <ExternalLink size={12} />
               </a>
             )}
 
@@ -90,19 +107,21 @@ export const ProjectGalleryItem = ({ title, images, projectUrl }) => {
                   onClick={prevImage}
                   className="absolute left-1 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-blue-500 transition-all"
                 >
-                  <FaChevronLeft size={12} />
+                  <ChevronLeft size={12} />
                 </button>
                 <button
                   onClick={nextImage}
                   className="absolute right-1 top-1/2 -translate-y-1/2 p-1.5 bg-black/60 text-white rounded-full opacity-0 group-hover/slider:opacity-100 hover:bg-blue-500 transition-all"
                 >
-                  <FaChevronRight size={12} />
+                  <ChevronRight size={12} />
                 </button>
               </>
             )}
           </div>
           {/* Pointer Arrow */}
-          <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 bg-[#1c2128] border-b border-r border-slate-600 transform rotate-45"></div>
+          <div
+            className={`absolute -bottom-1.5 w-3 h-3 bg-[#1c2128] border-b border-r border-slate-600 transform rotate-45 ${arrowClasses}`}
+          ></div>
         </div>
       </div>
     </div>

@@ -105,7 +105,7 @@ export default function ContactPage() {
           {/* Right Column: Contact Form */}
           <div className="bg-[#161b22] border border-slate-700/50 rounded-2xl p-6 md:p-8 shadow-inner flex flex-col justify-center">
             <h3 className="font-bold text-white uppercase text-sm mb-6 flex items-center gap-2">
-              <FaPaperPlane className="text-cyan-400" /> SEND A DIRECT MESSAGE
+              SEND A DIRECT MESSAGE
             </h3>
 
             <form

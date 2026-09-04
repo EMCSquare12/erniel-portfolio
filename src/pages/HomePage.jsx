@@ -33,12 +33,12 @@ export default function HomePage() {
             from complex data.
           </p>
           <div className="flex space-x-4">
-            <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors">
+            {/* <button className="px-6 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors">
               VIEW PROJECT PORTFOLIO
             </button>
             <button className="px-6 py-2 bg-transparent border border-blue-500 text-blue-400 hover:bg-blue-500/10 text-sm font-semibold rounded-lg transition-colors">
               EXPLORE DATA VISUALIZATIONS
-            </button>
+            </button> */}
           </div>
         </div>
         <img className="w-60 h-40" src={Hero} alt="Laptop and Mobile Device" />
