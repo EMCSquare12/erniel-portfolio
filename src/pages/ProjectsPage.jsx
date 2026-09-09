@@ -24,13 +24,11 @@ import {
 // Assets
 import {
   IconGithub as Github,
-  // Project Live Bingo
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoCreateRoom as CreateRoom,
   ProjectLiveBingoJoinRoom as JoinRoom,
   ProjectLiveBingoHostPage as HostPage,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
-  // Project Proshop-Client
   ProjectProshop_1 as ProjectProshop_Client_1,
   ProjectProshop_2 as ProjectProshop_Client_2,
   ProjectProshop_3 as ProjectProshop_Client_3,
@@ -42,7 +40,6 @@ import {
   ProjectProshop_9 as ProjectProshop_Client_9,
   ProjectProshop_10 as ProjectProshop_Client_10,
   ProjectProshop_11 as ProjectProshop_Client_11,
-  // Project Proshop-Admin
   ProShop_Admin_1,
   ProShop_Admin_2,
   ProShop_Admin_3,
@@ -88,12 +85,10 @@ const mockImagesLiveBingo = [
   PlayerRoom,
 ];
 
-// Formatting Helper to highlight text before the colon
 const formatDescription = (text) => {
   if (typeof text !== "string") return text;
   const colonIndex = text.indexOf(":");
 
-  // Only format if a colon exists and it's reasonably near the beginning (avoids formatting mid-sentence colons/URLs)
   if (colonIndex !== -1 && colonIndex < 60) {
     const label = text.slice(0, colonIndex + 1);
     const remainder = text.slice(colonIndex + 1);
@@ -110,9 +105,8 @@ const formatDescription = (text) => {
 const SidebarCard = ({ id, title, image, setExpandedCard }) => (
   <Card
     onClick={() => setExpandedCard(id)}
-    className="relative flex flex-col cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[120px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-0 group overflow-hidden rounded-lg border border-slate-700 bg-slate-800"
+    className="relative flex flex-col cursor-pointer hover:border-emerald-500/50 transition-colors min-h-[100px] h-[110px] lg:h-[calc((100%-2rem)/3)] shrink-0 w-full p-0 group overflow-hidden rounded-lg border border-slate-700 bg-slate-800"
   >
-    {/* Image Container covering the card */}
     <div className="absolute inset-0 w-full h-full">
       {image ? (
         <img
@@ -126,9 +120,7 @@ const SidebarCard = ({ id, title, image, setExpandedCard }) => (
         </div>
       )}
     </div>
-
-    {/* Title Overlay with Gradient for readability */}
-    <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-slate-950/80 to-transparent z-10">
+    <div className="absolute bottom-0 left-0 right-0 p-2.5 bg-gradient-to-t from-slate-950/80 to-transparent z-10">
       <h3 className="font-bold text-white text-center text-[11px] line-clamp-1">
         {title}
       </h3>
@@ -142,7 +134,7 @@ const ShrinkButton = ({ setExpandedCard }) => (
       e.stopPropagation();
       setExpandedCard(null);
     }}
-    className="absolute top-4 right-4 p-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-2 text-xs font-bold border border-slate-500 shadow-lg transition-colors"
+    className="absolute top-3 right-3 sm:top-4 sm:right-4 p-2 bg-slate-700 hover:bg-slate-600 rounded-lg text-white z-20 flex items-center gap-1.5 text-xs font-bold border border-slate-500 shadow-lg transition-colors"
     title="Shrink"
   >
     <FaCompressArrowsAlt />
@@ -152,17 +144,17 @@ const ShrinkButton = ({ setExpandedCard }) => (
 const ExpandButton = ({
   id,
   setExpandedCard,
-  className = "top-4 right-4 p-2",
+  className = "top-3 right-3 p-2",
 }) => (
   <button
     onClick={(e) => {
       e.stopPropagation();
       setExpandedCard(id);
     }}
-    className={`absolute ${className} text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 opacity-0 group-hover:opacity-100`}
+    className={`absolute ${className} text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 md:opacity-0 group-hover:opacity-100`}
     title="Expand"
   >
-    <FaExpandArrowsAlt size={14} />
+    <FaExpandArrowsAlt size={13} />
   </button>
 );
 
@@ -213,13 +205,13 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />
         )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-20 sm:pr-24">
           Featured Project: ProShop
         </h3>
 
@@ -227,12 +219,11 @@ export default function ProjectsPage() {
           <ImageSlider images={mockImagesProShopClient} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
-            {/* Left Side: MERN Tech Stack Icons */}
-            <div className="flex space-x-2">
+            <div className="flex space-x-1.5 sm:space-x-2">
               {proShopClientIcons.map((tech, idx) => (
                 <div
                   key={idx}
-                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                 >
                   <img
                     src={tech.src}
@@ -244,7 +235,6 @@ export default function ProjectsPage() {
               ))}
             </div>
 
-            {/* Right Side: GitHub and External Link Icons */}
             <div className="flex space-x-2">
               <a
                 href="https://github.com/EMCSquare12/e-commerce-project.git"
@@ -252,7 +242,7 @@ export default function ProjectsPage() {
                 rel="noreferrer"
                 title="GitHub Repository"
               >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <img
                     src={Github}
                     alt="GitHub Repository"
@@ -266,7 +256,7 @@ export default function ProjectsPage() {
                 rel="noreferrer"
                 title="External Link"
               >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <FaExternalLinkAlt size={12} />
                 </div>
               </a>
@@ -275,7 +265,7 @@ export default function ProjectsPage() {
 
           <div className="flex flex-col shrink-0">
             <h4
-              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+              className={`font-bold text-white ${isExp ? "text-sm sm:text-md" : "text-[11px]"} mb-2 uppercase tracking-wider shrink-0`}
             >
               Project Description
             </h4>
@@ -283,12 +273,12 @@ export default function ProjectsPage() {
               {proShopDetails.map((detail, idx) => (
                 <div key={idx}>
                   <h5
-                    className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                    className={`text-emerald-400 ${isExp ? "text-xs sm:text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
                   >
                     ✓ {detail.title}
                   </h5>
                   {isExp ? (
-                    <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{formatDescription(desc)}</li>
                       ))}
@@ -320,13 +310,13 @@ export default function ProjectsPage() {
     const isExp = mode === "expanded";
 
     return (
-      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />
         )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 truncate pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 truncate pr-20 sm:pr-24">
           Data Science Project: Segmentation
         </h3>
 
@@ -339,11 +329,11 @@ export default function ProjectsPage() {
             />
 
             <div className="flex justify-between items-center mb-4 shrink-0">
-              <div className="flex space-x-2">
+              <div className="flex space-x-1.5 sm:space-x-2">
                 {techIcons.map((tech, idx) => (
                   <div
                     key={idx}
-                    className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                    className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                   >
                     <img
                       src={tech.src}
@@ -356,7 +346,7 @@ export default function ProjectsPage() {
               </div>
 
               <div className="flex space-x-2">
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <img
                     src={Github}
                     alt="GitHub Repository"
@@ -365,7 +355,7 @@ export default function ProjectsPage() {
                   />
                 </div>
                 <div
-                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white"
                   title="External Link"
                 >
                   <FaExternalLinkAlt size={12} />
@@ -374,41 +364,31 @@ export default function ProjectsPage() {
             </div>
 
             <div className="flex flex-col shrink-0">
-              <h4
-                className={`font-bold text-white ${isExp ? "text-md" : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
-              >
+              <h4 className="font-bold text-white text-sm sm:text-md mb-2 uppercase tracking-wider shrink-0">
                 Project Description
               </h4>
               <div className="space-y-3">
                 {dataScienceDetails.map((detail, idx) => (
                   <div key={idx}>
-                    <h5
-                      className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
-                    >
+                    <h5 className="text-emerald-400 text-xs sm:text-md font-semibold mb-1 flex items-center gap-1.5">
                       ✓ {detail.title}
                     </h5>
-                    {isExp ? (
-                      <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
-                        {detail.descriptions.map((desc, i) => (
-                          <li key={i}>{formatDescription(desc)}</li>
-                        ))}
-                      </ul>
-                    ) : (
-                      <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                        {formatDescription(detail.descriptions[0])}
-                      </p>
-                    )}
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
+                      {detail.descriptions.map((desc, i) => (
+                        <li key={i}>{formatDescription(desc)}</li>
+                      ))}
+                    </ul>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-2 gap-4 flex-1 min-h-0 h-[140px] xl:h-[160px] 2xl:h-[180px] shrink-0 w-full overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 flex-1 min-h-0 shrink-0 w-full overflow-hidden">
             <ImageSlider
               images={mockImages}
               isExp={isExp}
-              customClass="relative bg-slate-800 rounded-lg border border-slate-700 h-full w-full overflow-hidden group/slider"
+              customClass="relative bg-slate-800 rounded-lg border border-slate-700 h-32 sm:h-full w-full overflow-hidden group/slider"
             />
             <div className="flex flex-col justify-start overflow-y-auto hover-scrollbar pr-2 pb-2">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
@@ -432,20 +412,20 @@ export default function ProjectsPage() {
         <SidebarCard
           id="moderntech"
           image={mockImagesProShopAdmin[0]}
-          title="Marketplace"
+          title="Marketplace Admin"
           setExpandedCard={setExpandedCard}
         />
       );
     const isExp = mode === "expanded";
 
     return (
-      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
         {!isExp && (
           <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />
         )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-20 sm:pr-24">
           ProShop - Admin Dashboard
         </h3>
 
@@ -453,11 +433,11 @@ export default function ProjectsPage() {
           <ImageSlider images={mockImagesProShopAdmin} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
-            <div className="flex space-x-2">
+            <div className="flex space-x-1.5 sm:space-x-2">
               {techIcons.map((tech, idx) => (
                 <div
                   key={idx}
-                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                 >
                   <img
                     src={tech.src}
@@ -476,7 +456,7 @@ export default function ProjectsPage() {
                 rel="noreferrer"
                 title="GitHub Repository"
               >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <img
                     src={Github}
                     alt="GitHub Repository"
@@ -490,7 +470,7 @@ export default function ProjectsPage() {
                 rel="noreferrer"
                 title="External Link"
               >
-                <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                   <FaExternalLinkAlt size={12} />
                 </div>
               </a>
@@ -499,7 +479,7 @@ export default function ProjectsPage() {
 
           <div className="flex flex-col shrink-0">
             <h4
-              className={`font-bold text-white ${isExp ? "text-md " : "text-[11px] "} mb-2 uppercase tracking-wider shrink-0`}
+              className={`font-bold text-white ${isExp ? "text-sm sm:text-md" : "text-[11px]"} mb-2 uppercase tracking-wider shrink-0`}
             >
               Project Description
             </h4>
@@ -507,12 +487,12 @@ export default function ProjectsPage() {
               {modernTechDetails.map((detail, idx) => (
                 <div key={idx}>
                   <h5
-                    className={`text-emerald-400 ${isExp ? "text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
+                    className={`text-emerald-400 ${isExp ? "text-xs sm:text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
                   >
                     ✓ {detail.title}
                   </h5>
                   {isExp ? (
-                    <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{formatDescription(desc)}</li>
                       ))}
@@ -534,15 +514,11 @@ export default function ProjectsPage() {
   const renderSingleGalleryExpanded = (index) => {
     const isExp = true;
     const it = galleryItems[index];
-
-    // Check if the selected project is Live Bingo
     const isLiveBingo = it.title === "Live Bingo";
 
-    // If it's Live Bingo, load its actual data. Otherwise, load placeholder data for the ongoing project.
     const currentImages = isLiveBingo ? mockImagesLiveBingo : [it.image];
     const currentIcons = isLiveBingo ? liveBingoIcons : [];
 
-    // Set URLs to empty strings for ongoing projects so the buttons hide automatically
     const currentRepoUrl = isLiveBingo
       ? "https://github.com/EMCSquare12/Live-Bingo-v2.git"
       : "";
@@ -564,10 +540,10 @@ export default function ProjectsPage() {
         ];
 
     return (
-      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         <ShrinkButton setExpandedCard={setExpandedCard} />
 
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
+        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-20 sm:pr-24">
           {it.title}
         </h3>
 
@@ -575,12 +551,11 @@ export default function ProjectsPage() {
           <ImageSlider images={currentImages} isExp={isExp} />
 
           <div className="flex justify-between items-center mb-4 shrink-0">
-            {/* Left Side: Tech Stack Icons */}
-            <div className="flex space-x-2 items-center">
+            <div className="flex space-x-2 items-center flex-wrap gap-y-1">
               {currentIcons.map((tech, idx) => (
                 <div
                   key={idx}
-                  className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
+                  className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1"
                 >
                   <img
                     src={tech.src}
@@ -591,13 +566,12 @@ export default function ProjectsPage() {
                 </div>
               ))}
               {!isLiveBingo && (
-                <span className="text-xs text-slate-500 italic bg-slate-800/50 px-3 py-1 rounded-full border border-slate-700">
+                <span className="text-[10px] sm:text-xs text-slate-500 italic bg-slate-800/50 px-2.5 py-1 rounded-full border border-slate-700">
                   Tech stack pending / Work in progress...
                 </span>
               )}
             </div>
 
-            {/* Right Side: GitHub and External Link Icons (Hidden for ongoing projects) */}
             <div className="flex space-x-2">
               {currentRepoUrl && (
                 <a
@@ -606,7 +580,7 @@ export default function ProjectsPage() {
                   rel="noreferrer"
                   title="GitHub Repository"
                 >
-                  <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                     <img
                       src={Github}
                       alt="GitHub Repository"
@@ -622,7 +596,7 @@ export default function ProjectsPage() {
                   rel="noreferrer"
                   title="External Link"
                 >
-                  <div className="w-7 h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
+                  <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-md bg-slate-800 border border-slate-700 flex items-center justify-center p-1 hover:bg-slate-700 hover:border-slate-500 transition-colors cursor-pointer text-white">
                     <FaExternalLinkAlt size={12} />
                   </div>
                 </a>
@@ -631,29 +605,20 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4 className="font-bold text-white text-md mb-2 uppercase tracking-wider shrink-0">
+            <h4 className="font-bold text-white text-xs sm:text-md mb-2 uppercase tracking-wider shrink-0">
               Project Description
             </h4>
             <div className="space-y-3">
               {currentDetails.map((detail, idx) => (
                 <div key={idx}>
                   <h5
-                    className={`text-emerald-400 text-md font-semibold mb-1 flex items-center gap-1.5 ${!isLiveBingo && "text-yellow-400"}`}
+                    className={`text-emerald-400 text-xs sm:text-md font-semibold mb-1 flex items-center gap-1.5 ${!isLiveBingo && "text-yellow-400"}`}
                   >
                     {isLiveBingo ? "✓" : "⚡"} {detail.title}
                   </h5>
-                  <ul className="text-sm text-slate-400 pl-4 list-disc space-y-1">
+                  <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
                     {detail.descriptions.map((desc, i) => (
-                      <li
-                        key={i}
-                        className={
-                          !isLiveBingo && i === 1
-                            ? "text-slate-300 font-medium"
-                            : ""
-                        }
-                      >
-                        {formatDescription(desc)}
-                      </li>
+                      <li key={i}>{formatDescription(desc)}</li>
                     ))}
                   </ul>
                 </div>
@@ -667,27 +632,25 @@ export default function ProjectsPage() {
 
   const renderGalleryDefault = () => {
     return (
-      <Card className="group flex flex-col h-full relative overflow-hidden w-full">
-        <h3 className="font-bold text-white mb-3 uppercase text-sm shrink-0 whitespace-nowrap pr-24">
+      <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
+        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-24">
           Project Gallery (All)
         </h3>
 
-        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-2 pb-2">
+        <div className="grid grid-cols-2 gap-3 overflow-y-auto flex-1 min-h-0 hover-scrollbar pr-1 pb-2">
           {galleryItems.map((it, i) => (
             <div
               key={i}
               onMouseEnter={() => setProjectGalleryId(i)}
-              className="group/gallery-item flex flex-col h-[120px] shrink-0 min-h-0 cursor-pointer"
+              onClick={() => setExpandedCard(`gallery-${i}`)}
+              className="group/gallery-item flex flex-col h-[110px] shrink-0 min-h-0 cursor-pointer"
             >
-              <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-2 w-full flex-1 overflow-hidden">
-                {projectGalleryId === i && (
-                  <ExpandButton
-                    id={`gallery-${i}`}
-                    setExpandedCard={setExpandedCard}
-                    className="top-1 right-1 p-1.5"
-                  />
-                )}
-
+              <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-1.5 w-full flex-1 overflow-hidden">
+                <ExpandButton
+                  id={`gallery-${i}`}
+                  setExpandedCard={setExpandedCard}
+                  className="top-1 right-1 p-1"
+                />
                 <img
                   className="block w-full h-full object-cover transition-transform duration-500 group-hover/gallery-item:scale-110"
                   src={it.image}
@@ -709,33 +672,33 @@ export default function ProjectsPage() {
     <>
       <style dangerouslySetInnerHTML={{ __html: hoverScrollbarStyles }} />
 
-      <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-2 h-[calc(100vh-3rem)] lg:h-[calc(100vh-4rem)]">
-        <h2 className="text-2xl font-bold text-white tracking-wide uppercase shrink-0">
+      <div className="max-w-7xl mx-auto flex flex-col space-y-4 pb-4 min-h-[calc(100vh-5rem)] lg:h-[calc(100vh-4rem)]">
+        <h2 className="text-xl sm:text-2xl font-bold text-white tracking-wide uppercase shrink-0">
           FEATURED PORTFOLIO{" "}
-          <span className="text-slate-400 font-light normal-case">
+          <span className="block sm:inline text-slate-400 font-light normal-case text-xs sm:text-base">
             | MERN Stack & Data Analytics
           </span>
         </h2>
 
         <div className="flex-1 min-h-0 w-full overflow-hidden">
           {expandedCard === null ? (
-            <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 h-full min-h-0 w-full">
-              <div className="lg:col-span-1 lg:row-span-2 h-full min-h-0">
+            <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-6 lg:h-full min-h-0 w-full">
+              <div className="lg:col-span-1 lg:row-span-2 h-[450px] lg:h-full min-h-0">
                 {renderProShop("default")}
               </div>
-              <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-full min-h-0">
+              <div className="lg:col-start-2 lg:col-span-2 lg:row-start-1 h-[320px] lg:h-full min-h-0">
                 {renderDataScience("default")}
               </div>
-              <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-full min-h-0">
+              <div className="lg:col-start-2 lg:col-span-1 lg:row-start-2 h-[350px] lg:h-full min-h-0">
                 {renderModernTech("default")}
               </div>
-              <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-full min-h-0">
+              <div className="lg:col-start-3 lg:col-span-1 lg:row-start-2 h-[350px] lg:h-full min-h-0">
                 {renderGalleryDefault()}
               </div>
             </div>
           ) : (
-            <div className="flex flex-col lg:flex-row gap-6 h-full min-h-0 w-full">
-              <div className="lg:flex-[3] w-full h-full min-h-0 flex flex-col">
+            <div className="flex flex-col lg:flex-row gap-6 lg:h-full min-h-0 w-full">
+              <div className="lg:flex-[3] w-full min-h-[450px] lg:h-full flex flex-col">
                 {expandedCard === "proshop" && renderProShop("expanded")}
                 {expandedCard === "datascience" &&
                   renderDataScience("expanded")}
@@ -746,8 +709,7 @@ export default function ProjectsPage() {
                   )}
               </div>
 
-              {/* Using flex column layout with strict heights to allow scroll for extra items */}
-              <div className="lg:flex-[1] w-full h-full min-h-0 flex flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2">
+              <div className="lg:flex-[1] w-full lg:h-full min-h-0 flex flex-col sm:flex-row lg:flex-col gap-4 overflow-y-auto hover-scrollbar pr-1 pb-2">
                 {expandedCard !== "proshop" && renderProShop("sidebar")}
                 {expandedCard !== "datascience" && renderDataScience("sidebar")}
                 {expandedCard !== "moderntech" && renderModernTech("sidebar")}

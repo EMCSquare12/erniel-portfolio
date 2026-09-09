@@ -9,10 +9,10 @@ import ContactPage from "./pages/ContactPage";
 
 export default function App() {
   return (
-    <div className="flex h-screen text-slate-200 font-sans selection:bg-blue-500/30">
+    <div className="flex flex-col md:flex-row min-h-screen md:h-screen text-slate-200 font-sans selection:bg-blue-500/30 overflow-x-hidden">
       <Sidebar />
 
-      <main className="flex-1 overflow-y-auto p-6 lg:p-8">
+      <main className="flex-1 overflow-y-auto p-4 sm:p-6 lg:p-8">
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/projects" element={<ProjectsPage />} />
