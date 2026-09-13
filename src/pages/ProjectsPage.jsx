@@ -267,29 +267,14 @@ export default function ProjectsPage() {
             <h4
               className={`font-bold text-white ${isExp ? "text-sm sm:text-md" : "text-[11px]"} mb-2 uppercase tracking-wider shrink-0`}
             >
-              Project Description
+              {proShopDetails[0].title}
             </h4>
             <div className="space-y-3">
-              {proShopDetails.map((detail, idx) => (
-                <div key={idx}>
-                  <h5
-                    className={`text-emerald-400 ${isExp ? "text-xs sm:text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
-                  >
-                    ✓ {detail.title}
-                  </h5>
-                  {isExp ? (
-                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
-                      {detail.descriptions.map((desc, i) => (
-                        <li key={i}>{formatDescription(desc)}</li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                      {formatDescription(detail.descriptions[0])}
-                    </p>
-                  )}
-                </div>
-              ))}
+              <p className="text-xs sm:text-sm text-slate-400 list-disc space-y-1">
+                {proShopDetails[0].descriptions}
+              </p>
+
+              
             </div>
           </div>
         </div>

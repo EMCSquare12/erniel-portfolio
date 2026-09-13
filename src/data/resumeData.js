@@ -16,6 +16,7 @@ import {
 export const timelineData = [
   {
     role: "Housekeeping",
+    company: "Service One Corporation",
     period: "2016-2018",
     color: "bg-blue-400",
     bullets: [
@@ -26,6 +27,7 @@ export const timelineData = [
   },
   {
     role: "Data Encoder",
+    company: "ZIP",
     period: "2019-2020",
     color: "bg-teal-400",
     bullets: [
@@ -36,6 +38,7 @@ export const timelineData = [
   },
   {
     role: "Admin Clerk",
+    company: "Robinsons Daiso Diversified Corp.",
     period: "2021-2022",
     color: "bg-slate-500",
     bullets: [
@@ -46,6 +49,7 @@ export const timelineData = [
   },
   {
     role: "Admin and IT Support",
+    company: "Live Events and Digital Media Corp.",
     period: "Current",
     color: "bg-slate-600",
     bullets: [

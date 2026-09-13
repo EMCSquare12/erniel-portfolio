@@ -36,17 +36,20 @@ export default function ResumePage() {
   return (
     <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 pb-12">
       {/* HEADER CARD */}
-      <Card className="bg-[#1c2128]/80 backdrop-blur-md border border-slate-700/50 rounded-2xl flex flex-col md:flex-row gap-6 shadow-xl p-4 sm:p-6 items-center md:items-stretch">
-        <div className="shrink-0 flex items-center justify-center">
-          <img
-            src={Profile}
-            alt="Erniel Caalim"
-            className="w-36 h-36 sm:w-44 sm:h-44 rounded-xl border border-slate-700/50 shadow-sm object-cover bg-[#21262d]"
-          />
-        </div>
+      <Card className="bg-[#1c2128]/80 backdrop-blur-md border border-slate-700/50 rounded-2xl flex flex-col gap-6 shadow-xl p-4 sm:p-6">
+        {/* TOP ROW: Profile Image & Professional Summary (Equal Height & Alignment) */}
+        <div className="flex flex-col md:flex-row items-stretch gap-4 sm:gap-6 w-full">
+          {/* Profile Image Container */}
+          <div className="shrink-0 flex items-center justify-center md:w-44 md:h-auto">
+            <img
+              src={Profile}
+              alt="Erniel Caalim"
+              className="w-36 h-36 sm:w-44 sm:h-44 md:w-full md:h-full rounded-xl border border-slate-700/50 shadow-sm object-cover bg-[#21262d]"
+            />
+          </div>
 
-        <div className="flex-1 flex flex-col min-w-0 w-full">
-          <div className="bg-[#161b22]/50 border border-slate-700/60 p-4 sm:p-5 rounded-xl shadow-inner max-h-48 w-full mb-4 shrink-0 overflow-y-auto custom-scrollbar">
+          {/* Professional Summary Container */}
+          <div className="flex-1 bg-[#161b22]/50 border border-slate-700/60 p-4 sm:p-5 rounded-xl shadow-inner w-full flex flex-col justify-center overflow-y-auto custom-scrollbar">
             <p className="text-[10px] sm:text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-2">
               Professional Summary
             </p>
@@ -60,47 +63,27 @@ export default function ResumePage() {
               insights.
             </p>
           </div>
+        </div>
 
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 w-full mt-auto">
-            <div className="flex flex-wrap justify-center sm:justify-start gap-4">
-              <Link
-                to="/"
-                className="text-slate-400 hover:text-white transition-colors text-xs sm:text-sm font-semibold tracking-wider whitespace-nowrap"
-              >
-                Landing portfolio
-              </Link>
-              <Link
-                to="/resume"
-                className="text-teal-400 hover:text-teal-300 transition-colors text-xs sm:text-sm font-semibold tracking-wider whitespace-nowrap"
-              >
-                Resume
-              </Link>
-              <Link
-                to="/contact"
-                className="text-slate-400 hover:text-white transition-colors text-xs sm:text-sm font-semibold tracking-wider whitespace-nowrap"
-              >
-                Contact
-              </Link>
-            </div>
-
-            <div className="flex flex-wrap justify-center gap-2.5">
-              <a
-                href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center px-4 py-2 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
-              >
-                Download Resume
-              </a>
-              <a
-                href="https://linkedin.com/in/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center px-4 py-2 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
-              >
-                Linkedin
-              </a>
-            </div>
+        {/* BOTTOM ROW: Navigation Links & Download Buttons */}
+        <div className="flex flex-col sm:flex-row justify-end gap-4 w-full  border-slate-700/30">
+          <div className="flex flex-wrap justify-center gap-2.5">
+            <a
+              href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center px-4 py-2 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
+            >
+              Download Resume
+            </a>
+            <a
+              href="https://linkedin.com/in/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center px-4 py-2 bg-[#161b22] border border-slate-600 text-white rounded-lg text-xs font-bold hover:bg-slate-700 transition-all"
+            >
+              Linkedin
+            </a>
           </div>
         </div>
       </Card>
@@ -110,7 +93,7 @@ export default function ResumePage() {
         {/* LEFT COLUMN */}
         <div className="xl:col-span-7 space-y-6 sm:space-y-8">
           <Card>
-            <h3 className="text-base sm:text-lg font-bold text-blue-400 uppercase tracking-widest mb-6 flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold  uppercase tracking-widest mb-6 flex items-center gap-2">
               Career Evolution
             </h3>
             <div className="relative pl-5 sm:pl-6 border-l-2 border-slate-700/50 space-y-8 sm:space-y-10">
@@ -121,9 +104,16 @@ export default function ResumePage() {
                   ></div>
 
                   <div className="flex flex-col sm:flex-row sm:justify-between sm:items-baseline mb-2">
-                    <h4 className="text-white font-bold text-sm sm:text-base">
-                      {item.role}
-                    </h4>
+                    <div>
+                      <h4 className="text-white font-bold text-sm sm:text-base inline">
+                        {item.role}
+                      </h4>
+                      {item.company && (
+                        <span className="text-slate-400 text-xs sm:text-sm font-bold ml-1.5">
+                          ({item.company})
+                        </span>
+                      )}
+                    </div>
                     <span className="text-[10px] sm:text-xs font-semibold text-slate-500 bg-slate-800/50 px-2.5 py-0.5 sm:py-1 rounded-full border border-slate-700/50 mt-1 sm:mt-0 inline-block w-max">
                       {item.period}
                     </span>
