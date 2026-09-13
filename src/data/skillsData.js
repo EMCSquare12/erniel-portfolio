@@ -41,8 +41,8 @@ export const mernSkills = [
 export const dataSkills = [
   {
     label: "Excel",
-    percentage: 85,
-    score: "85%",
+    percentage: 90,
+    score: "90%",
     subtitle: "Formulas & Pivots",
     colorClass: "bg-gradient-to-r from-teal-600 via-teal-500 to-emerald-400",
   },

@@ -48,7 +48,7 @@ export default function ResumePage() {
           </div>
 
           <div className="flex-1 bg-[#161b22]/50 border border-slate-700/60 p-4 sm:p-5 rounded-xl shadow-inner w-full flex flex-col justify-center overflow-y-auto custom-scrollbar">
-            <p className="text-[10px] sm:text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-2">
+            <p className="text-base sm:text-lg text-white font-bold uppercase tracking-widest text-left mb-2">
               Professional Summary
             </p>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed text-justify">
