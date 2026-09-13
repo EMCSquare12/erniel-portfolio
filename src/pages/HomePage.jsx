@@ -126,7 +126,7 @@ export default function HomePage() {
               cleaning 500k+ rows with Power Query/SQL.
             </p>
           </Card>
-          <Card>
+          {/* <Card>
             <h3 className="font-bold text-white mb-2">The Hybrid Approach</h3>
             <div className="flex items-center space-x-3 sm:space-x-4">
               <div className="p-2.5 sm:p-3 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-mono shrink-0">
@@ -137,7 +137,7 @@ export default function HomePage() {
                 Data-Driven Web Solutions.
               </p>
             </div>
-          </Card>
+          </Card> */}
         </div>
 
         {/* COLUMN 3 */}

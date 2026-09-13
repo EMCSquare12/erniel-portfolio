@@ -13,7 +13,7 @@ import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
 import { timelineData, badgesData } from "../data/resumeData";
 
 import {
-  Hero,
+  Profile,
   IconMongoDb,
   IconExpressJs,
   IconReactJs,
@@ -39,7 +39,7 @@ export default function ResumePage() {
       <Card className="bg-[#1c2128]/80 backdrop-blur-md border border-slate-700/50 rounded-2xl flex flex-col md:flex-row gap-6 shadow-xl p-4 sm:p-6 items-center md:items-stretch">
         <div className="shrink-0 flex items-center justify-center">
           <img
-            src={Hero}
+            src={Profile}
             alt="Erniel Caalim"
             className="w-36 h-36 sm:w-44 sm:h-44 rounded-xl border border-slate-700/50 shadow-sm object-cover bg-[#21262d]"
           />
@@ -182,20 +182,48 @@ export default function ResumePage() {
 
         {/* RIGHT COLUMN */}
         <div className="xl:col-span-5 space-y-6 sm:space-y-8">
+          {/* TECHNICAL CORE SKILLS CARD (CONSOLIDATED CATEGORY BARS) */}
           <Card>
-            <h3 className="text-base sm:text-lg font-bold text-blue-400 uppercase tracking-widest mb-4 sm:mb-6 flex items-center gap-2">
-              Core Toolkit
+            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest mb-6">
+              Technical Core Skills
             </h3>
-            <div className="space-y-2">
-              <ProgressBar label="React" percentage={85} variant="gradient" />
-              <ProgressBar label="Node.js" percentage={80} variant="gradient" />
-              <ProgressBar label="SQL" percentage={90} variant="gradient" />
+
+            <div className="space-y-6">
+              {/* 1. MERN PROFICIENCY & WEB DEVELOPMENT */}
               <ProgressBar
-                label="Power BI"
-                percentage={85}
-                variant="gradient"
+                label={
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-blue-400 uppercase tracking-wider">
+                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                    MERN Proficiency & Web Development
+                  </span>
+                }
+                percentage={90}
+                colorClass="bg-blue-500"
               />
-              <ProgressBar label="Excel" percentage={95} variant="gradient" />
+
+              {/* 2. ANALYTIC TOOL PROFICIENCY & DATA ANALYSIS */}
+              <ProgressBar
+                label={
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-teal-400 uppercase tracking-wider">
+                    <span className="w-2.5 h-2.5 rounded-full bg-teal-500 shrink-0"></span>
+                    Analytic Tool Proficiency & Data Analysis
+                  </span>
+                }
+                percentage={85}
+                colorClass="bg-teal-500"
+              />
+
+              {/* 3. IT SPECIALIST & NETWORK OPERATIONS */}
+              <ProgressBar
+                label={
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-amber-400 uppercase tracking-wider">
+                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+                    IT Specialist & Network Operations
+                  </span>
+                }
+                percentage={88}
+                colorClass="bg-amber-500"
+              />
             </div>
           </Card>
 

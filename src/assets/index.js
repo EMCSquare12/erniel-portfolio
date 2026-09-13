@@ -1,6 +1,7 @@
 // src/assets/index.js
 
 export { default as Hero } from "./hero.png";
+export { default as Profile } from "./profile.jpg";
 export { default as ViteLogo } from "./vite.svg";
 
 // Certificates
