@@ -1,10 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import {
-  FaChevronCircleDown,
-  FaChevronCircleUp,
-  FaExternalLinkAlt,
-} from "react-icons/fa";
 
 import { Card } from "../components/ui/Card";
 import { ProgressBar } from "../components/ui/ProgressBar";
@@ -14,8 +8,6 @@ import { timelineData, badgesData } from "../data/resumeData";
 
 import {
   Profile,
-  IconMongoDb,
-  IconExpressJs,
   IconReactJs,
   IconNodeJs,
   IconSocketIO,
@@ -25,6 +17,15 @@ import {
   ProjectLiveBingoMainPage as MainPage,
   ProjectLiveBingoPlayerRoom as PlayerRoom,
 } from "../assets";
+
+import {
+  FaChevronCircleDown,
+  FaChevronCircleUp,
+  FaExternalLinkAlt,
+  FaCode,
+  FaChartBar,
+  FaServer,
+} from "react-icons/fa";
 
 export default function ResumePage() {
   const [expandedBadge, setExpandedBadge] = useState(null);
@@ -37,9 +38,7 @@ export default function ResumePage() {
     <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8 pb-12">
       {/* HEADER CARD */}
       <Card className="bg-[#1c2128]/80 backdrop-blur-md border border-slate-700/50 rounded-2xl flex flex-col gap-6 shadow-xl p-4 sm:p-6">
-        {/* TOP ROW: Profile Image & Professional Summary (Equal Height & Alignment) */}
         <div className="flex flex-col md:flex-row items-stretch gap-4 sm:gap-6 w-full">
-          {/* Profile Image Container */}
           <div className="shrink-0 flex items-center justify-center md:w-44 md:h-auto">
             <img
               src={Profile}
@@ -48,7 +47,6 @@ export default function ResumePage() {
             />
           </div>
 
-          {/* Professional Summary Container */}
           <div className="flex-1 bg-[#161b22]/50 border border-slate-700/60 p-4 sm:p-5 rounded-xl shadow-inner w-full flex flex-col justify-center overflow-y-auto custom-scrollbar">
             <p className="text-[10px] sm:text-[11px] text-emerald-400 font-bold uppercase tracking-widest text-left mb-2">
               Professional Summary
@@ -65,8 +63,7 @@ export default function ResumePage() {
           </div>
         </div>
 
-        {/* BOTTOM ROW: Navigation Links & Download Buttons */}
-        <div className="flex flex-col sm:flex-row justify-end gap-4 w-full  border-slate-700/30">
+        <div className="flex flex-col sm:flex-row justify-end gap-4 w-full border-slate-700/30">
           <div className="flex flex-wrap justify-center gap-2.5">
             <a
               href="https://drive.google.com/drive/folders/1SZsIJh3WBEQa035xq84g2dMbw3gKoVc3?usp=sharing"
@@ -93,7 +90,7 @@ export default function ResumePage() {
         {/* LEFT COLUMN */}
         <div className="xl:col-span-7 space-y-6 sm:space-y-8">
           <Card>
-            <h3 className="text-base sm:text-lg font-bold  uppercase tracking-widest mb-6 flex items-center gap-2">
+            <h3 className="text-base sm:text-lg font-bold uppercase tracking-widest mb-6 flex items-center gap-2">
               Career Evolution
             </h3>
             <div className="relative pl-5 sm:pl-6 border-l-2 border-slate-700/50 space-y-8 sm:space-y-10">
@@ -172,51 +169,55 @@ export default function ResumePage() {
 
         {/* RIGHT COLUMN */}
         <div className="xl:col-span-5 space-y-6 sm:space-y-8">
-          {/* TECHNICAL CORE SKILLS CARD (CONSOLIDATED CATEGORY BARS) */}
+          {/* TECHNICAL CORE SKILLS CARD WITH LEFT ICONS */}
           <Card>
-            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest mb-6">
+            <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest mb-4">
               Technical Core Skills
             </h3>
 
-            <div className="space-y-6">
+            <div className="space-y-1">
               {/* 1. MERN PROFICIENCY & WEB DEVELOPMENT */}
               <ProgressBar
                 label={
-                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-blue-400 uppercase tracking-wider">
-                    <span className="w-2.5 h-2.5 rounded-full bg-blue-500 shrink-0"></span>
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-white uppercase tracking-wider">
                     MERN Proficiency & Web Development
                   </span>
                 }
                 percentage={90}
-                colorClass="bg-blue-500"
+                colorClass="bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-400"
+                subtitle="Full-Stack Application Development"
+                icon={<FaCode className="w-5 h-5 text-blue-400" />}
               />
 
               {/* 2. ANALYTIC TOOL PROFICIENCY & DATA ANALYSIS */}
               <ProgressBar
                 label={
-                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-teal-400 uppercase tracking-wider">
-                    <span className="w-2.5 h-2.5 rounded-full bg-teal-500 shrink-0"></span>
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-white uppercase tracking-wider">
                     Analytic Tool Proficiency & Data Analysis
                   </span>
                 }
                 percentage={85}
-                colorClass="bg-teal-500"
+                colorClass="bg-gradient-to-r from-teal-600 via-teal-500 to-emerald-400"
+                subtitle="Dashboards, SQL & Business Intelligence"
+                icon={<FaChartBar className="w-5 h-5 text-teal-400" />}
               />
 
               {/* 3. IT SPECIALIST & NETWORK OPERATIONS */}
               <ProgressBar
                 label={
-                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-amber-400 uppercase tracking-wider">
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500 shrink-0"></span>
+                  <span className="flex items-center gap-2 font-bold text-xs sm:text-sm text-white uppercase tracking-wider">
                     IT Specialist & Network Operations
                   </span>
                 }
                 percentage={88}
-                colorClass="bg-amber-500"
+                colorClass="bg-gradient-to-r from-amber-600 via-amber-500 to-yellow-400"
+                subtitle="Hardware, Systems & Network Support"
+                icon={<FaServer className="w-5 h-5 text-amber-400" />}
               />
             </div>
           </Card>
 
+          {/* CERTIFICATIONS */}
           <Card className="flex flex-col">
             <div className="flex justify-between items-center mb-4 sm:mb-6">
               <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest flex items-center gap-2">
@@ -296,6 +297,7 @@ export default function ResumePage() {
             </div>
           </Card>
 
+          {/* TOP PROJECTS */}
           <Card>
             <h3 className="text-base sm:text-lg font-bold text-white uppercase tracking-widest mb-4 sm:mb-6 flex items-center gap-2">
               Top Projects

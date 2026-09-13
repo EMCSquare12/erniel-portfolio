@@ -24,101 +24,46 @@ import {
   IconTableau as TableauIcon,
 } from "../assets";
 
-import { mernSkills, dataSkills } from "../data/skillsData";
+import { mernSkills, dataSkills, itSpecialistSkills } from "../data/skillsData";
 
 export default function SkillsPage() {
+  // Map icons for IT Specialist items
+  const getITReactIcon = (iconKey) => {
+    switch (iconKey) {
+      case "tools":
+        return <FaTools className="w-5 h-5 text-amber-400" />;
+      case "network":
+        return <FaNetworkWired className="w-5 h-5 text-amber-400" />;
+      case "server":
+        return <FaServer className="w-5 h-5 text-amber-400" />;
+      case "shield":
+        return <FaShieldAlt className="w-5 h-5 text-amber-400" />;
+      default:
+        return <FaTools className="w-5 h-5 text-amber-400" />;
+    }
+  };
+
   // 1. Web Dev Skills List
   const webDevItems = [
-    {
-      ...mernSkills[3],
-      icon: MongoIcon,
-      subtitle: "NoSQL Database",
-      score: "85%",
-    },
-    {
-      ...mernSkills[2],
-      icon: ExpressIcon,
-      subtitle: "API Development",
-      score: "90%",
-    },
-    {
-      ...mernSkills[1],
-      icon: NodeIcon,
-      subtitle: "End-to-End Logic",
-      score: "90%",
-    },
-
-    {
-      ...mernSkills[0],
-      icon: ReactIcon,
-      subtitle: "MERN App/Web",
-      score: "90%",
-    },
+    { ...mernSkills[3], icon: MongoIcon },
+    { ...mernSkills[2], icon: ExpressIcon },
+    { ...mernSkills[0], icon: NodeIcon },
+    { ...mernSkills[1], icon: ReactIcon },
   ];
 
   // 2. Data Analytics Skills List
   const dataAnalystItems = [
-    {
-      ...dataSkills[0],
-      icon: ExcelIcon,
-      subtitle: "Formulas & Pivots",
-      score: "85%",
-    },
-    {
-      ...dataSkills[1],
-      icon: SqlIcon,
-      subtitle: "Complex Queries",
-      score: "85%",
-    },
-    {
-      ...dataSkills[2],
-      icon: PowerBiIcon,
-      subtitle: "Dashboards & DAX",
-      score: "85%",
-    },
-    {
-      ...dataSkills[3],
-      icon: TableauIcon,
-      subtitle: "Data Viz & Stories",
-      score: "80%",
-    },
+    { ...dataSkills[0], icon: ExcelIcon },
+    { ...dataSkills[1], icon: SqlIcon },
+    { ...dataSkills[2], icon: PowerBiIcon },
+    { ...dataSkills[3], icon: TableauIcon },
   ];
 
   // 3. IT Specialist Skills List
-  const itSpecialistItems = [
-    {
-      label: "System Troubleshooting",
-      percentage: 90,
-      colorClass: "bg-[#eab308]",
-      subtitle: "Hardware & Software Diagnostics",
-      score: "90%",
-      reactIcon: <FaTools className="w-5 h-5 text-amber-400" />,
-    },
-    {
-      label: "Networking & Infrastructure",
-      percentage: 85,
-      colorClass: "bg-[#eab308]",
-      subtitle: "TCP/IP, DNS, DHCP, Routers/Switches",
-      score: "85%",
-      reactIcon: <FaNetworkWired className="w-5 h-5 text-amber-400" />,
-    },
-    {
-      label: "System Administration",
-      percentage: 85,
-      colorClass: "bg-[#eab308]",
-      subtitle: "Active Directory, Windows/Linux",
-      score: "85%",
-      reactIcon: <FaServer className="w-5 h-5 text-amber-400" />,
-    },
-    {
-      label: "Network Security & VPNs",
-      percentage: 80,
-      colorClass: "bg-[#eab308]",
-      subtitle: "Firewalls, Endpoint Security & Access Control",
-      score: "80%",
-      reactIcon: <FaShieldAlt className="w-5 h-5 text-amber-400" />,
-    },
-  ];
+  const itSpecialistItems = itSpecialistSkills.map((item) => ({
+    ...item,
+    reactIcon: getITReactIcon(item.iconKey),
+  }));
 
   // Skill Row Component
   const SkillRow = ({
@@ -129,49 +74,56 @@ export default function SkillsPage() {
     colorClass,
     subtitle,
     score,
-  }) => (
-    <div className="flex items-center gap-3.5 py-3 border-b border-slate-700/50 last:border-b-0">
-      {/* Icon in Front */}
-      <div className="shrink-0">
-        <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#161b22] border border-slate-700 flex items-center justify-center p-2 shadow-inner">
-          {reactIcon ? (
-            reactIcon
-          ) : (
-            <img
-              src={icon}
-              alt={label}
-              className="w-full h-full object-contain"
+  }) => {
+    const displayScore = score || `${percentage}%`;
+    const numericPercent = score
+      ? parseInt(score.replace("%", ""), 10)
+      : percentage;
+
+    return (
+      <div className="flex items-center gap-3.5 py-3 border-b border-slate-700/50 last:border-b-0">
+        {/* Icon in Front */}
+        <div className="shrink-0">
+          <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-[#161b22] border border-slate-700 flex items-center justify-center p-2 shadow-inner">
+            {reactIcon ? (
+              reactIcon
+            ) : (
+              <img
+                src={icon}
+                alt={label}
+                className="w-full h-full object-contain"
+              />
+            )}
+          </div>
+        </div>
+
+        {/* Progress Bar & Text Details */}
+        <div className="flex-1 min-w-0">
+          <div className="flex justify-between items-baseline mb-1">
+            <span className="font-bold text-white text-xs sm:text-sm tracking-wide">
+              {label}
+            </span>
+            <span className="text-xs sm:text-sm text-slate-200 font-bold font-mono">
+              {displayScore}
+            </span>
+          </div>
+
+          <div className="h-2 w-full bg-slate-800/80 rounded-full overflow-hidden border border-slate-700/60 shadow-inner">
+            <div
+              className={`h-full rounded-full transition-all duration-500 shadow-sm ${colorClass}`}
+              style={{ width: `${numericPercent}%` }}
             />
+          </div>
+
+          {subtitle && (
+            <p className="text-[10px] sm:text-xs text-slate-400 mt-1 truncate">
+              {subtitle}
+            </p>
           )}
         </div>
       </div>
-
-      {/* Progress Bar & Text Details */}
-      <div className="flex-1 min-w-0">
-        <div className="flex justify-between items-baseline mb-1">
-          <span className="font-bold text-white text-xs sm:text-sm tracking-wide">
-            {label}
-          </span>
-          <span className="text-xs sm:text-sm text-slate-200 font-bold font-mono">
-            {score || `${percentage}%`}
-          </span>
-        </div>
-
-        <div className="h-2 w-full bg-slate-800 rounded-full overflow-hidden border border-slate-700/50">
-          <div
-            className={`h-full rounded-full transition-all duration-500 ${colorClass}`}
-            style={{ width: `${percentage}%` }}
-          />
-        </div>
-
-        {subtitle && (
-          <p className="text-[10px] sm:text-xs text-slate-400 mt-1 truncate">
-            {subtitle}
-          </p>
-        )}
-      </div>
-    </div>
-  );
+    );
+  };
 
   const Tag = ({ src, alt, children }) => (
     <div className="px-2.5 py-1 flex flex-row items-center gap-1.5 bg-slate-800 border border-slate-700 rounded-full text-xs text-slate-300 shadow-sm">
@@ -196,9 +148,6 @@ export default function SkillsPage() {
         </span>
       </h2>
 
-      {/* ========================================================= */}
-      {/* SINGLE COLUMN MAIN CONTAINER FOR ALL 3 DOMAINS             */}
-      {/* ========================================================= */}
       <div className="flex flex-col space-y-6">
         {/* 1. WEB DEVELOPMENT SECTION */}
         <Card className="bg-[#1c2128] border-slate-700/80 p-4 sm:p-6">
