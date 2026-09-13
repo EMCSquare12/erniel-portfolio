@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import {
-  FaExternalLinkAlt,
-  FaCompressArrowsAlt,
-  FaExpandArrowsAlt,
-} from "react-icons/fa";
+import { FaExternalLinkAlt, FaCompressArrowsAlt } from "react-icons/fa";
 
 // Reusable UI Components
 import { Card } from "../components/ui/Card";
@@ -141,23 +137,6 @@ const ShrinkButton = ({ setExpandedCard }) => (
   </button>
 );
 
-const ExpandButton = ({
-  id,
-  setExpandedCard,
-  className = "top-3 right-3 p-2",
-}) => (
-  <button
-    onClick={(e) => {
-      e.stopPropagation();
-      setExpandedCard(id);
-    }}
-    className={`absolute ${className} text-emerald-400 hover:text-white hover:bg-emerald-500/20 bg-emerald-400/10 rounded-lg z-20 transition-all shadow-sm border border-emerald-500/20 md:opacity-0 group-hover:opacity-100`}
-    title="Expand"
-  >
-    <FaExpandArrowsAlt size={13} />
-  </button>
-);
-
 export default function ProjectsPage() {
   const [expandedCard, setExpandedCard] = useState(null);
   const [projectGalleryId, setProjectGalleryId] = useState(null);
@@ -197,7 +176,7 @@ export default function ProjectsPage() {
       return (
         <SidebarCard
           id="proshop"
-          title="Featured Project: ProShop"
+          title="ProShop: Client Page"
           image={mockImagesProShopClient[0]}
           setExpandedCard={setExpandedCard}
         />
@@ -207,12 +186,16 @@ export default function ProjectsPage() {
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && (
-          <ExpandButton id="proshop" setExpandedCard={setExpandedCard} />
-        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-20 sm:pr-24">
-          Featured Project: ProShop
+        <h3
+          onClick={() => !isExp && setExpandedCard("proshop")}
+          className={`font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-12 ${
+            !isExp
+              ? "cursor-pointer hover:text-emerald-400 transition-colors"
+              : ""
+          }`}
+        >
+          ProShop: Client Page
         </h3>
 
         <div className="flex flex-col flex-1 min-h-0 overflow-y-auto hover-scrollbar pb-2">
@@ -264,18 +247,36 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4
-              className={`font-bold text-white ${isExp ? "text-sm sm:text-md" : "text-[11px]"} mb-2 uppercase tracking-wider shrink-0`}
-            >
-              {proShopDetails[0].title}
-            </h4>
-            <div className="space-y-3">
-              <p className="text-xs sm:text-sm text-slate-400 list-disc space-y-1">
-                {proShopDetails[0].descriptions}
-              </p>
-
-              
-            </div>
+            {isExp ? (
+              /* EXPANDED MODE: Show All Project Details */
+              <div className="space-y-4">
+                <h4 className="font-bold text-white text-sm sm:text-md uppercase tracking-wider shrink-0">
+                  Project Description & Technical Highlights
+                </h4>
+                {proShopDetails.map((detail, idx) => (
+                  <div key={idx}>
+                    <h5 className="text-emerald-400 text-sm sm:text-md font-semibold mb-1 flex items-center gap-1.5">
+                      {detail.title}
+                    </h5>
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 space-y-1">
+                      {detail.descriptions.map((desc, i) => (
+                        <li key={i}>{formatDescription(desc)}</li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* NOT EXPANDED MODE: Show Summary Only */
+              <div>
+                <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+                  {proShopDetails[0].title}
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {proShopDetails[0].descriptions[0]}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Card>
@@ -297,11 +298,15 @@ export default function ProjectsPage() {
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && (
-          <ExpandButton id="datascience" setExpandedCard={setExpandedCard} />
-        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 truncate pr-20 sm:pr-24">
+        <h3
+          onClick={() => !isExp && setExpandedCard("datascience")}
+          className={`font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 truncate pr-12 ${
+            !isExp
+              ? "cursor-pointer hover:text-emerald-400 transition-colors"
+              : ""
+          }`}
+        >
           Data Science Project: Segmentation
         </h3>
 
@@ -350,15 +355,15 @@ export default function ProjectsPage() {
 
             <div className="flex flex-col shrink-0">
               <h4 className="font-bold text-white text-sm sm:text-md mb-2 uppercase tracking-wider shrink-0">
-                Project Description
+                Project Description & Technical Highlights
               </h4>
               <div className="space-y-3">
                 {dataScienceDetails.map((detail, idx) => (
                   <div key={idx}>
                     <h5 className="text-emerald-400 text-xs sm:text-md font-semibold mb-1 flex items-center gap-1.5">
-                      ✓ {detail.title}
+                      {detail.title}
                     </h5>
-                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4  space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{formatDescription(desc)}</li>
                       ))}
@@ -377,7 +382,7 @@ export default function ProjectsPage() {
             />
             <div className="flex flex-col justify-start overflow-y-auto hover-scrollbar pr-2 pb-2">
               <h4 className="font-bold text-white text-[11px] mb-1 uppercase tracking-wider">
-                Tableau dashboard
+                Tableau Dashboard
               </h4>
               <p className="text-[10px] text-slate-400 mt-1">
                 {
@@ -406,11 +411,15 @@ export default function ProjectsPage() {
     return (
       <Card className="group flex flex-col h-full relative overflow-hidden w-full p-4 sm:p-6">
         {isExp && <ShrinkButton setExpandedCard={setExpandedCard} />}
-        {!isExp && (
-          <ExpandButton id="moderntech" setExpandedCard={setExpandedCard} />
-        )}
 
-        <h3 className="font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-20 sm:pr-24">
+        <h3
+          onClick={() => !isExp && setExpandedCard("moderntech")}
+          className={`font-bold text-white mb-3 uppercase text-xs sm:text-sm shrink-0 whitespace-nowrap pr-12 ${
+            !isExp
+              ? "cursor-pointer hover:text-emerald-400 transition-colors"
+              : ""
+          }`}
+        >
           ProShop - Admin Dashboard
         </h3>
 
@@ -463,33 +472,36 @@ export default function ProjectsPage() {
           </div>
 
           <div className="flex flex-col shrink-0">
-            <h4
-              className={`font-bold text-white ${isExp ? "text-sm sm:text-md" : "text-[11px]"} mb-2 uppercase tracking-wider shrink-0`}
-            >
-              Project Description
-            </h4>
-            <div className="space-y-3">
-              {modernTechDetails.map((detail, idx) => (
-                <div key={idx}>
-                  <h5
-                    className={`text-emerald-400 ${isExp ? "text-xs sm:text-md" : "text-[10px]"} font-semibold mb-1 flex items-center gap-1.5`}
-                  >
-                    ✓ {detail.title}
-                  </h5>
-                  {isExp ? (
-                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 list-disc space-y-1">
+            {isExp ? (
+              /* EXPANDED MODE: Show All Technical Highlights */
+              <div className="space-y-4">
+                <h4 className="font-bold text-white text-sm sm:text-md uppercase tracking-wider shrink-0">
+                  Project Description & Technical Highlights
+                </h4>
+                {modernTechDetails.map((detail, idx) => (
+                  <div key={idx}>
+                    <h5 className="text-emerald-400 text-sm sm:text-md font-semibold mb-1 flex items-center gap-1.5">
+                      {detail.title}
+                    </h5>
+                    <ul className="text-xs sm:text-sm text-slate-400 pl-4 space-y-1">
                       {detail.descriptions.map((desc, i) => (
                         <li key={i}>{formatDescription(desc)}</li>
                       ))}
                     </ul>
-                  ) : (
-                    <p className="text-[10px] text-slate-400 line-clamp-4 pl-4">
-                      {formatDescription(detail.descriptions[0])}
-                    </p>
-                  )}
-                </div>
-              ))}
-            </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              /* NOT EXPANDED MODE: Show Summary Only */
+              <div>
+                <h4 className="font-bold text-white text-[11px] mb-2 uppercase tracking-wider shrink-0">
+                  {modernTechDetails[0].title}
+                </h4>
+                <p className="text-xs text-slate-400 leading-relaxed">
+                  {modernTechDetails[0].descriptions[0]}
+                </p>
+              </div>
+            )}
           </div>
         </div>
       </Card>
@@ -591,7 +603,7 @@ export default function ProjectsPage() {
 
           <div className="flex flex-col shrink-0">
             <h4 className="font-bold text-white text-xs sm:text-md mb-2 uppercase tracking-wider shrink-0">
-              Project Description
+              Project Description & Technical Highlights
             </h4>
             <div className="space-y-3">
               {currentDetails.map((detail, idx) => (
@@ -631,11 +643,6 @@ export default function ProjectsPage() {
               className="group/gallery-item flex flex-col h-[110px] shrink-0 min-h-0 cursor-pointer"
             >
               <div className="relative bg-slate-800 rounded-lg border border-slate-700 flex items-center justify-center text-slate-400 text-xs mb-1.5 w-full flex-1 overflow-hidden">
-                <ExpandButton
-                  id={`gallery-${i}`}
-                  setExpandedCard={setExpandedCard}
-                  className="top-1 right-1 p-1"
-                />
                 <img
                   className="block w-full h-full object-cover transition-transform duration-500 group-hover/gallery-item:scale-110"
                   src={it.image}
