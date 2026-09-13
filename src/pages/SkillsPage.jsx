@@ -30,16 +30,10 @@ export default function SkillsPage() {
   // 1. Web Dev Skills List
   const webDevItems = [
     {
-      ...mernSkills[0],
-      icon: ReactIcon,
-      subtitle: "MERN App/Web",
-      score: "90%",
-    },
-    {
-      ...mernSkills[1],
-      icon: NodeIcon,
-      subtitle: "End-to-End Logic",
-      score: "90%",
+      ...mernSkills[3],
+      icon: MongoIcon,
+      subtitle: "NoSQL Database",
+      score: "85%",
     },
     {
       ...mernSkills[2],
@@ -48,10 +42,17 @@ export default function SkillsPage() {
       score: "90%",
     },
     {
-      ...mernSkills[3],
-      icon: MongoIcon,
-      subtitle: "NoSQL Database",
-      score: "85%",
+      ...mernSkills[1],
+      icon: NodeIcon,
+      subtitle: "End-to-End Logic",
+      score: "90%",
+    },
+
+    {
+      ...mernSkills[0],
+      icon: ReactIcon,
+      subtitle: "MERN App/Web",
+      score: "90%",
     },
   ];
 

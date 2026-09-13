@@ -2,9 +2,13 @@ import React from "react";
 import { Card } from "../components/ui/Card";
 import { CustomGauge } from "../components/ui/CustomGauge";
 import { ProjectGalleryItem } from "../components/ProjectGalleryItem";
-import { homeSkillsData } from "../data/skillsData";
 import { techIcons } from "../data/projectsData";
-import { FaExternalLinkAlt } from "react-icons/fa";
+import {
+  FaExternalLinkAlt,
+  FaCode,
+  FaChartBar,
+  FaServer,
+} from "react-icons/fa";
 
 import {
   Hero,
@@ -16,6 +20,31 @@ import {
   ProjectProshop_1 as ProShopHome,
   IconGithub as GitHub,
 } from "../assets";
+
+// 3 Technical Core Skills with Gauge Values & Category Icons
+const coreSkillsGauges = [
+  {
+    name: "MERN & Web Dev",
+    fullName: "MERN Proficiency & Web Development",
+    value: 90,
+    color: "#3b82f6", // Blue
+    icon: FaCode,
+  },
+  {
+    name: "Data Analytics",
+    fullName: "Analytic Tool Proficiency & Data Analysis",
+    value: 85,
+    color: "#14b8a6", // Teal
+    icon: FaChartBar,
+  },
+  {
+    name: "IT & Network Ops",
+    fullName: "IT Specialist & Network Operations",
+    value: 88,
+    color: "#f59e0b", // Amber
+    icon: FaServer,
+  },
+];
 
 export default function HomePage() {
   return (
@@ -126,54 +155,46 @@ export default function HomePage() {
               cleaning 500k+ rows with Power Query/SQL.
             </p>
           </Card>
-          {/* <Card>
-            <h3 className="font-bold text-white mb-2">The Hybrid Approach</h3>
-            <div className="flex items-center space-x-3 sm:space-x-4">
-              <div className="p-2.5 sm:p-3 bg-blue-500/20 text-blue-400 rounded-lg text-sm font-mono shrink-0">
-                &lt;/&gt;
-              </div>
-              <p className="text-xs text-slate-400 leading-relaxed">
-                Combining frontend development and analysis to create
-                Data-Driven Web Solutions.
-              </p>
-            </div>
-          </Card> */}
         </div>
 
         {/* COLUMN 3 */}
         <div className="col-span-1 md:col-span-2 lg:col-span-1 flex flex-col space-y-6">
-          {/* SINGLE ROW SKILLS SPECTRUM CARD */}
+          {/* TECHNICAL CORE SKILLS CARD WITH 3 GAUGES & ICONS */}
           <Card>
-            <h3 className="font-bold text-white mb-4">Skills Spectrum</h3>
-            <div className="grid grid-cols-4 gap-1.5 sm:gap-3 text-center">
-              {homeSkillsData.map((skill, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col items-center justify-between space-y-2"
-                >
-                  <CustomGauge
-                    name={skill.name}
-                    value={skill.value}
-                    color={skill.color}
-                  />
-                  <div className="flex flex-col items-center">
-                    <div className="w-7 h-7 sm:w-8 sm:h-8 p-1 rounded-full bg-slate-700 flex items-center justify-center mb-1">
-                      <img
-                        src={skill.icon}
-                        alt={skill.name}
-                        title={skill.name}
-                        className="w-full h-full object-contain"
-                      />
+            <h3 className="text-base font-bold text-white uppercase tracking-widest mb-4">
+              Technical Core Skills
+            </h3>
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 text-center">
+              {coreSkillsGauges.map((skill, i) => {
+                const IconComponent = skill.icon;
+                return (
+                  <div
+                    key={i}
+                    className="flex flex-col items-center justify-between space-y-2"
+                  >
+                    <CustomGauge
+                      name={skill.name}
+                      value={skill.value}
+                      color={skill.color}
+                    />
+                    <div className="flex flex-col items-center h-full">
+                      <div
+                        className="w-7 h-7 sm:w-8 sm:h-8 p-1.5 rounded-full bg-slate-700/80 border border-slate-600 flex items-center justify-center mb-1"
+                        style={{ color: skill.color }}
+                      >
+                        <IconComponent className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                      </div>
+                      <span className="text-[9px] sm:text-[10px] text-slate-300 font-medium leading-tight max-w-[85px] sm:max-w-[95px]">
+                        {skill.name}
+                      </span>
                     </div>
-                    <span className="text-[9px] sm:text-[10px] text-slate-400 leading-tight max-w-[65px] sm:max-w-[80px]">
-                      {skill.name}
-                    </span>
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </Card>
 
+          {/* PROJECT GALLERY */}
           <Card className="flex-1">
             <h3 className="font-bold text-white mb-4">
               Project Gallery (Latest)
