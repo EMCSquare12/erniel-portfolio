@@ -46,7 +46,9 @@ export const CustomGauge = ({ name, value, color }) => {
           </g>
         </svg>
       </div>
-      <span className="text-sm text-white leading-tight">{value}%</span>
+      <span className="text-sm font-semibold text-white leading-tight">
+        {value}%
+      </span>
     </div>
   );
 };

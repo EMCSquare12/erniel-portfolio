@@ -1,10 +1,19 @@
 import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
-import { FaGithubSquare, FaLinkedin, FaBars, FaTimes } from "react-icons/fa";
+import {
+  FaGithubSquare,
+  FaLinkedin,
+  FaBars,
+  FaTimes,
+  FaSun,
+  FaMoon,
+} from "react-icons/fa";
 import { IoMdMail } from "react-icons/io";
+import { useTheme } from "../context/ThemeContext";
 
 export default function Sidebar() {
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   const navItems = [
     { name: "HOME", path: "/" },
@@ -19,20 +28,37 @@ export default function Sidebar() {
   return (
     <>
       {/* MOBILE TOP NAVBAR */}
-      <header className="md:hidden flex items-center justify-between bg-[#1c2128]/90 backdrop-blur-md border-b border-slate-700/50 px-4 py-3 sticky top-0 z-50">
+      <header className="md:hidden flex items-center justify-between bg-[#1c2128]/90 backdrop-blur-md border-b border-slate-700/50 px-4 py-3 sticky top-0 z-50 transition-colors">
         <div>
           <h1 className="text-base font-bold text-white leading-tight">
             Erniel Caalim
           </h1>
           <p className="text-xs text-slate-400">Web Dev & Data Analyst</p>
         </div>
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="p-2 text-slate-300 hover:text-white focus:outline-none bg-slate-800/80 border border-slate-700 rounded-lg"
-          aria-label="Toggle Navigation Menu"
-        >
-          {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-        </button>
+        <div className="flex items-center gap-2">
+          {/* Mobile Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="p-2 text-slate-300 hover:text-white focus:outline-none bg-slate-800/80 border border-slate-700 rounded-lg transition-all cursor-pointer"
+            aria-label="Toggle Light/Dark Theme"
+            title={
+              theme === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode"
+            }
+          >
+            {theme === "dark" ? (
+              <FaSun className="w-4 h-4 text-amber-400" />
+            ) : (
+              <FaMoon className="w-4 h-4 text-indigo-500" />
+            )}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="p-2 text-slate-300 hover:text-white focus:outline-none bg-slate-800/80 border border-slate-700 rounded-lg"
+            aria-label="Toggle Navigation Menu"
+          >
+            {mobileOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+          </button>
+        </div>
       </header>
 
       {/* MOBILE DRAWER OVERLAY */}
@@ -45,7 +71,7 @@ export default function Sidebar() {
 
       {/* MOBILE SLIDE-OUT MENU */}
       <div
-        className={`fixed top-0 left-0 bottom-0 w-72 bg-[#1c2128] border-r border-slate-700/80 z-50 p-6 flex flex-col justify-between transition-transform duration-300 ease-in-out md:hidden ${
+        className={`fixed top-0 left-0 bottom-0 w-72 bg-[#1c2128] border-r border-slate-700/80 z-50 p-6 flex flex-col justify-between transition-all duration-300 ease-in-out md:hidden ${
           mobileOpen ? "translate-x-0" : "-translate-x-full"
         }`}
       >
@@ -86,6 +112,27 @@ export default function Sidebar() {
         </div>
 
         <div>
+          {/* Mobile Drawer Theme Toggle Button */}
+          <div className="mb-4">
+            <button
+              onClick={toggleTheme}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700/80 transition-all cursor-pointer shadow-sm text-xs font-semibold"
+              aria-label="Toggle Light/Dark Theme"
+            >
+              <span className="flex items-center gap-2">
+                {theme === "dark" ? (
+                  <FaSun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <FaMoon className="w-4 h-4 text-indigo-500" />
+                )}
+                <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 uppercase tracking-wider font-mono">
+                {theme === "dark" ? "OFF" : "ON"}
+              </span>
+            </button>
+          </div>
+
           <div className="flex space-x-4 mb-4 text-slate-400">
             <a
               href="https://github.com/EMCSquare12"
@@ -115,7 +162,7 @@ export default function Sidebar() {
       </div>
 
       {/* DESKTOP SIDEBAR */}
-      <aside className="w-64 border-r bg-[#1c2128]/60 backdrop-blur-md border-slate-700/50 p-6 flex-col justify-between hidden md:flex shrink-0">
+      <aside className="w-64 border-r bg-[#1c2128]/60 backdrop-blur-md border-slate-700/50 p-6 flex-col justify-between hidden md:flex shrink-0 transition-colors">
         <div>
           <h1 className="text-xl font-bold text-white mb-8 border-b border-slate-700 pb-4">
             Erniel Caalim
@@ -144,6 +191,27 @@ export default function Sidebar() {
         </div>
 
         <div>
+          {/* Desktop Theme Toggle Button */}
+          <div className="mb-4">
+            <button
+              onClick={toggleTheme}
+              className="w-full flex items-center justify-between px-3.5 py-2.5 rounded-xl bg-slate-800/80 border border-slate-700/80 text-slate-300 hover:text-white hover:bg-slate-700/80 transition-all cursor-pointer shadow-sm text-xs font-semibold"
+              aria-label="Toggle Light/Dark Theme"
+            >
+              <span className="flex items-center gap-2">
+                {theme === "dark" ? (
+                  <FaSun className="w-4 h-4 text-amber-400" />
+                ) : (
+                  <FaMoon className="w-4 h-4 text-indigo-500" />
+                )}
+                <span>{theme === "dark" ? "Light Mode" : "Dark Mode"}</span>
+              </span>
+              <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-700/80 text-slate-300 uppercase tracking-wider font-mono">
+                {theme === "dark" ? "OFF" : "ON"}
+              </span>
+            </button>
+          </div>
+
           <div className="flex space-x-4 mb-4 text-slate-400">
             <a
               href="https://github.com/EMCSquare12"

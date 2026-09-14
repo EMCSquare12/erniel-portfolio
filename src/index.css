@@ -10,7 +10,7 @@
 @layer base {
   body {
     /* Added font-sans to explicitly apply the theme font */
-    @apply text-slate-300 antialiased font-sans;
+    @apply text-slate-300 antialiased font-sans transition-colors duration-300;
 
     /* 1. Base dark color */
     background-color: #0d1a3c;
@@ -33,32 +33,174 @@
     min-height: 100vh;
     margin: 0;
   }
+
+  /* 2. Light mode body background & light gradient with grid */
+  html.light body {
+    @apply text-slate-800;
+
+    background-color: #f1f5f9;
+
+    background-image: 
+      /* Horizontal grid lines - subtle light grid */
+      linear-gradient(rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+      /* Vertical grid lines - subtle light grid */
+        linear-gradient(90deg, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+      /* Soft light radial gradient glow from top center */
+        radial-gradient(circle at 50% 0%, #e0f2fe 0%, #edf2f7 50%, #e2e8f0 100%);
+
+    background-size:
+      50px 50px,
+      50px 50px,
+      100% 100%;
+    background-position: center top;
+    background-attachment: fixed;
+  }
 }
 
+/* ========================================== */
+/* LIGHT MODE STYLING OVERRIDES               */
+/* ========================================== */
+
+html.light {
+  color-scheme: light;
+}
+
+/* Cards & Containers */
+html.light .bg-\[\#1c2128\],
+html.light .bg-\[\#1c2128\]\/60,
+html.light .bg-\[\#1c2128\]\/80,
+html.light .bg-\[\#1c2128\]\/90,
+html.light .bg-\[\#1c2128\]\/70 {
+  background-color: rgba(255, 255, 255, 0.88) !important;
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.06),
+    0 8px 10px -6px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .bg-\[\#161b22\],
+html.light .bg-\[\#161b22\]\/50,
+html.light .bg-\[\#161b22\]\/70,
+html.light .bg-\[\#161b22\]\/80 {
+  background-color: rgba(241, 245, 249, 0.9) !important;
+}
+
+html.light .bg-\[\#0d1117\] {
+  background-color: #ffffff !important;
+}
+
+html.light .bg-\[\#21262d\] {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .bg-slate-800,
+html.light .bg-slate-800\/80,
+html.light .bg-slate-800\/50 {
+  background-color: #f1f5f9 !important;
+}
+
+html.light .bg-slate-700,
+html.light .bg-slate-700\/60,
+html.light .bg-slate-700\/50,
+html.light .bg-slate-700\/80 {
+  background-color: #e2e8f0 !important;
+}
+
+html.light .ring-\[\#1c2128\] {
+  --tw-ring-color: #ffffff !important;
+}
+
+/* Text Overrides for Light Mode */
+html.light .text-white {
+  color: #0f172a !important; /* slate-900 */
+}
+
+html.light .text-slate-200,
+html.light .text-slate-300 {
+  color: #334155 !important; /* slate-700 */
+}
+
+html.light .text-slate-400 {
+  color: #475569 !important; /* slate-600 */
+}
+
+html.light .text-slate-500 {
+  color: #64748b !important; /* slate-500 */
+}
+
+/* Border Overrides for Light Mode */
+html.light .border-slate-700,
+html.light .border-slate-700\/50,
+html.light .border-slate-700\/60,
+html.light .border-slate-700\/80,
+html.light .border-slate-700\/30,
+html.light .border-slate-700\/40,
+html.light .border-slate-600,
+html.light .border-slate-500 {
+  border-color: #cbd5e1 !important; /* slate-300 */
+}
+
+/* Form inputs */
+html.light input,
+html.light textarea {
+  color: #0f172a !important;
+  background-color: #ffffff !important;
+  border-color: #cbd5e1 !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94a3b8 !important;
+}
+
+/* Hover effects in light mode */
+html.light .hover\:bg-slate-700:hover,
+html.light .hover\:bg-slate-800:hover,
+html.light .hover\:bg-slate-600:hover {
+  background-color: #cbd5e1 !important;
+}
+
+html.light .hover\:text-white:hover {
+  color: #0f172a !important;
+}
+
+/* Gauge background arc in light mode */
+html.light svg path[stroke="#334155"] {
+  stroke: #cbd5e1 !important;
+}
+
+/* Custom Scrollbars in Light Mode */
 .custom-scrollbar {
-  /* For Firefox */
   scrollbar-width: thin;
-  scrollbar-color: #475569 transparent; /* slate-600 thumb, transparent track */
+  scrollbar-color: #475569 transparent;
 }
 
-/* For Chrome, Edge, and Safari */
+html.light .custom-scrollbar {
+  scrollbar-color: #94a3b8 transparent;
+}
+
 .custom-scrollbar::-webkit-scrollbar {
-  width: 6px; /* Vertical scrollbar width */
-  height: 6px; /* Horizontal scrollbar height (if needed) */
+  width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
-  background: transparent; /* Keeps the track invisible/clean */
+  background: transparent;
   border-radius: 8px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #475569; /* Tailwind slate-600 */
+  background-color: #475569;
   border-radius: 8px;
-  border: 2px solid transparent; /* Optional: adds a little padding effect */
+  border: 2px solid transparent;
   background-clip: padding-box;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #10b981; /* Tailwind emerald-500 for a nice pop of color */
+html.light .custom-scrollbar::-webkit-scrollbar-thumb,
+html.light .hover-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #cbd5e1;
+}
+
+html.light .custom-scrollbar::-webkit-scrollbar-thumb:hover,
+html.light .hover-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #0d9488 !important;
 }

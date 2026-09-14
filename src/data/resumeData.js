@@ -53,9 +53,11 @@ export const timelineData = [
     period: "Current",
     color: "bg-slate-600",
     bullets: [
-      "Assisted the Store Manager in daily operations and general store management.",
-      "Handled incoming deliveries and verified inventory accuracy.",
-      "Arranged store displays. Optimize product visibility and visual appeal.",
+      "Executed various office administrative tasks to ensure smooth daily operations.",
+      "Performed routine network checks to maintain stable and secure connectivity.",
+      "Troubleshoot and resolved hardware and software issues for office devices.",
+      "Managed and maintained the company's digital subscriptions and accounts.",
+      "Provided daily IT and administrative support to employees.",
     ],
   },
 ];
